@@ -641,7 +641,13 @@ let accounts = {
 let curUser=null, hvType='coffee';
 let curY=new Date().getFullYear(), curM=new Date().getMonth()+1;
 let fbApp=null, fbDb=null, fbGroup='nong-trai-01';
-let syncTimer=null, unsubFb=null, isPushing=false;
+let syncTimer=null, unsubFb=null;
+// ✅ Dùng timestamp thay cho boolean isPushing
+// lastPushTime = thời điểm push cuối cùng của thiết bị này
+// Khi nhận snapshot: nếu snap.ts <= lastPushTime → echo của mình → bỏ qua
+// Nếu snap.ts > lastPushTime → update thật từ máy khác → apply
+let lastPushTime = 0;
+let hasRealData = false; // true khi đã có ít nhất 1 worker hoặc nhận được data từ cloud
 
 const TABS=['home','att','harvest','salary','settings'];
 const TITLES={home:'Tổng hợp',att:'Điểm danh công',harvest:'Sản lượng',salary:'Bảng lương',settings:'Cài đặt'};
@@ -796,7 +802,20 @@ window.saveChangePw=function(){
   toast('✓ Đã đổi mật khẩu');
 };
 
-// ── FIREBASE — ✅ LISTEN FIRST, PUSH AFTER ──
+// ══════════════════════════════════════════════════
+//  FIREBASE SYNC — BULLETPROOF IMPLEMENTATION
+//
+//  Nguyên tắc cốt lõi:
+//  1. KHÔNG BAO GIỜ push data rỗng lên cloud khi init
+//  2. Dùng timestamp (lastPushTime) thay cho boolean isPushing
+//     → tránh race condition khi push xong nhận lại echo
+//  3. Chỉ apply remote nếu snap.ts > lastPushTime
+//     → snapshot cũ hơn/bằng lần push của mình = echo, bỏ qua
+//     → snapshot mới hơn = máy khác vừa thay đổi, apply ngay
+//  4. Không tạo document nếu chưa có data thật
+//     → tránh máy mới load trắng ghi đè data máy khác
+// ══════════════════════════════════════════════════
+
 function buildPayload(){
   return{
     workers,attendance,harvests,offSat,offSun,accounts,
@@ -807,13 +826,21 @@ function buildPayload(){
 
 async function pushToFb(){
   if(!fbDb)return;
+  // ✅ Không push nếu không có data thật
+  if(!hasRealData && workers.length===0 && harvests.length===0 && Object.keys(attendance).length===0){
+    console.log('Skip push: no real data yet');
+    return;
+  }
   setSyncUI('sync');
-  isPushing=true;
   try{
-    await setDoc(doc(fbDb,'conghai',fbGroup),buildPayload());
+    const payload = buildPayload();
+    lastPushTime = payload.ts; // ghi lại ts trước khi push
+    await setDoc(doc(fbDb,'conghai',fbGroup), payload);
     setSyncUI('ok');
-  }catch(e){setSyncUI('err');console.error('Push:',e);}
-  setTimeout(()=>{isPushing=false;},3000);
+  }catch(e){
+    setSyncUI('err');
+    console.error('Push error:',e);
+  }
 }
 
 function applyRemoteData(d){
@@ -832,42 +859,73 @@ function applyRemoteData(d){
   }
   document.getElementById('tog-sat').classList.toggle('on',offSat);
   document.getElementById('tog-sun').classList.toggle('on',offSun);
+  // Đánh dấu đã có data từ cloud
+  if(workers.length>0||harvests.length>0||Object.keys(attendance).length>0){
+    hasRealData=true;
+  }
 }
 
-// ✅ FIXED: Listen first, don't push empty data on load
-function listenFbFirstLoad(){
+function onRemoteSnap(snap){
+  if(!snap.exists()){
+    // Document chưa tồn tại — không làm gì, chờ user thêm data
+    setSyncUI('ok');
+    return;
+  }
+  const d = snap.data();
+  const remoteTsRaw = d.ts;
+  const remoteTs = typeof remoteTsRaw==='number' ? remoteTsRaw
+    : (remoteTsRaw?.toMillis ? remoteTsRaw.toMillis() : 0);
+
+  // ✅ Bỏ qua nếu đây là echo của lần push của mình
+  // Cho thêm 2s buffer để tránh đồng hồ lệch nhau
+  if(remoteTs <= lastPushTime + 2000 && lastPushTime > 0){
+    setSyncUI('ok');
+    return;
+  }
+
+  // Đây là update thật từ thiết bị khác
+  applyRemoteData(d);
+  refreshActive();
+  updateAttBadge();
+  setSyncUI('ok');
+  if(document.getElementById('sec-settings').classList.contains('on')&&isAdmin()){
+    renderWList();
+  }
+}
+
+// ✅ Khởi động: listen trước, KHÔNG push gì khi load
+function startListening(){
+  if(!fbDb)return;
+  if(unsubFb)try{unsubFb();}catch(e){}
+  const ref=doc(fbDb,'conghai',fbGroup);
+
   return new Promise((resolve)=>{
-    if(!fbDb)return resolve();
-    if(unsubFb)try{unsubFb();}catch(e){}
-    const ref=doc(fbDb,'conghai',fbGroup);
-    let firstSnap=true;
+    let resolved=false;
+    const finish=()=>{if(!resolved){resolved=true;resolve();}};
 
     unsubFb=onSnapshot(ref, snap=>{
-      if(firstSnap){
-        firstSnap=false;
+      if(!resolved){
+        // Snapshot đầu tiên khi vừa kết nối
         if(snap.exists()){
           applyRemoteData(snap.data());
+          hasRealData=true;
           refreshActive();
-        } else {
-          // First time — push initial empty data
-          pushToFb();
         }
-        resolve();
-      } else {
-        // Real-time update from another device
-        if(isPushing){setSyncUI('ok');return;}
-        applyRemoteData(snap.data());
-        refreshActive();
+        // Dù có data hay không cũng resolve để app tiếp tục
+        finish();
         setSyncUI('ok');
-        updateAttBadge();
-        if(document.getElementById('sec-settings').classList.contains('on')&&isAdmin()){
-          renderWList();
-        }
+      } else {
+        // Các snapshot realtime tiếp theo
+        onRemoteSnap(snap);
       }
     }, err=>{
-      console.error('Snapshot:',err);setSyncUI('err');
-      if(firstSnap){firstSnap=false;resolve();}
+      console.error('Snapshot error:',err);
+      setSyncUI('err');
+      finish();
     });
+
+    // Timeout 6s: nếu Firebase không phản hồi vẫn cho vào app
+    setTimeout(()=>{ setSyncUI('err'); finish(); }, 6000);
   });
 }
 
@@ -879,9 +937,7 @@ async function initFirebase(group){
     if(existing)try{await deleteApp(existing);}catch(e){}
     fbApp=initializeApp(FB_CONFIG,FB_APP_NAME);
     fbDb=getFirestore(fbApp);
-    // ✅ Listen first — never push empty on load
-    await listenFbFirstLoad();
-    setSyncUI('ok');
+    await startListening();
     return true;
   }catch(err){
     fbDb=null;setSyncUI('err');
@@ -901,7 +957,8 @@ window.showFbGuide=function(){document.getElementById('fb-modal').style.display=
 function scheduleSync(){
   if(!fbDb)return;
   clearTimeout(syncTimer);
-  syncTimer=setTimeout(pushToFb,800);
+  // ✅ Delay ngắn để gom nhiều thao tác liên tiếp thành 1 push
+  syncTimer=setTimeout(pushToFb, 600);
 }
 
 // ── BACKUP ──
@@ -929,6 +986,7 @@ window.importJSON=function(event){
       if(!d.workers)throw new Error('File không hợp lệ');
       if(!confirm(`Nhập backup?\n${d.workers.length} công nhân, ${d.harvests?.length||0} bản ghi\nDữ liệu hiện tại sẽ bị ghi đè!`))return;
       workers=d.workers||[];attendance=d.attendance||{};harvests=d.harvests||[];
+      hasRealData=true;
       offSat=d.offSat!==undefined?d.offSat:true;offSun=d.offSun!==undefined?d.offSun:true;
       if(d.rates){
         document.getElementById('r-thuong').value=d.rates.thuong||300000;
@@ -997,6 +1055,7 @@ window.addWorker=function(){
   if(!name){toast('Nhập tên công nhân');return;}
   workers.push({id:Date.now()+'',name,type:document.getElementById('wtype').value});
   document.getElementById('wname').value='';
+  hasRealData=true;
   renderWList();scheduleSync();toast('✓ Đã thêm '+name);vibrate(40);
 };
 window.rmWorker=function(id){
@@ -1067,6 +1126,7 @@ window.cyDay=function(wid,key){
   const cur=attendance[wid][key]||'';
   const nx=CYCLE[(CYCLE.indexOf(cur)+1)%CYCLE.length];
   if(!nx)delete attendance[wid][key];else attendance[wid][key]=nx;
+  hasRealData=true;
   vibrate(25);
   renderAtt();scheduleSync();updateAttBadge();
 };
@@ -1088,6 +1148,7 @@ window.addHarvest=function(){
   const note=document.getElementById('hvnote').value.trim();
   if(!wid||!dt||kg<=0){toast('Điền đầy đủ thông tin');return;}
   harvests.push({id:Date.now()+'',wid,type:hvType,date:dt,kg,...(note?{note}:{})});
+  hasRealData=true;
   document.getElementById('hvnote').value='';
   renderHvList();renderHvSummary();scheduleSync();
   toast('✓ Đã lưu '+kg+'kg '+(hvType==='coffee'?'cà phê':'tiêu'));
@@ -1268,7 +1329,7 @@ async function init(){
   document.getElementById('hvdt').value=tod();
   updML();
 
-  // ✅ Connect Firebase — listen first, don't push empty data
+  // ✅ Connect Firebase — listen first, KHÔNG push data rỗng
   await initFirebase(fbGroup);
 
   document.getElementById('loading-screen').classList.add('hidden');
