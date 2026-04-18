@@ -116,6 +116,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .fld textarea{min-height:80px;resize:none;line-height:1.5}
 .fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--gm);background:var(--wh);box-shadow:0 0 0 3px rgba(22,101,52,.08)}
 .r2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .btn{font-family:var(--font);font-size:16px;font-weight:700;padding:15px;border-radius:14px;border:none;cursor:pointer;width:100%;min-height:52px;letter-spacing:-.3px;transition:opacity .15s,transform .1s;-webkit-appearance:none}
 .btn:active{opacity:.82;transform:scale(.97)}
 .btn-g{background:linear-gradient(135deg,var(--gm),var(--gl));color:#fff;box-shadow:0 4px 16px rgba(22,101,52,.25)}
@@ -127,16 +128,36 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .sg{flex:1;padding:10px 8px;border-radius:10px;border:none;font-size:13px;font-weight:600;font-family:var(--font);cursor:pointer;background:none;color:var(--g5);transition:all .18s;min-height:42px}
 .sg.on{background:var(--wh);color:var(--gm);box-shadow:var(--shadow-sm)}
 
-/* ── WORKER ROW ── */
-.wr{display:flex;align-items:center;gap:11px;padding:13px 0;border-bottom:1px solid var(--g8)}
-.wr:last-child{border-bottom:none}
-.av{width:42px;height:42px;border-radius:13px;background:var(--gf);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gm);flex-shrink:0;border:1.5px solid rgba(22,101,52,.12)}
-.wi{flex:1;min-width:0}
-.wi .nm{font-size:14px;font-weight:700;color:var(--g1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.wi .sb{font-size:12px;color:var(--g5);margin-top:2px;font-weight:500}
-.delbtn{width:38px;height:38px;border-radius:11px;background:var(--rp);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
-.delbtn:active{background:#fee2e2}
-.delbtn svg{width:15px;height:15px;fill:var(--rd)}
+/* ── WORKER CARD (mới) ── */
+.wcard{background:var(--wh);border-radius:16px;margin-bottom:10px;box-shadow:var(--shadow-sm);overflow:hidden;border:1.5px solid var(--g7);transition:border-color .2s}
+.wcard:last-child{margin-bottom:0}
+.wcard.editing{border-color:var(--gm)}
+.wcard-head{display:flex;align-items:center;gap:11px;padding:13px 14px 11px}
+.wcard-body{padding:0 14px 14px;display:none}
+.wcard.editing .wcard-body{display:block}
+.wcard-actions{display:flex;gap:7px;padding:0 14px 13px;display:none}
+.wcard.editing .wcard-actions{display:flex}
+.wcard-info{flex:1;min-width:0}
+.wcard-name{font-size:14px;font-weight:700;color:var(--g1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wcard-rates{font-size:11px;color:var(--g5);margin-top:3px;font-weight:500;display:flex;gap:8px;flex-wrap:wrap}
+.wcard-rate-chip{display:inline-flex;align-items:center;gap:3px;background:var(--g8);border-radius:6px;padding:2px 6px;font-size:10px;font-weight:700;color:var(--g4)}
+.wcard-rate-chip.hai{background:var(--gp);color:#14532d}
+.wcard-rate-chip.th{background:var(--bp);color:var(--bl)}
+.wcard-rate-chip.cf{background:var(--al);color:#92400e}
+.wcard-rate-chip.pp{background:#ede9fe;color:#5b21b6}
+.wcard-btn-edit{padding:6px 11px;border-radius:9px;background:var(--g8);border:1.5px solid var(--g7);font-size:11px;font-weight:700;color:var(--g4);cursor:pointer;font-family:var(--font);flex-shrink:0;min-height:34px;transition:all .15s}
+.wcard-btn-edit:active{background:var(--g7)}
+.wcard-btn-del{width:34px;height:34px;border-radius:10px;background:var(--rp);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wcard-btn-del svg{width:15px;height:15px;fill:var(--rd)}
+.wcard-divider{height:1px;background:var(--g7);margin:0 0 12px}
+.wcard-edit-label{font-size:10px;font-weight:700;color:var(--g5);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;margin-top:2px}
+.wcard-fld-sm input,.wcard-fld-sm select{font-size:14px;padding:10px 11px;min-height:44px;border-radius:11px}
+.rate-use-global{display:flex;align-items:center;gap:7px;padding:8px 10px;background:var(--gf);border-radius:10px;margin-bottom:10px;cursor:pointer;border:1.5px solid transparent;transition:border-color .15s}
+.rate-use-global.checked{border-color:var(--gm)}
+.rate-use-global input[type=checkbox]{width:16px;height:16px;accent-color:var(--gm);cursor:pointer;flex-shrink:0}
+.rate-use-global span{font-size:12px;font-weight:600;color:var(--gd)}
+.rate-custom-fields{display:none}
+.rate-custom-fields.show{display:block}
 
 /* ── ATTENDANCE ── */
 .mnav{display:flex;align-items:center;justify-content:space-between;padding:14px 12px 10px}
@@ -221,6 +242,18 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .tog::after{content:'';position:absolute;width:24px;height:24px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s;box-shadow:0 1px 6px rgba(0,0,0,.2)}
 .tog.on::after{left:23px}
 
+/* ── RATES CARD ── */
+.rates-card{background:var(--wh);border-radius:16px;margin-bottom:0;overflow:hidden;border:1.5px solid var(--g7);transition:border-color .2s}
+.rates-card.editing{border-color:var(--gm)}
+.rates-card-head{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;border-bottom:1px solid var(--g7)}
+.rates-card-head h4{font-size:13px;font-weight:700;color:var(--g1)}
+.rates-view-body{padding:10px 14px 12px}
+.rates-edit-body{padding:12px 14px 14px;display:none}
+.rates-card.editing .rates-view-body{display:none}
+.rates-card.editing .rates-edit-body{display:block}
+.rates-save-btn{display:none;padding:0 14px 13px}
+.rates-card.editing .rates-save-btn{display:block}
+
 /* ── TAGS ── */
 .tag{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700}
 .tcf{background:var(--al);color:#92400e}.tpp{background:var(--gp);color:#14532d}
@@ -260,10 +293,6 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 /* ── TODAY BADGE ── */
 .today-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.4);border-radius:8px;padding:2px 7px;font-size:10px;font-weight:700;color:#14532d;vertical-align:middle;margin-left:6px}
 
-/* ── SECTION HEADER ── */
-.sec-hd{padding:16px 14px 4px;font-size:12px;font-weight:700;color:var(--g5);text-transform:uppercase;letter-spacing:.7px;display:flex;align-items:center;justify-content:space-between}
-.sec-hd a{font-size:12px;font-weight:700;color:var(--gm);text-decoration:none;text-transform:none;letter-spacing:0}
-
 /* ── ADD FORM PANEL ── */
 .add-panel{background:var(--wh);border-radius:18px;margin:10px 12px 0;box-shadow:var(--shadow-sm);overflow:hidden;display:none}
 .add-panel.open{display:block;animation:fadeUp .2s ease}
@@ -272,9 +301,16 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .ap-close{background:var(--g8);border:none;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;color:var(--g5);display:flex;align-items:center;justify-content:center}
 .add-panel .ap-body{padding:14px 16px 16px}
 
+/* ── GLOBAL RATES INFO BOX ── */
+.global-rates-note{background:var(--gf);border:1px solid var(--gp);border-radius:10px;padding:9px 11px;font-size:11px;color:var(--gd);font-weight:600;margin-bottom:10px;line-height:1.6}
+.global-rates-note strong{color:var(--gm)}
+
 /* ── OFFLINE BANNER ── */
 .offline-banner{background:#fef3c7;color:#92400e;padding:7px 14px;font-size:12px;font-weight:600;text-align:center;display:none}
 .offline-banner.on{display:block}
+
+/* ── DIVIDER LABEL ── */
+.div-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--g5);padding:8px 0 6px;border-top:1px solid var(--g8);margin-top:6px}
 </style>
 </head>
 <body>
@@ -526,29 +562,16 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
         </div>
       </div>
 
-      <!-- RATES with Add button -->
+      <!-- GLOBAL RATES -->
       <div class="slbl">
-        Đơn giá
-        <button class="slbl-btn" onclick="togglePanel('panel-rates')">✎ Sửa đơn giá</button>
+        💵 Đơn giá mặc định
+        <span style="font-size:10px;color:var(--g6);font-weight:500;text-transform:none;letter-spacing:0">(dùng khi không cài riêng)</span>
       </div>
-      <div class="add-panel" id="panel-rates">
-        <div class="ap-head">
-          <h3>Sửa đơn giá</h3>
-          <button class="ap-close" onclick="togglePanel('panel-rates')">✕</button>
-        </div>
-        <div class="ap-body">
-          <div class="fld"><label>💵 Công thường / ngày (đ)</label><input type="number" id="r-thuong" value="300000" inputmode="numeric"></div>
-          <div class="fld"><label>🌾 Công hái / ngày (đ)</label><input type="number" id="r-hai" value="350000" inputmode="numeric"></div>
-          <div class="fld"><label>☕ Cà phê / kg (đ)</label><input type="number" id="r-cf" value="5000" inputmode="numeric"></div>
-          <div class="fld"><label>🌿 Tiêu / kg (đ)</label><input type="number" id="r-pp" value="80000" inputmode="numeric"></div>
-          <button class="btn btn-g" onclick="saveRates()">💾 Lưu đơn giá</button>
-        </div>
-      </div>
-      <div class="card" id="rates-display">
-        <div class="cb" id="rates-view"></div>
+      <div class="card" style="margin-bottom:0">
+        <div class="cb" id="global-rates-section"></div>
       </div>
 
-      <!-- OFF DAYS with Add button -->
+      <!-- OFF DAYS -->
       <div class="slbl">
         Ngày nghỉ mặc định
         <button class="slbl-btn" onclick="togglePanel('panel-offdays')">✎ Sửa</button>
@@ -570,14 +593,14 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
         <div class="cb" id="offdays-view"></div>
       </div>
 
-      <!-- WORKERS with Add button -->
+      <!-- WORKERS -->
       <div class="slbl">
-        Công nhân
-        <button class="slbl-btn" onclick="togglePanel('panel-addworker')">➕ Thêm</button>
+        👷 Công nhân
+        <button class="slbl-btn" onclick="togglePanel('panel-addworker')">➕ Thêm mới</button>
       </div>
       <div class="add-panel" id="panel-addworker">
         <div class="ap-head">
-          <h3>Thêm công nhân</h3>
+          <h3>Thêm công nhân mới</h3>
           <button class="ap-close" onclick="togglePanel('panel-addworker')">✕</button>
         </div>
         <div class="ap-body">
@@ -589,6 +612,22 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
               <option value="day">Chỉ theo công</option>
               <option value="kg">Chỉ theo kg hái</option>
             </select>
+          </div>
+          <!-- Đơn giá riêng cho nhân sự mới -->
+          <div class="div-label">Đơn giá riêng (tuỳ chọn)</div>
+          <div class="rate-use-global checked" id="new-use-global-row" onclick="toggleNewGlobal()">
+            <input type="checkbox" id="new-use-global" checked onclick="event.stopPropagation();toggleNewGlobal()">
+            <span>Dùng đơn giá mặc định</span>
+          </div>
+          <div class="rate-custom-fields" id="new-custom-fields">
+            <div class="r2">
+              <div class="fld"><label>Công thường/ngày</label><input type="number" id="w-r-thuong" placeholder="300000" inputmode="numeric"></div>
+              <div class="fld"><label>Công hái/ngày</label><input type="number" id="w-r-hai" placeholder="350000" inputmode="numeric"></div>
+            </div>
+            <div class="r2">
+              <div class="fld"><label>Cà phê/kg</label><input type="number" id="w-r-cf" placeholder="5000" inputmode="numeric"></div>
+              <div class="fld"><label>Tiêu/kg</label><input type="number" id="w-r-pp" placeholder="80000" inputmode="numeric"></div>
+            </div>
           </div>
           <button class="btn btn-g" onclick="addWorker()">➕ Thêm công nhân</button>
         </div>
@@ -652,7 +691,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 
 <script type="module">
 import { initializeApp, getApps, deleteApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getFirestore, doc, setDoc, onSnapshot, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import { getFirestore, doc, setDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 const FB_CONFIG = {
   apiKey:"AIzaSyB9gclYExZtnkJshazv4liTg4s4jhB_wQ0",
@@ -662,18 +701,14 @@ const FB_CONFIG = {
   messagingSenderId:"899971728736",
   appId:"1:899971728736:web:8c6dbc138e3ab1d243ca05"
 };
-const FB_APP_NAME = "conghai-v4";
-
-// ══════════════════════════════════════════════════
-// LOCAL STORAGE KEY — lưu toàn bộ data cục bộ
-// Không bao giờ mất dù update code hay clear cache (trừ khi user xóa app data)
-// ══════════════════════════════════════════════════
-const LS_DATA_KEY = 'conghai_data_v4';
-const LS_UI_KEY   = 'conghai_ui_v4';
+const FB_APP_NAME = "conghai-v5";
+const LS_DATA_KEY = 'conghai_data_v5';
+const LS_UI_KEY   = 'conghai_ui_v5';
 
 // ── STATE ──
 let workers=[], attendance={}, harvests=[];
 let offSat=true, offSun=true;
+// Đơn giá MẶC ĐỊNH (toàn trại)
 let rates = { thuong:300000, hai:350000, cf:5000, pp:80000 };
 let accounts = {
   admin:  {password:"admin123", role:"admin",   displayName:"Admin"},
@@ -684,21 +719,8 @@ let curY=new Date().getFullYear(), curM=new Date().getMonth()+1;
 let fbApp=null, fbDb=null, fbGroup='nong-trai-01';
 let syncTimer=null, unsubFb=null;
 
-// ══════════════════════════════════════════════════
-// SYNC STRATEGY — Chống mất data:
-//
-// 1. Mỗi lần thay đổi → lưu localStorage NGAY LẬP TỨC (sync)
-// 2. Sau 800ms → push lên Firebase (debounced)
-// 3. Khi nhận snapshot từ Firebase:
-//    - So sánh data.version với localVersion
-//    - Chỉ apply nếu remote version MỚI HƠN local
-// 4. Version = timestamp của lần push
-// 5. Mỗi thiết bị có deviceId riêng để tránh loop
-// ══════════════════════════════════════════════════
 const DEVICE_ID = Math.random().toString(36).slice(2,10);
-let localVersion = 0;   // version của data mình đang giữ
-let lastPushVer  = 0;   // version lần push cuối
-let isFirstSnap  = true;// snapshot đầu tiên khi connect
+let localVersion=0, lastPushVer=0, isFirstSnap=true;
 
 const TABS=['home','att','harvest','salary','settings'];
 const TITLES={home:'Tổng hợp',att:'Điểm danh công',harvest:'Sản lượng',salary:'Bảng lương',settings:'Cài đặt'};
@@ -712,16 +734,24 @@ const ym=()=>curY+'-'+p(curM);
 const tod=()=>new Date().toISOString().split('T')[0];
 const ini=n=>(n||'?').trim().split(' ').map(c=>c[0]).join('').toUpperCase().slice(0,2);
 const fmt=n=>Math.round(n).toLocaleString('vi-VN');
-const gv=id=>parseFloat(document.getElementById(id)?.value)||0;
 const dim=(y,m)=>new Date(y,m,0).getDate();
 const dow=(y,m,d)=>new Date(y+'-'+p(m)+'-'+p(d)).getDay();
 const isOff=(y,m,d)=>(offSat&&dow(y,m,d)===6)||(offSun&&dow(y,m,d)===0);
 const isAdmin=()=>curUser?.role==='admin';
 
-function getR(t){
-  if(t==='thuong')return rates.thuong;
-  if(t==='hai')return rates.hai;
-  if(t==='coffee')return rates.cf;
+// ── LẤY ĐƠN GIÁ CỦA TỪNG WORKER (riêng hoặc global) ──
+function getWRate(w, type){
+  // Nếu worker có custom rates và không dùng global
+  if(!w.useGlobalRates && w.rates){
+    if(type==='thuong') return w.rates.thuong || rates.thuong;
+    if(type==='hai')    return w.rates.hai    || rates.hai;
+    if(type==='coffee') return w.rates.cf     || rates.cf;
+    if(type==='pepper') return w.rates.pp     || rates.pp;
+  }
+  // Dùng global
+  if(type==='thuong') return rates.thuong;
+  if(type==='hai')    return rates.hai;
+  if(type==='coffee') return rates.cf;
   return rates.pp;
 }
 
@@ -741,12 +771,16 @@ function cntDays(wid,ymStr){
 }
 function calcSal(w){
   const d=cntDays(w.id,ym());
-  const dSal=w.type==='kg'?0:d.hai*getR('hai')+d.th*getR('thuong');
+  const rThuong=getWRate(w,'thuong');
+  const rHai=getWRate(w,'hai');
+  const rCf=getWRate(w,'coffee');
+  const rPp=getWRate(w,'pepper');
+  const dSal=w.type==='kg'?0:d.hai*rHai+d.th*rThuong;
   const wh=harvests.filter(h=>h.wid===w.id&&h.date.startsWith(ym()));
   const cfKg=wh.filter(h=>h.type==='coffee').reduce((s,h)=>s+h.kg,0);
   const ppKg=wh.filter(h=>h.type==='pepper').reduce((s,h)=>s+h.kg,0);
-  const kSal=w.type==='day'?0:cfKg*getR('coffee')+ppKg*getR('pepper');
-  return{d,dSal,cfKg,ppKg,kSal,tot:dSal+kSal};
+  const kSal=w.type==='day'?0:cfKg*rCf+ppKg*rPp;
+  return{d,dSal,cfKg,ppKg,kSal,tot:dSal+kSal,rThuong,rHai,rCf,rPp};
 }
 
 function toast(msg,dur=2000){
@@ -756,116 +790,311 @@ function toast(msg,dur=2000){
 }
 function vibrate(ms=30){try{if(navigator.vibrate)navigator.vibrate(ms);}catch(e){}}
 
-// ══════════════════════════════════════════════════
-// LOCAL STORAGE — lưu toàn bộ data cục bộ
-// Đây là nguồn dữ liệu chính, Firebase chỉ là sync
-// ══════════════════════════════════════════════════
+// ── LOCAL STORAGE ──
 function buildDataObj(){
-  return{
-    version: localVersion,
-    device:  DEVICE_ID,
-    workers, attendance, harvests,
-    offSat, offSun, rates, accounts
-  };
+  return{ version:localVersion, device:DEVICE_ID, workers, attendance, harvests, offSat, offSun, rates, accounts };
 }
-
 function saveLocal(){
-  // Cập nhật version mỗi khi lưu
-  localVersion = Date.now();
-  try{
-    localStorage.setItem(LS_DATA_KEY, JSON.stringify(buildDataObj()));
-  }catch(e){ console.warn('localStorage save failed:', e); }
+  localVersion=Date.now();
+  try{ localStorage.setItem(LS_DATA_KEY,JSON.stringify(buildDataObj())); }catch(e){}
 }
-
 function loadLocal(){
-  try{
-    const raw = localStorage.getItem(LS_DATA_KEY);
-    if(!raw) return null;
-    return JSON.parse(raw);
-  }catch(e){ return null; }
+  try{ const raw=localStorage.getItem(LS_DATA_KEY); return raw?JSON.parse(raw):null; }catch(e){ return null; }
 }
-
-function applyDataObj(d, fromRemote=false){
-  if(!d) return;
+function applyDataObj(d,fromRemote=false){
+  if(!d)return;
   workers    = Array.isArray(d.workers)    ? d.workers    : workers;
   attendance = (d.attendance&&typeof d.attendance==='object') ? d.attendance : attendance;
   harvests   = Array.isArray(d.harvests)   ? d.harvests   : harvests;
-  offSat     = d.offSat !== undefined ? d.offSat : offSat;
-  offSun     = d.offSun !== undefined ? d.offSun : offSun;
-  if(d.accounts) accounts = d.accounts;
-  if(d.rates){
-    rates = { ...rates, ...d.rates };
-    // Cập nhật UI các input đơn giá
-    document.getElementById('r-thuong').value = rates.thuong;
-    document.getElementById('r-hai').value    = rates.hai;
-    document.getElementById('r-cf').value     = rates.cf;
-    document.getElementById('r-pp').value     = rates.pp;
-  }
-  document.getElementById('tog-sat').classList.toggle('on', offSat);
-  document.getElementById('tog-sun').classList.toggle('on', offSun);
-  if(fromRemote && d.version) localVersion = d.version;
-  renderRatesView();
+  offSat     = d.offSat!==undefined ? d.offSat : offSat;
+  offSun     = d.offSun!==undefined ? d.offSun : offSun;
+  if(d.accounts) accounts=d.accounts;
+  if(d.rates){ rates={...rates,...d.rates}; syncRateInputs(); }
+  document.getElementById('tog-sat').classList.toggle('on',offSat);
+  document.getElementById('tog-sun').classList.toggle('on',offSun);
+  if(fromRemote&&d.version) localVersion=d.version;
+  renderGlobalRates();
   renderOffDaysView();
 }
-
-// Lưu UI preferences (session, group) riêng để không xung đột với data
+function syncRateInputs(){
+  // Sync hidden inputs nếu panel đang mở
+}
 function saveUILocal(){
-  try{
-    localStorage.setItem(LS_UI_KEY, JSON.stringify({
-      fbGroup,
-      session: curUser ? {username:curUser.username} : null
-    }));
-  }catch(e){}
+  try{ localStorage.setItem(LS_UI_KEY,JSON.stringify({fbGroup,session:curUser?{username:curUser.username}:null})); }catch(e){}
 }
 function loadUILocal(){
   try{ return JSON.parse(localStorage.getItem(LS_UI_KEY)||'null'); }catch(e){ return null; }
 }
 
-// ── UI RENDER FOR RATES AND OFFDAYS ──
-function renderRatesView(){
-  const el=document.getElementById('rates-view'); if(!el)return;
+// ─────────────────────────────────────────────
+// GLOBAL RATES — hiển thị + sửa inline
+// ─────────────────────────────────────────────
+function renderGlobalRates(){
+  const el=document.getElementById('global-rates-section'); if(!el)return;
   el.innerHTML=`
-    <div class="ri"><span class="rl">💵 Công thường / ngày</span><span class="rv">${fmt(rates.thuong)}đ</span></div>
-    <div class="ri"><span class="rl">🌾 Công hái / ngày</span><span class="rv">${fmt(rates.hai)}đ</span></div>
-    <div class="ri"><span class="rl">☕ Cà phê / kg</span><span class="rv">${fmt(rates.cf)}đ</span></div>
-    <div class="ri" style="border:none"><span class="rl">🌿 Tiêu / kg</span><span class="rv">${fmt(rates.pp)}đ</span></div>`;
+    <div class="rates-card" id="rc-global">
+      <div class="rates-card-head">
+        <h4>Áp dụng cho tất cả (nếu không cài riêng)</h4>
+        ${isAdmin()?`<button class="wcard-btn-edit" onclick="toggleRateEdit('global')">✎ Sửa</button>`:''}
+      </div>
+      <div class="rates-view-body">
+        <div class="ri" style="padding:10px 0"><span class="rl">💵 Công thường / ngày</span><span class="rv">${fmt(rates.thuong)}đ</span></div>
+        <div class="ri" style="padding:10px 0"><span class="rl">🌾 Công hái / ngày</span><span class="rv">${fmt(rates.hai)}đ</span></div>
+        <div class="ri" style="padding:10px 0"><span class="rl">☕ Cà phê / kg</span><span class="rv">${fmt(rates.cf)}đ</span></div>
+        <div class="ri" style="padding:10px 0;border:none"><span class="rl">🌿 Tiêu / kg</span><span class="rv">${fmt(rates.pp)}đ</span></div>
+      </div>
+      <div class="rates-edit-body">
+        <div class="r2">
+          <div class="fld wcard-fld-sm"><label>Công thường/ngày</label><input type="number" id="ge-thuong" value="${rates.thuong}" inputmode="numeric"></div>
+          <div class="fld wcard-fld-sm"><label>Công hái/ngày</label><input type="number" id="ge-hai" value="${rates.hai}" inputmode="numeric"></div>
+        </div>
+        <div class="r2">
+          <div class="fld wcard-fld-sm"><label>Cà phê/kg</label><input type="number" id="ge-cf" value="${rates.cf}" inputmode="numeric"></div>
+          <div class="fld wcard-fld-sm"><label>Tiêu/kg</label><input type="number" id="ge-pp" value="${rates.pp}" inputmode="numeric"></div>
+        </div>
+      </div>
+      <div class="rates-save-btn">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <button class="btn btn-g btn-sm" onclick="saveGlobalRates()">💾 Lưu đơn giá</button>
+          <button class="btn btn-outline btn-sm" onclick="toggleRateEdit('global')">Hủy</button>
+        </div>
+      </div>
+    </div>`;
 }
+window.toggleRateEdit=function(id){
+  const el=document.getElementById('rc-'+id); if(!el)return;
+  el.classList.toggle('editing');
+};
+window.saveGlobalRates=function(){
+  rates={
+    thuong:parseFloat(document.getElementById('ge-thuong').value)||300000,
+    hai:   parseFloat(document.getElementById('ge-hai').value)||350000,
+    cf:    parseFloat(document.getElementById('ge-cf').value)||5000,
+    pp:    parseFloat(document.getElementById('ge-pp').value)||80000
+  };
+  saveLocal(); scheduleSync(); renderGlobalRates();
+  toast('✓ Đã lưu đơn giá mặc định');
+};
+
+// ─────────────────────────────────────────────
+// OFF DAYS
+// ─────────────────────────────────────────────
 function renderOffDaysView(){
   const el=document.getElementById('offdays-view'); if(!el)return;
   el.innerHTML=`
     <div class="ri"><span class="rl">Thứ 7</span><span class="rv" style="color:${offSat?'var(--gm)':'var(--rd)'}">${offSat?'Nghỉ':'Đi làm'}</span></div>
     <div class="ri" style="border:none"><span class="rl">Chủ nhật</span><span class="rv" style="color:${offSun?'var(--gm)':'var(--rd)'}">${offSun?'Nghỉ':'Đi làm'}</span></div>`;
 }
+window.togOff=function(w){
+  if(w==='sat'){ offSat=!offSat; document.getElementById('tog-sat').classList.toggle('on',offSat); }
+  else         { offSun=!offSun; document.getElementById('tog-sun').classList.toggle('on',offSun); }
+};
+window.saveOffDays=function(){
+  saveLocal(); scheduleSync(); renderOffDaysView();
+  document.getElementById('panel-offdays').classList.remove('open');
+  toast('✓ Đã lưu ngày nghỉ'); renderAtt();
+};
 
 // ── PANEL TOGGLE ──
 window.togglePanel=function(id){
   const el=document.getElementById(id);
   el.classList.toggle('open');
-  if(el.classList.contains('open')){
+  if(el.classList.contains('open')) setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+};
+
+// ── TOGGLE NEW WORKER GLOBAL RATES ──
+window.toggleNewGlobal=function(){
+  const cb=document.getElementById('new-use-global');
+  const row=document.getElementById('new-use-global-row');
+  const fields=document.getElementById('new-custom-fields');
+  // Toggle không cần event vì hàm này tự flip
+  const checked=cb.checked;
+  row.classList.toggle('checked',checked);
+  fields.classList.toggle('show',!checked);
+};
+
+// ─────────────────────────────────────────────
+// WORKERS — Card mới với rates riêng
+// ─────────────────────────────────────────────
+window.addWorker=function(){
+  if(!isAdmin()){ toast('Chỉ Admin mới thêm được'); return; }
+  const name=document.getElementById('wname').value.trim();
+  if(!name){ toast('Nhập tên công nhân'); return; }
+  const useGlobal=document.getElementById('new-use-global').checked;
+  const newW={
+    id:Date.now()+'',
+    name,
+    type:document.getElementById('wtype').value,
+    useGlobalRates: useGlobal
+  };
+  if(!useGlobal){
+    newW.rates={
+      thuong:parseFloat(document.getElementById('w-r-thuong').value)||rates.thuong,
+      hai:   parseFloat(document.getElementById('w-r-hai').value)||rates.hai,
+      cf:    parseFloat(document.getElementById('w-r-cf').value)||rates.cf,
+      pp:    parseFloat(document.getElementById('w-r-pp').value)||rates.pp
+    };
+  }
+  workers.push(newW);
+  // Reset form
+  document.getElementById('wname').value='';
+  document.getElementById('new-use-global').checked=true;
+  document.getElementById('new-use-global-row').classList.add('checked');
+  document.getElementById('new-custom-fields').classList.remove('show');
+  document.getElementById('panel-addworker').classList.remove('open');
+  renderWList(); scheduleSync(); toast('✓ Đã thêm '+name); vibrate(40);
+};
+
+window.rmWorker=function(id){
+  if(!isAdmin()){ toast('Chỉ Admin mới xóa được'); return; }
+  const w=workers.find(x=>x.id===id);
+  if(!confirm('Xóa công nhân '+(w?.name||'')+'?\nToàn bộ điểm danh và sản lượng cũng bị xóa.')) return;
+  workers=workers.filter(x=>x.id!==id);
+  delete attendance[id];
+  harvests=harvests.filter(h=>h.wid!==id);
+  renderWList(); scheduleSync(); toast('Đã xóa');
+};
+
+window.toggleWEdit=function(id){
+  const el=document.getElementById('wc-'+id); if(!el)return;
+  el.classList.toggle('editing');
+  if(el.classList.contains('editing')){
+    const w=workers.find(x=>x.id===id); if(!w)return;
+    const useG=w.useGlobalRates!==false;
+    const cbEl=document.getElementById('wug-'+id);
+    const rowEl=document.getElementById('wugrow-'+id);
+    const cfEl=document.getElementById('wcf-'+id);
+    if(cbEl){ cbEl.checked=useG; }
+    if(rowEl){ rowEl.classList.toggle('checked',useG); }
+    if(cfEl){ cfEl.classList.toggle('show',!useG); }
+    if(!useG&&w.rates){
+      const setV=(sfx,val)=>{ const i=document.getElementById('we-'+sfx+'-'+id); if(i)i.value=val; };
+      setV('thuong',w.rates.thuong||rates.thuong);
+      setV('hai',w.rates.hai||rates.hai);
+      setV('cf',w.rates.cf||rates.cf);
+      setV('pp',w.rates.pp||rates.pp);
+    }
     setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
   }
 };
 
-// ── SAVE RATES / OFFDAYS ──
-window.saveRates=function(){
-  rates = {
-    thuong: parseFloat(document.getElementById('r-thuong').value)||300000,
-    hai:    parseFloat(document.getElementById('r-hai').value)||350000,
-    cf:     parseFloat(document.getElementById('r-cf').value)||5000,
-    pp:     parseFloat(document.getElementById('r-pp').value)||80000
-  };
-  saveLocal(); scheduleSync(); renderRatesView();
-  document.getElementById('panel-rates').classList.remove('open');
-  toast('✓ Đã lưu đơn giá');
-};
-window.saveOffDays=function(){
-  saveLocal(); scheduleSync(); renderOffDaysView();
-  document.getElementById('panel-offdays').classList.remove('open');
-  toast('✓ Đã lưu ngày nghỉ');
-  renderAtt();
+window.toggleWGlobal=function(id){
+  const cbEl=document.getElementById('wug-'+id);
+  const rowEl=document.getElementById('wugrow-'+id);
+  const cfEl=document.getElementById('wcf-'+id);
+  if(!cbEl)return;
+  const checked=cbEl.checked;
+  if(rowEl) rowEl.classList.toggle('checked',checked);
+  if(cfEl)  cfEl.classList.toggle('show',!checked);
 };
 
-// ── SYNC UI ──
+window.saveWRates=function(id){
+  const w=workers.find(x=>x.id===id); if(!w)return;
+  const cbEl=document.getElementById('wug-'+id);
+  const useG=cbEl?cbEl.checked:true;
+  w.useGlobalRates=useG;
+  if(!useG){
+    const gv2=(sfx)=>parseFloat(document.getElementById('we-'+sfx+'-'+id)?.value)||0;
+    w.rates={
+      thuong:gv2('thuong')||rates.thuong,
+      hai:   gv2('hai')||rates.hai,
+      cf:    gv2('cf')||rates.cf,
+      pp:    gv2('pp')||rates.pp
+    };
+  } else {
+    w.rates=null;
+  }
+  saveLocal(); scheduleSync(); renderWList();
+  toast('✓ Đã lưu đơn giá cho '+w.name);
+};
+
+function renderWList(){
+  const el=document.getElementById('wlist'); if(!el)return;
+  const tl={both:'Công + Kg',day:'Theo công',kg:'Theo kg'};
+  if(!workers.length){ el.innerHTML='<div class="empty">Chưa có công nhân nào</div>'; return; }
+  el.innerHTML=workers.map(w=>{
+    const useG=w.useGlobalRates!==false;
+    const r=useG?rates:(w.rates||rates);
+    const chips=`
+      <span class="wcard-rate-chip hai">Hái ${fmt(r.hai)}đ</span>
+      <span class="wcard-rate-chip th">Thường ${fmt(r.thuong)}đ</span>
+      <span class="wcard-rate-chip cf">CF ${fmt(r.cf)}đ/kg</span>
+      <span class="wcard-rate-chip pp">Tiêu ${fmt(r.pp)}đ/kg</span>
+    `;
+    return `<div class="wcard" id="wc-${w.id}">
+      <div class="wcard-head">
+        <div class="av" style="width:40px;height:40px;font-size:12px;border-radius:12px">${ini(w.name)}</div>
+        <div class="wcard-info">
+          <div class="wcard-name">${w.name}</div>
+          <div style="margin-top:3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;background:var(--g8);color:var(--g4)">${tl[w.type]||'Công + Kg'}</span>
+            ${useG?'<span style="font-size:10px;color:var(--g5);font-weight:600">đơn giá chung</span>':'<span style="font-size:10px;color:var(--gm);font-weight:700">đơn giá riêng</span>'}
+          </div>
+          <div class="wcard-rates" style="margin-top:5px">${chips}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0">
+          ${isAdmin()?`<button class="wcard-btn-edit" onclick="toggleWEdit('${w.id}')">✎ Sửa</button>`:''}
+          ${isAdmin()?`<button class="wcard-btn-del" onclick="rmWorker('${w.id}')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>`:''}
+        </div>
+      </div>
+      <div class="wcard-body">
+        <div class="wcard-divider"></div>
+        <div class="wcard-edit-label">Tên & loại lương</div>
+        <div class="fld wcard-fld-sm"><label>Họ và tên</label><input type="text" id="we-name-${w.id}" value="${w.name}"></div>
+        <div class="fld wcard-fld-sm"><label>Cách tính lương</label>
+          <select id="we-type-${w.id}">
+            <option value="both" ${w.type==='both'?'selected':''}>Công + Kg hái</option>
+            <option value="day"  ${w.type==='day' ?'selected':''}>Chỉ theo công</option>
+            <option value="kg"   ${w.type==='kg'  ?'selected':''}>Chỉ theo kg hái</option>
+          </select>
+        </div>
+        <div class="wcard-edit-label" style="margin-top:6px">Đơn giá</div>
+        <div class="rate-use-global ${useG?'checked':''}" id="wugrow-${w.id}" onclick="toggleWGlobal('${w.id}')">
+          <input type="checkbox" id="wug-${w.id}" ${useG?'checked':''} onclick="event.stopPropagation();toggleWGlobal('${w.id}')">
+          <span>Dùng đơn giá mặc định</span>
+        </div>
+        <div class="rate-custom-fields ${!useG?'show':''}" id="wcf-${w.id}">
+          <div class="r2">
+            <div class="fld wcard-fld-sm"><label>Công thường/ngày</label><input type="number" id="we-thuong-${w.id}" value="${r.thuong}" inputmode="numeric"></div>
+            <div class="fld wcard-fld-sm"><label>Công hái/ngày</label><input type="number" id="we-hai-${w.id}" value="${r.hai}" inputmode="numeric"></div>
+          </div>
+          <div class="r2">
+            <div class="fld wcard-fld-sm"><label>Cà phê/kg</label><input type="number" id="we-cf-${w.id}" value="${r.cf}" inputmode="numeric"></div>
+            <div class="fld wcard-fld-sm"><label>Tiêu/kg</label><input type="number" id="we-pp-${w.id}" value="${r.pp}" inputmode="numeric"></div>
+          </div>
+        </div>
+      </div>
+      <div class="wcard-actions" style="${isAdmin()?'display:flex':'display:none'}">
+        <button class="btn btn-g btn-sm" style="flex:1" onclick="saveWAll('${w.id}')">💾 Lưu thay đổi</button>
+        <button class="btn btn-outline btn-sm" style="flex:1" onclick="toggleWEdit('${w.id}')">Hủy</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// Lưu cả tên + loại + rates
+window.saveWAll=function(id){
+  const w=workers.find(x=>x.id===id); if(!w)return;
+  const newName=document.getElementById('we-name-'+id)?.value.trim();
+  if(newName) w.name=newName;
+  w.type=document.getElementById('we-type-'+id)?.value||w.type;
+  const cbEl=document.getElementById('wug-'+id);
+  const useG=cbEl?cbEl.checked:true;
+  w.useGlobalRates=useG;
+  if(!useG){
+    const gv2=(sfx)=>parseFloat(document.getElementById('we-'+sfx+'-'+id)?.value)||0;
+    w.rates={
+      thuong:gv2('thuong')||rates.thuong,
+      hai:   gv2('hai')||rates.hai,
+      cf:    gv2('cf')||rates.cf,
+      pp:    gv2('pp')||rates.pp
+    };
+  } else { w.rates=null; }
+  saveLocal(); scheduleSync(); renderWList();
+  toast('✓ Đã lưu '+w.name);
+};
+
+// ── FIREBASE ──
 function setSyncUI(state){
   const dot=document.getElementById('sdot'),bar=document.getElementById('syncstatus');
   dot.className='sdot';
@@ -879,186 +1108,87 @@ function setSyncUI(state){
     badge.textContent=state==='ok'?'✓ Đã kết nối':state==='sync'?'⏳ Đang kết nối...':'✕ Chưa kết nối';
   }
 }
-
-function setOffline(isOff){
-  document.getElementById('offline-banner').classList.toggle('on', isOff);
-}
-
+function setOffline(isOff){ document.getElementById('offline-banner').classList.toggle('on',isOff); }
 function updateAttBadge(){
   const badge=document.getElementById('badge-att'); if(!badge)return;
   const td=tod();
   const missing=workers.filter(w=>!((attendance[w.id]||{})[td]));
-  badge.classList.toggle('on', missing.length>0 && workers.length>0);
+  badge.classList.toggle('on',missing.length>0&&workers.length>0);
 }
-
-// ══════════════════════════════════════════════════
-// FIREBASE SYNC
-//
-// FIX CÁC LỖI:
-// 1. Dùng version number thay vì timestamp để tránh clock skew
-// 2. Chỉ apply remote nếu remote.version > localVersion
-// 3. Echo detection: nếu remote.device === DEVICE_ID và remote.version <= lastPushVer → bỏ qua
-// 4. Không push data rỗng (workers=[] harvests=[]) lên cloud
-// 5. Merge thay vì overwrite toàn bộ document
-// ══════════════════════════════════════════════════
 
 function buildPayload(){
-  const ver = Date.now();
-  lastPushVer = ver;
-  localVersion = ver;
-  return {
-    ...buildDataObj(),
-    version: ver,
-    device: DEVICE_ID,
-    _ts: ver // không dùng serverTimestamp để tránh null khi đọc lại ngay
-  };
+  const ver=Date.now(); lastPushVer=ver; localVersion=ver;
+  return{...buildDataObj(),version:ver,device:DEVICE_ID,_ts:ver};
 }
-
 async function pushToFb(){
   if(!fbDb){ saveLocal(); return; }
-  // Không push nếu không có data thật và là lần đầu
-  if(workers.length===0 && harvests.length===0 && Object.keys(attendance).length===0 && isFirstSnap){
-    return;
-  }
+  if(workers.length===0&&harvests.length===0&&Object.keys(attendance).length===0&&isFirstSnap) return;
   setSyncUI('sync');
   try{
-    const payload = buildPayload();
-    saveLocal(); // luôn lưu local trước
-    await setDoc(doc(fbDb,'conghai',fbGroup), payload);
-    setSyncUI('ok');
-    setOffline(false);
-  }catch(e){
-    setSyncUI('err');
-    setOffline(true);
-    console.error('Push error:', e);
-  }
+    const payload=buildPayload(); saveLocal();
+    await setDoc(doc(fbDb,'conghai',fbGroup),payload);
+    setSyncUI('ok'); setOffline(false);
+  }catch(e){ setSyncUI('err'); setOffline(true); }
 }
-
 function onRemoteSnap(snap){
-  if(!snap.exists()){
-    setSyncUI('ok');
-    return;
-  }
-  const d = snap.data();
-  const remoteVer = typeof d.version==='number' ? d.version : 0;
-  const remoteDevice = d.device || '';
-
-  // Bỏ qua echo của mình (cùng device, version <= lastPushVer)
-  if(remoteDevice === DEVICE_ID && remoteVer <= lastPushVer){
-    setSyncUI('ok');
-    return;
-  }
-
-  // Chỉ apply nếu remote MỚI HƠN local
-  if(remoteVer <= localVersion && localVersion > 0){
-    // Remote cũ hơn — không apply, nhưng push lại để overwrite
-    setSyncUI('ok');
-    return;
-  }
-
-  // Remote mới hơn — apply
-  applyDataObj(d, true);
-  saveLocal(); // lưu local để bảo toàn
-  refreshActive();
-  updateAttBadge();
-  setSyncUI('ok');
-  setOffline(false);
-  if(document.getElementById('sec-settings').classList.contains('on') && isAdmin()){
-    renderWList();
-    renderRatesView();
-    renderOffDaysView();
-  }
+  if(!snap.exists()){ setSyncUI('ok'); return; }
+  const d=snap.data();
+  const remoteVer=typeof d.version==='number'?d.version:0;
+  const remoteDevice=d.device||'';
+  if(remoteDevice===DEVICE_ID&&remoteVer<=lastPushVer){ setSyncUI('ok'); return; }
+  if(remoteVer<=localVersion&&localVersion>0){ setSyncUI('ok'); return; }
+  applyDataObj(d,true); saveLocal(); refreshActive(); updateAttBadge(); setSyncUI('ok'); setOffline(false);
+  if(document.getElementById('sec-settings').classList.contains('on')&&isAdmin()){ renderWList(); renderGlobalRates(); renderOffDaysView(); }
 }
-
 function startListening(){
   if(!fbDb) return Promise.resolve();
   if(unsubFb) try{unsubFb();}catch(e){}
-  const ref = doc(fbDb,'conghai',fbGroup);
-
+  const ref=doc(fbDb,'conghai',fbGroup);
   return new Promise((resolve)=>{
-    let resolved = false;
-    const finish = ()=>{ if(!resolved){ resolved=true; resolve(); } };
-
-    unsubFb = onSnapshot(ref, snap=>{
+    let resolved=false;
+    const finish=()=>{ if(!resolved){resolved=true;resolve();} };
+    unsubFb=onSnapshot(ref,snap=>{
       if(!resolved){
-        // Snapshot đầu tiên
-        isFirstSnap = false;
+        isFirstSnap=false;
         if(snap.exists()){
-          const d = snap.data();
-          const remoteVer = typeof d.version==='number' ? d.version : 0;
-          // Chỉ apply remote nếu remote mới hơn local
-          if(remoteVer > localVersion){
-            applyDataObj(d, true);
-            saveLocal();
-          } else if(localVersion > 0 && workers.length > 0){
-            // Ta có data mới hơn, push lên để đồng bộ
-            scheduleSync();
-          }
-        } else {
-          // Document chưa tồn tại — nếu có local data, push lên
-          if(workers.length > 0 || harvests.length > 0){
-            scheduleSync();
-          }
-        }
-        finish();
-        setSyncUI('ok');
-        setOffline(false);
-      } else {
-        onRemoteSnap(snap);
-      }
-    }, err=>{
-      console.error('Snapshot error:', err);
-      setSyncUI('err');
-      setOffline(true);
-      finish();
-    });
-
-    setTimeout(()=>{ setSyncUI('err'); setOffline(true); finish(); }, 7000);
+          const d=snap.data();
+          const remoteVer=typeof d.version==='number'?d.version:0;
+          if(remoteVer>localVersion){ applyDataObj(d,true); saveLocal(); }
+          else if(localVersion>0&&workers.length>0){ scheduleSync(); }
+        } else { if(workers.length>0||harvests.length>0){ scheduleSync(); } }
+        finish(); setSyncUI('ok'); setOffline(false);
+      } else { onRemoteSnap(snap); }
+    },err=>{ setSyncUI('err'); setOffline(true); finish(); });
+    setTimeout(()=>{ setSyncUI('err'); setOffline(true); finish(); },7000);
   });
 }
-
 async function initFirebase(group){
-  fbGroup = group || fbGroup;
-  setSyncUI('connecting');
+  fbGroup=group||fbGroup; setSyncUI('connecting');
   try{
-    const existing = getApps().find(a=>a.name===FB_APP_NAME);
+    const existing=getApps().find(a=>a.name===FB_APP_NAME);
     if(existing) try{await deleteApp(existing);}catch(e){}
-    fbApp = initializeApp(FB_CONFIG, FB_APP_NAME);
-    fbDb  = getFirestore(fbApp);
-    await startListening();
-    return true;
-  }catch(err){
-    fbDb = null; setSyncUI('err'); setOffline(true);
-    console.error('Firebase init:', err.code, err.message);
-    return false;
-  }
+    fbApp=initializeApp(FB_CONFIG,FB_APP_NAME);
+    fbDb=getFirestore(fbApp);
+    await startListening(); return true;
+  }catch(err){ fbDb=null; setSyncUI('err'); setOffline(true); return false; }
 }
-
 window.connectFirebase=async function(){
-  const grp = document.getElementById('fb-group').value.trim()||'nong-trai-01';
-  fbGroup = grp;
-  document.getElementById('fb-group-display').textContent = grp;
-  saveUILocal();
-  isFirstSnap = true;
-  const ok = await initFirebase(grp);
-  toast(ok?'✓ Kết nối thành công!':'⚠ Lỗi — xem hướng dẫn', ok?2000:3000);
+  const grp=document.getElementById('fb-group').value.trim()||'nong-trai-01';
+  fbGroup=grp; document.getElementById('fb-group-display').textContent=grp;
+  saveUILocal(); isFirstSnap=true;
+  const ok=await initFirebase(grp);
+  toast(ok?'✓ Kết nối thành công!':'⚠ Lỗi — xem hướng dẫn',ok?2000:3000);
 };
 window.showFbGuide=function(){ document.getElementById('fb-modal').style.display='flex'; };
-
-function scheduleSync(){
-  saveLocal(); // lưu local ngay lập tức
-  if(!fbDb) return;
-  clearTimeout(syncTimer);
-  syncTimer = setTimeout(pushToFb, 800);
-}
+function scheduleSync(){ saveLocal(); if(!fbDb)return; clearTimeout(syncTimer); syncTimer=setTimeout(pushToFb,800); }
 
 // ── BACKUP ──
 window.exportJSON=function(){
   try{
-    const data = { version:7, exportedAt:new Date().toISOString(), workers, attendance, harvests, offSat, offSun, rates };
-    const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-    const url  = URL.createObjectURL(blob), a=document.createElement('a');
-    const now  = new Date();
+    const data={version:8,exportedAt:new Date().toISOString(),workers,attendance,harvests,offSat,offSun,rates};
+    const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob),a=document.createElement('a');
+    const now=new Date();
     a.href=url; a.download=`cong-hai-backup-${now.getFullYear()}${p(now.getMonth()+1)}${p(now.getDate())}.json`;
     document.body.appendChild(a); a.click();
     setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},1000);
@@ -1067,7 +1197,6 @@ window.exportJSON=function(){
     toast('✓ Xuất file thành công!');
   }catch(e){ toast('Lỗi: '+e.message); }
 };
-
 window.importJSON=function(event){
   const file=event.target.files[0]; if(!file)return;
   const reader=new FileReader();
@@ -1079,13 +1208,9 @@ window.importJSON=function(event){
       workers=d.workers||[]; attendance=d.attendance||{}; harvests=d.harvests||[];
       offSat=d.offSat!==undefined?d.offSat:true; offSun=d.offSun!==undefined?d.offSun:true;
       if(d.rates) rates={...rates,...d.rates};
-      document.getElementById('r-thuong').value=rates.thuong;
-      document.getElementById('r-hai').value=rates.hai;
-      document.getElementById('r-cf').value=rates.cf;
-      document.getElementById('r-pp').value=rates.pp;
       document.getElementById('tog-sat').classList.toggle('on',offSat);
       document.getElementById('tog-sun').classList.toggle('on',offSun);
-      scheduleSync(); refreshActive(); renderWList(); renderRatesView(); renderOffDaysView();
+      scheduleSync(); refreshActive(); renderWList(); renderGlobalRates(); renderOffDaysView();
       const log=document.getElementById('backup-log');
       if(log) log.textContent='✓ Nhập từ '+(d.exportedAt?new Date(d.exportedAt).toLocaleDateString('vi-VN'):'?');
       toast('✓ Nhập thành công!');
@@ -1106,24 +1231,20 @@ window.doLogin=function(){
   }
   document.getElementById('login-err').classList.remove('on');
   curUser={username,role:acc.role,displayName:acc.displayName};
-  saveUILocal();
-  enterApp();
+  saveUILocal(); enterApp();
 };
-
 window.doLogout=function(){
   if(!confirm('Đăng xuất?')) return;
   curUser=null;
-  try{const d=loadUILocal(); if(d){d.session=null;localStorage.setItem(LS_UI_KEY,JSON.stringify(d));}}catch(e){}
+  try{const d=loadUILocal();if(d){d.session=null;localStorage.setItem(LS_UI_KEY,JSON.stringify(d));}}catch(e){}
   showLogin();
 };
-
 function showLogin(){
   document.getElementById('login-screen').classList.remove('hidden');
   document.getElementById('login-user').value='';
   document.getElementById('login-pass').value='';
   document.getElementById('login-err').classList.remove('on');
 }
-
 function enterApp(){
   document.getElementById('login-screen').classList.add('hidden');
   document.getElementById('user-av').textContent=ini(curUser.displayName);
@@ -1159,10 +1280,10 @@ function updML(){
 }
 window.openMonthPicker=function(){
   const v=prompt('Nhập tháng/năm (vd: 6/2025)',curM+'/'+curY);
-  if(!v) return;
+  if(!v)return;
   const pp=v.split('/');
   if(pp.length===2){
-    const nm=+pp[0], ny=+pp[1];
+    const nm=+pp[0],ny=+pp[1];
     if(nm>=1&&nm<=12&&ny>2000){ curM=nm; curY=ny; updML(); refreshActive(); }
   }
 };
@@ -1174,7 +1295,7 @@ function refreshActive(){
   const t=TABS.find(x=>document.getElementById('sec-'+x)?.classList.contains('on'))||'home';
   if(t==='home')renderHome();
   else if(t==='att')renderAtt();
-  else if(t==='salary'){ if(isAdmin())renderSal(); }
+  else if(t==='salary'){if(isAdmin())renderSal();}
   else if(t==='harvest'){ renderHvWk(); renderHvList(); renderHvSummary(); }
 }
 window.goTab=function(t){
@@ -1187,46 +1308,9 @@ window.goTab=function(t){
   if(t==='home')renderHome();
   else if(t==='att')renderAtt();
   else if(t==='harvest'){ renderHvWk(); renderHvList(); renderHvSummary(); }
-  else if(t==='salary'){ if(isAdmin())renderSal(); }
-  else if(t==='settings'){ renderWList(); renderRatesView(); renderOffDaysView(); }
+  else if(t==='salary'){if(isAdmin())renderSal();}
+  else if(t==='settings'){ renderWList(); renderGlobalRates(); renderOffDaysView(); }
 };
-
-// ── SETTINGS ──
-window.togOff=function(w){
-  if(w==='sat'){ offSat=!offSat; document.getElementById('tog-sat').classList.toggle('on',offSat); }
-  else         { offSun=!offSun; document.getElementById('tog-sun').classList.toggle('on',offSun); }
-  // Không lưu ngay — chờ user bấm "Lưu ngày nghỉ"
-};
-
-// ── WORKERS ──
-window.addWorker=function(){
-  if(!isAdmin()){ toast('Chỉ Admin mới thêm được'); return; }
-  const name=document.getElementById('wname').value.trim();
-  if(!name){ toast('Nhập tên công nhân'); return; }
-  workers.push({id:Date.now()+'', name, type:document.getElementById('wtype').value});
-  document.getElementById('wname').value='';
-  document.getElementById('panel-addworker').classList.remove('open');
-  renderWList(); scheduleSync(); toast('✓ Đã thêm '+name); vibrate(40);
-};
-window.rmWorker=function(id){
-  if(!isAdmin()){ toast('Chỉ Admin mới xóa được'); return; }
-  const w=workers.find(x=>x.id===id);
-  if(!confirm('Xóa công nhân '+(w?.name||'')+'?\nToàn bộ điểm danh và sản lượng cũng bị xóa.')) return;
-  workers=workers.filter(x=>x.id!==id);
-  delete attendance[id];
-  harvests=harvests.filter(h=>h.wid!==id);
-  renderWList(); scheduleSync(); toast('Đã xóa');
-};
-function renderWList(){
-  const el=document.getElementById('wlist'); if(!el)return;
-  const tl={both:'Công + Kg',day:'Theo công',kg:'Theo kg'};
-  if(!workers.length){ el.innerHTML='<div class="empty">Chưa có công nhân nào</div>'; return; }
-  el.innerHTML=workers.map(w=>`<div class="wr">
-    <div class="av">${ini(w.name)}</div>
-    <div class="wi"><div class="nm">${w.name}</div><div class="sb">${tl[w.type]||'Công + Kg'}</div></div>
-    ${isAdmin()?`<button class="delbtn" onclick="rmWorker('${w.id}')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>`:''}
-  </div>`).join('');
-}
 
 // ── ATTENDANCE ──
 function renderAtt(){
@@ -1271,14 +1355,12 @@ function renderAtt(){
     </div>`;
   }).join('');
 }
-
 window.cyDay=function(wid,key){
   if(!attendance[wid]) attendance[wid]={};
   const cur=attendance[wid][key]||'';
   const nx=CYCLE[(CYCLE.indexOf(cur)+1)%CYCLE.length];
   if(!nx) delete attendance[wid][key]; else attendance[wid][key]=nx;
-  vibrate(25);
-  renderAtt(); scheduleSync(); updateAttBadge();
+  vibrate(25); renderAtt(); scheduleSync(); updateAttBadge();
 };
 
 // ── HARVEST ──
@@ -1299,7 +1381,7 @@ window.addHarvest=function(){
   const kg=parseFloat(document.getElementById('hvkg').value)||0;
   const note=document.getElementById('hvnote').value.trim();
   if(!wid||!dt||kg<=0){ toast('Điền đầy đủ thông tin'); return; }
-  harvests.push({id:Date.now()+'', wid, type:hvType, date:dt, kg, ...(note?{note}:{})});
+  harvests.push({id:Date.now()+'',wid,type:hvType,date:dt,kg,...(note?{note}:{})});
   document.getElementById('hvnote').value='';
   renderHvList(); renderHvSummary(); scheduleSync();
   toast('✓ Đã lưu '+kg+'kg '+(hvType==='coffee'?'cà phê':'tiêu'));
@@ -1314,7 +1396,7 @@ function renderHvSummary(){
   const mh=harvests.filter(h=>h.date.startsWith(ym()));
   const cfKg=mh.filter(h=>h.type==='coffee').reduce((s,h)=>s+h.kg,0);
   const ppKg=mh.filter(h=>h.type==='pepper').reduce((s,h)=>s+h.kg,0);
-  const cfVal=cfKg*getR('coffee'), ppVal=ppKg*getR('pepper');
+  const cfVal=cfKg*rates.cf, ppVal=ppKg*rates.pp;
   el.innerHTML=`<div class="r2">
     <div style="background:var(--al);border-radius:13px;padding:12px;text-align:center">
       <div style="font-size:10px;font-weight:700;color:#92400e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">☕ Cà phê</div>
@@ -1336,7 +1418,10 @@ function renderHvList(){
   if(!mh.length){ el.innerHTML='<div class="empty">Chưa có sản lượng tháng này</div>'; return; }
   el.innerHTML=mh.map(h=>{
     const w=workers.find(x=>x.id===h.wid)||{name:'?'};
-    const cf=h.type==='coffee', m=h.kg*getR(h.type);
+    const cf=h.type==='coffee';
+    const ww=workers.find(x=>x.id===h.wid);
+    const rate=ww?getWRate(ww,h.type):( cf?rates.cf:rates.pp );
+    const m=h.kg*rate;
     return `<div class="hvi">
       <div class="hico ${cf?'hcf':'hpp'}">${cf?'☕':'🌿'}</div>
       <div class="hii">
@@ -1353,7 +1438,7 @@ function renderHvList(){
 
 // ── SALARY ──
 function renderSal(){
-  if(!isAdmin()) return;
+  if(!isAdmin())return;
   const el=document.getElementById('slist'); if(!el)return;
   if(!workers.length){
     document.getElementById('stotal').textContent='0đ';
@@ -1365,26 +1450,30 @@ function renderSal(){
   rows.sort((a,b)=>b.tot-a.tot);
   document.getElementById('stotal').textContent=fmt(tot)+'đ';
   document.getElementById('scount').textContent=workers.length;
-  el.innerHTML=rows.map(r=>`<div class="si">
-    <div class="si-t">
-      <div class="av" style="border-radius:12px">${ini(r.w.name)}</div>
-      <div style="flex:1;min-width:0">
-        <div style="font-size:14px;font-weight:700">${r.w.name}</div>
-        <div style="margin-top:4px;display:flex;gap:5px;flex-wrap:wrap">
-          <span class="tag tph">${r.d.hai} công hái</span>
-          <span class="tag tpt">${r.d.th} công thường</span>
-          ${r.d.vn>0?`<span class="tag" style="background:var(--rp);color:var(--rd)">${r.d.vn} vắng</span>`:''}
+  el.innerHTML=rows.map(r=>{
+    const useG=r.w.useGlobalRates!==false;
+    return `<div class="si">
+      <div class="si-t">
+        <div class="av" style="border-radius:12px">${ini(r.w.name)}</div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:14px;font-weight:700">${r.w.name}</div>
+          <div style="margin-top:4px;display:flex;gap:5px;flex-wrap:wrap">
+            <span class="tag tph">${r.d.hai} công hái</span>
+            <span class="tag tpt">${r.d.th} công thường</span>
+            ${r.d.vn>0?`<span class="tag" style="background:var(--rp);color:var(--rd)">${r.d.vn} vắng</span>`:''}
+            ${!useG?`<span style="font-size:10px;background:#ede9fe;color:#5b21b6;padding:3px 7px;border-radius:8px;font-weight:700">đơn giá riêng</span>`:''}
+          </div>
         </div>
+        <div class="si-v">${fmt(r.tot)}đ</div>
       </div>
-      <div class="si-v">${fmt(r.tot)}đ</div>
-    </div>
-    <div class="si-g">
-      <div class="si-r">Công hái: <span>${fmt(r.d.hai*getR('hai'))}đ</span></div>
-      <div class="si-r">Công thường: <span>${fmt(r.d.th*getR('thuong'))}đ</span></div>
-      <div class="si-r">CF ${r.cfKg.toFixed(1)}kg: <span>${fmt(r.cfKg*getR('coffee'))}đ</span></div>
-      <div class="si-r">Tiêu ${r.ppKg.toFixed(1)}kg: <span>${fmt(r.ppKg*getR('pepper'))}đ</span></div>
-    </div>
-  </div>`).join('');
+      <div class="si-g">
+        <div class="si-r">Công hái (${fmt(r.rHai)}đ): <span>${fmt(r.d.hai*r.rHai)}đ</span></div>
+        <div class="si-r">Công thường (${fmt(r.rThuong)}đ): <span>${fmt(r.d.th*r.rThuong)}đ</span></div>
+        <div class="si-r">CF ${r.cfKg.toFixed(1)}kg (${fmt(r.rCf)}đ): <span>${fmt(r.cfKg*r.rCf)}đ</span></div>
+        <div class="si-r">Tiêu ${r.ppKg.toFixed(1)}kg (${fmt(r.rPp)}đ): <span>${fmt(r.ppKg*r.rPp)}đ</span></div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 // ── HOME ──
@@ -1414,7 +1503,6 @@ function renderWeekChart(){
   }).join('');
   lblEl.innerHTML=days.map(d=>`<div class="clbl">${d.dl}</div>`).join('');
 }
-
 function renderHome(){
   let ts=0,th=0,tth=0;
   workers.forEach(w=>{const s=calcSal(w);ts+=s.tot;th+=s.d.hai;tth+=s.d.th;});
@@ -1450,70 +1538,44 @@ function renderHome(){
   document.getElementById('h-recent').innerHTML=rec.length
     ?rec.map(h=>{
         const w=workers.find(x=>x.id===h.wid)||{name:'?'}; const cf=h.type==='coffee';
+        const ww=workers.find(x=>x.id===h.wid);
+        const rate=ww?getWRate(ww,h.type):(cf?rates.cf:rates.pp);
         return `<div class="hvi" style="padding:9px 0">
           <div class="hico ${cf?'hcf':'hpp'}" style="width:34px;height:34px;font-size:15px">${cf?'☕':'🌿'}</div>
           <div class="hii"><div class="tp" style="font-size:13px">${w.name} — ${h.kg}kg</div><div class="bt">${h.date}</div></div>
-          <div class="hmoney" style="font-size:13px">${fmt(h.kg*getR(h.type))}đ</div>
+          <div class="hmoney" style="font-size:13px">${fmt(h.kg*rate)}đ</div>
         </div>`;
       }).join('')
     :'<div class="empty">Chưa có sản lượng nào</div>';
 }
 
-// ══════════════════════════════════════════════════
-// INIT — Thứ tự ưu tiên:
-// 1. Đọc localStorage (ngay lập tức, không chờ Firebase)
-// 2. Kết nối Firebase (listen)
-// 3. Nếu Firebase có data mới hơn → apply
-// 4. Nếu local mới hơn → push lên Firebase
-// ══════════════════════════════════════════════════
+// ── INIT ──
 async function init(){
   document.getElementById('load-txt').textContent='Đang tải dữ liệu cục bộ...';
-
-  // 1. Tải data từ localStorage trước
-  const localData = loadLocal();
-  if(localData){
-    applyDataObj(localData, false);
-    localVersion = localData.version || 0;
-  }
-
-  // 2. Tải UI prefs
-  const uiData = loadUILocal();
+  const localData=loadLocal();
+  if(localData){ applyDataObj(localData,false); localVersion=localData.version||0; }
+  const uiData=loadUILocal();
   if(uiData?.fbGroup){
-    fbGroup = uiData.fbGroup;
-    document.getElementById('fb-group').value = uiData.fbGroup;
-    document.getElementById('fb-group-display').textContent = uiData.fbGroup;
+    fbGroup=uiData.fbGroup;
+    document.getElementById('fb-group').value=uiData.fbGroup;
+    document.getElementById('fb-group-display').textContent=uiData.fbGroup;
   }
-
-  document.getElementById('hvdt').value = tod();
-  updML();
-  renderRatesView();
-  renderOffDaysView();
-
+  document.getElementById('hvdt').value=tod();
+  updML(); renderGlobalRates(); renderOffDaysView();
   document.getElementById('load-txt').textContent='Đang kết nối Firebase...';
-
-  // 3. Kết nối Firebase
   await initFirebase(fbGroup);
-
   document.getElementById('loading-screen').classList.add('hidden');
-
-  // 4. Kiểm tra session
-  const sess = uiData?.session;
-  if(sess?.username && accounts[sess.username]){
-    const acc = accounts[sess.username];
-    curUser = {username:sess.username, role:acc.role, displayName:acc.displayName};
+  const sess=uiData?.session;
+  if(sess?.username&&accounts[sess.username]){
+    const acc=accounts[sess.username];
+    curUser={username:sess.username,role:acc.role,displayName:acc.displayName};
     enterApp();
-  } else {
-    showLogin();
-  }
+  } else { showLogin(); }
 }
 
-// Lắng nghe online/offline
-window.addEventListener('online',  ()=>{ setOffline(false); scheduleSync(); });
-window.addEventListener('offline', ()=>{ setOffline(true); });
-
-// Lưu trước khi thoát trang
-window.addEventListener('beforeunload', ()=>{ saveLocal(); });
-
+window.addEventListener('online',()=>{ setOffline(false); scheduleSync(); });
+window.addEventListener('offline',()=>{ setOffline(true); });
+window.addEventListener('beforeunload',()=>{ saveLocal(); });
 init();
 </script>
 </body>
