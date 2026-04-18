@@ -5,210 +5,272 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#0d4f2e">
+<meta name="theme-color" content="#0a3d22">
 <title>Công Hái</title>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --gd:#0d4f2e;--gm:#1a6b3c;--gl:#2d8a56;
-  --gp:#d4f0e2;--gf:#eaf7f0;
-  --am:#e8a020;--ap:#fef3e0;
-  --rd:#c0392b;--rp:#fdecea;
-  --bl:#1565c0;--bp:#e3f0ff;
-  --g1:#0f1a14;--g2:#263328;--g4:#4a5e50;--g5:#7a9080;--g6:#b0c4b8;--g7:#ddeae2;--g8:#f2f7f4;
-  --wh:#fff;--font:'Be Vietnam Pro',sans-serif;
+  --gd:#0a3d22;--gm:#166534;--gl:#16a34a;--gx:#4ade80;
+  --gp:#dcfce7;--gf:#f0fdf4;
+  --am:#d97706;--ap:#fffbeb;--al:#fef3c7;
+  --rd:#dc2626;--rp:#fef2f2;
+  --bl:#1d4ed8;--bp:#eff6ff;
+  --g1:#0f172a;--g2:#1e293b;--g3:#334155;--g4:#475569;--g5:#64748b;--g6:#94a3b8;--g7:#e2e8f0;--g8:#f8fafc;--g9:#f1f5f9;
+  --wh:#fff;--font:'Lexend',sans-serif;
   --sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);
   --sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px);
-  --nav-h:56px;
+  --nav-h:60px;--top-h:112px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:0 4px 16px rgba(0,0,0,.08),0 2px 6px rgba(0,0,0,.06);
+  --shadow-lg:0 10px 40px rgba(0,0,0,.12),0 4px 12px rgba(0,0,0,.08);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
 html{height:100%;overflow:hidden}
 body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);color:var(--g1);font-size:16px;-webkit-text-size-adjust:100%}
 #app{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--wh);max-width:480px;margin:0 auto}
-@media(min-width:480px){#app{box-shadow:0 0 60px rgba(0,0,0,.2)}}
+@media(min-width:480px){#app{box-shadow:0 0 80px rgba(0,0,0,.25)}}
 
-/* LOADING */
-#loading-screen{position:fixed;inset:0;z-index:3000;background:linear-gradient(160deg,#0d4f2e 0%,#1a6b3c 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;max-width:480px;margin:0 auto;}
+/* ── LOADING ── */
+#loading-screen{position:fixed;inset:0;z-index:3000;background:linear-gradient(170deg,#0a3d22 0%,#166534 55%,#14532d 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;max-width:480px;margin:0 auto}
 #loading-screen.hidden{display:none}
-.spinner{width:40px;height:40px;border:3px solid rgba(255,255,255,.2);border-top-color:#4ade80;border-radius:50%;animation:spin .8s linear infinite}
+.load-logo{font-size:56px;animation:logobounce 1.4s ease-in-out infinite}
+@keyframes logobounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.load-ring{width:44px;height:44px;border:3px solid rgba(255,255,255,.15);border-top-color:#4ade80;border-radius:50%;animation:spin .75s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-#loading-screen p{color:rgba(255,255,255,.6);font-size:14px}
+.load-txt{color:rgba(255,255,255,.5);font-size:13px;font-weight:500;letter-spacing:.3px}
 
-/* LOGIN */
-#login-screen{position:fixed;inset:0;z-index:2000;background:linear-gradient(160deg,#0d4f2e 0%,#1a6b3c 45%,#0a3d22 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 24px calc(24px + env(safe-area-inset-bottom));max-width:480px;margin:0 auto;}
+/* ── LOGIN ── */
+#login-screen{position:fixed;inset:0;z-index:2000;background:linear-gradient(170deg,#0a3d22 0%,#166334 45%,#052e16 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px calc(24px + env(safe-area-inset-bottom));max-width:480px;margin:0 auto;overflow-y:auto}
 #login-screen.hidden{display:none}
-.login-logo{margin-bottom:10px;font-size:52px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.3))}
-.login-title{font-size:28px;font-weight:800;color:#fff;letter-spacing:-.5px;margin-bottom:4px}
-.login-sub{font-size:14px;color:rgba(255,255,255,.55);margin-bottom:36px}
-.login-card{background:rgba(255,255,255,.07);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:24px 20px;width:100%;max-width:380px}
-.login-card .fld{margin-bottom:14px}
-.login-card .fld label{color:rgba(255,255,255,.65);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:6px}
-.login-card .fld input{width:100%;font-size:16px;font-family:var(--font);font-weight:500;padding:14px 15px;border-radius:13px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.1);color:#fff;outline:none;-webkit-appearance:none;appearance:none;transition:border-color .2s;min-height:50px;}
-.login-card .fld input::placeholder{color:rgba(255,255,255,.35)}
-.login-card .fld input:focus{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.15)}
-.btn-login{width:100%;padding:15px;border-radius:13px;border:none;background:linear-gradient(135deg,#4ade80,#22c55e);color:#0d4f2e;font-size:16px;font-weight:700;font-family:var(--font);cursor:pointer;margin-top:4px;min-height:52px;box-shadow:0 4px 20px rgba(74,222,128,.35);transition:opacity .15s,transform .1s;letter-spacing:-.2px;}
-.btn-login:active{opacity:.85;transform:scale(.98)}
-.login-err{background:rgba(220,38,38,.2);border:1px solid rgba(220,38,38,.4);border-radius:10px;padding:10px 12px;font-size:13px;color:#fca5a5;margin-bottom:12px;display:none;text-align:center}
+.login-logo{font-size:60px;margin-bottom:8px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.4))}
+.login-title{font-size:32px;font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:4px}
+.login-sub{font-size:14px;color:rgba(255,255,255,.45);margin-bottom:40px;font-weight:400}
+.login-card{background:rgba(255,255,255,.06);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.1);border-radius:28px;padding:28px 22px;width:100%;max-width:390px}
+.login-card .fld{margin-bottom:16px}
+.login-card .fld label{color:rgba(255,255,255,.55);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:8px}
+.login-card .fld input{width:100%;font-size:16px;font-family:var(--font);font-weight:500;padding:15px 16px;border-radius:14px;border:1.5px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);color:#fff;outline:none;-webkit-appearance:none;transition:border-color .2s,background .2s;min-height:52px}
+.login-card .fld input::placeholder{color:rgba(255,255,255,.3)}
+.login-card .fld input:focus{border-color:rgba(74,222,128,.5);background:rgba(255,255,255,.12)}
+.btn-login{width:100%;padding:16px;border-radius:14px;border:none;background:linear-gradient(135deg,#4ade80,#22c55e);color:#052e16;font-size:16px;font-weight:700;font-family:var(--font);cursor:pointer;margin-top:6px;min-height:54px;box-shadow:0 4px 24px rgba(74,222,128,.4);transition:opacity .15s,transform .1s;letter-spacing:-.3px}
+.btn-login:active{opacity:.85;transform:scale(.97)}
+.login-err{background:rgba(220,38,38,.18);border:1px solid rgba(220,38,38,.35);border-radius:12px;padding:11px 14px;font-size:13px;color:#fca5a5;margin-bottom:14px;display:none;text-align:center;font-weight:500}
 .login-err.on{display:block}
-.login-hint{margin-top:18px;text-align:center;font-size:12px;color:rgba(255,255,255,.4);line-height:1.8}
-.login-hint code{color:rgba(255,255,255,.65);font-family:monospace;background:rgba(255,255,255,.08);padding:1px 6px;border-radius:4px}
+.login-hint{margin-top:20px;text-align:center;font-size:12px;color:rgba(255,255,255,.35);line-height:2}
+.login-hint code{color:rgba(255,255,255,.6);font-family:monospace;background:rgba(255,255,255,.1);padding:2px 7px;border-radius:5px}
 
-/* TOPBAR */
-.topbar{background:var(--gd);flex-shrink:0;padding-top:var(--sat);padding-left:var(--sal);padding-right:var(--sar)}
-.topbar-inner{display:flex;align-items:center;padding:10px 16px 12px;gap:10px;min-height:54px}
-.topbar-inner h1{color:#fff;font-size:17px;font-weight:600;flex:1;letter-spacing:-.3px;line-height:1.2}
-.month-pill{background:rgba(255,255,255,.15);border-radius:20px;padding:6px 13px;color:#fff;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:5px;min-height:36px;white-space:nowrap;font-family:var(--font);border:none}
+/* ── TOPBAR ── */
+.topbar{background:linear-gradient(135deg,#0a3d22 0%,#166534 100%);flex-shrink:0;padding-top:var(--sat);padding-left:var(--sal);padding-right:var(--sar)}
+.topbar-inner{display:flex;align-items:center;padding:10px 14px 12px;gap:8px;min-height:56px}
+.topbar-inner h1{color:#fff;font-size:18px;font-weight:700;flex:1;letter-spacing:-.5px;line-height:1.2}
+.month-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:7px 13px;color:#fff;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;min-height:38px;white-space:nowrap;font-family:var(--font);transition:background .15s}
+.month-pill:active{background:rgba(255,255,255,.2)}
 .month-pill svg{width:13px;height:13px;fill:#fff;flex-shrink:0}
-.user-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:5px 10px 5px 8px;display:flex;align-items:center;gap:6px;cursor:pointer;border:none;flex-shrink:0}
-.user-pill .uav{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0}
-.user-pill .unm{font-size:12px;font-weight:600;color:#fff;max-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sync-bar{display:flex;align-items:center;justify-content:center;gap:6px;padding:7px 12px;background:rgba(0,0,0,.15);font-size:12px;color:rgba(255,255,255,.8);font-weight:500;cursor:pointer}
+.user-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:5px 11px 5px 8px;display:flex;align-items:center;gap:7px;cursor:pointer;flex-shrink:0;transition:background .15s}
+.user-pill:active{background:rgba(255,255,255,.2)}
+.user-pill .uav{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0}
+.user-pill .unm{font-size:12px;font-weight:600;color:#fff;max-width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sync-bar{display:flex;align-items:center;justify-content:center;gap:7px;padding:7px 12px;background:rgba(0,0,0,.18);font-size:12px;color:rgba(255,255,255,.7);font-weight:500;cursor:pointer;transition:background .15s}
+.sync-bar:active{background:rgba(0,0,0,.28)}
 .sdot{width:7px;height:7px;border-radius:50%;background:#4ade80;opacity:0;transition:opacity .4s;flex-shrink:0}
-.sdot.ok{opacity:1}.sdot.err{background:#f87171;opacity:1}.sdot.sync{background:#fbbf24;opacity:1;animation:pulse .8s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.sdot.ok{opacity:1}.sdot.err{background:#f87171;opacity:1}.sdot.sync{background:#fbbf24;opacity:1;animation:pulse .9s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
-/* SCREEN & NAV */
-.screen{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;background:var(--g8);padding-bottom:calc(var(--nav-h) + var(--sab) + 8px);padding-left:var(--sal);padding-right:var(--sar)}
+/* ── SCREEN & NAV ── */
+.screen{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;background:var(--g8);padding-bottom:calc(var(--nav-h) + var(--sab) + 10px);padding-left:var(--sal);padding-right:var(--sar)}
 .screen::-webkit-scrollbar{display:none}
-.navbar{background:var(--wh);border-top:1px solid var(--g7);display:flex;flex-shrink:0;padding-bottom:var(--sab);padding-left:var(--sal);padding-right:var(--sar);height:calc(var(--nav-h) + var(--sab));z-index:10}
-.nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:none;cursor:pointer;padding:6px 2px;min-height:var(--nav-h);-webkit-user-select:none;user-select:none}
-.nb svg{width:22px;height:22px;fill:var(--g5);flex-shrink:0;transition:fill .15s}
-.nb span{font-size:10px;font-weight:500;color:var(--g5);font-family:var(--font);white-space:nowrap;transition:color .15s}
-.nb.on svg{fill:var(--gm)}.nb.on span{color:var(--gm)}
+.navbar{background:var(--wh);border-top:1px solid var(--g7);display:flex;flex-shrink:0;padding-bottom:var(--sab);padding-left:var(--sal);padding-right:var(--sar);height:calc(var(--nav-h) + var(--sab));z-index:10;box-shadow:0 -1px 0 rgba(0,0,0,.04)}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:none;background:none;cursor:pointer;padding:6px 2px;min-height:var(--nav-h);-webkit-user-select:none;user-select:none;position:relative;transition:opacity .1s}
+.nb:active{opacity:.65}
+.nb svg{width:22px;height:22px;fill:var(--g6);flex-shrink:0;transition:fill .2s,transform .2s}
+.nb span{font-size:10px;font-weight:600;color:var(--g6);font-family:var(--font);white-space:nowrap;transition:color .2s;letter-spacing:.1px}
+.nb.on svg{fill:var(--gm);transform:scale(1.08)}.nb.on span{color:var(--gm)}
+.nb-badge{position:absolute;top:8px;right:calc(50% - 16px);width:16px;height:16px;border-radius:50%;background:var(--rd);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--wh);display:none}
+.nb-badge.on{display:flex}
 
-/* SECTIONS & CARDS */
-.sec{display:none}.sec.on{display:block;animation:fu .2s ease}
-@keyframes fu{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-.card{background:var(--wh);border-radius:16px;margin:10px 12px 0;box-shadow:0 1px 8px rgba(13,79,46,.09);overflow:hidden}
-.ch{display:flex;align-items:center;justify-content:space-between;padding:13px 15px 10px;border-bottom:1px solid var(--g7)}
-.ch h2{font-size:14px;font-weight:600;color:var(--g1)}
-.cb{padding:11px 15px 13px}
-.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px 12px 0}
-.mc{background:var(--wh);border-radius:12px;padding:13px 12px;box-shadow:0 1px 8px rgba(13,79,46,.09)}
-.mc .lb{font-size:11px;font-weight:600;color:var(--g5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
-.mc .vl{font-size:23px;font-weight:700;color:var(--g1);line-height:1}
-.mc .ut{font-size:11px;color:var(--g6);margin-top:3px}
-.mc.dk{background:var(--gd)}.mc.dk .lb{color:rgba(255,255,255,.55)}.mc.dk .vl{color:#fff}.mc.dk .ut{color:rgba(255,255,255,.4)}
-.mc.bl{background:var(--bp)}.mc.bl .lb,.mc.bl .ut{color:#1565c088}.mc.bl .vl{color:var(--bl)}
-.mc.am{background:var(--ap)}.mc.am .lb,.mc.am .ut{color:#7a4f0088}.mc.am .vl{color:var(--am)}
+/* ── SECTIONS ── */
+.sec{display:none}.sec.on{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-/* FORM */
-.fld{margin-bottom:11px}
-.fld label{font-size:12px;font-weight:600;color:var(--g4);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.3px}
-.fld input,.fld select{width:100%;font-size:16px;font-family:var(--font);font-weight:500;padding:12px 13px;border-radius:11px;border:1.5px solid var(--g7);background:var(--g8);color:var(--g1);outline:none;-webkit-appearance:none;appearance:none;transition:border-color .2s;min-height:48px}
-.fld input:focus,.fld select:focus{border-color:var(--gm);background:var(--wh)}
-.r2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.btn{font-family:var(--font);font-size:16px;font-weight:600;padding:14px;border-radius:12px;border:none;cursor:pointer;width:100%;min-height:50px;letter-spacing:-.2px;transition:opacity .15s,transform .1s;-webkit-appearance:none}
-.btn:active{opacity:.82;transform:scale(.98)}
-.btn-g{background:var(--gm);color:#fff}
+/* ── CARD ── */
+.card{background:var(--wh);border-radius:18px;margin:10px 12px 0;box-shadow:var(--shadow-sm);overflow:hidden}
+.ch{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 11px;border-bottom:1px solid var(--g7)}
+.ch h2{font-size:14px;font-weight:700;color:var(--g1);letter-spacing:-.2px}
+.ch-action{font-size:12px;font-weight:600;color:var(--gm);padding:6px 10px;border-radius:8px;background:var(--gf);border:none;cursor:pointer;font-family:var(--font)}
+.cb{padding:12px 16px 14px}
+
+/* ── METRIC GRID ── */
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 12px 0}
+.mc{background:var(--wh);border-radius:16px;padding:16px 14px 14px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.mc::before{content:'';position:absolute;top:-20px;right:-20px;width:70px;height:70px;border-radius:50%;opacity:.08}
+.mc .lb{font-size:10px;font-weight:700;color:var(--g5);text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
+.mc .vl{font-size:26px;font-weight:800;color:var(--g1);line-height:1;letter-spacing:-1px}
+.mc .ut{font-size:11px;color:var(--g6);margin-top:4px;font-weight:500}
+.mc.dk{background:linear-gradient(135deg,#0a3d22,#166534)}.mc.dk::before{background:rgba(255,255,255,.5)}.mc.dk .lb{color:rgba(255,255,255,.5)}.mc.dk .vl{color:#fff}.mc.dk .ut{color:rgba(255,255,255,.4)}
+.mc.bl{background:linear-gradient(135deg,#eff6ff,#dbeafe)}.mc.bl::before{background:#1d4ed8}.mc.bl .lb,.mc.bl .ut{color:#1d4ed888}.mc.bl .vl{color:var(--bl)}
+.mc.am{background:linear-gradient(135deg,#fffbeb,#fef3c7)}.mc.am::before{background:#d97706}.mc.am .lb,.mc.am .ut{color:#d9770688}.mc.am .vl{color:var(--am)}
+.mc.gr{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}.mc.gr::before{background:#16a34a}.mc.gr .lb,.mc.gr .ut{color:#16a34a88}.mc.gr .vl{color:var(--gm)}
+
+/* ── FORM ── */
+.fld{margin-bottom:12px}
+.fld label{font-size:11px;font-weight:700;color:var(--g4);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.fld input,.fld select,.fld textarea{width:100%;font-size:16px;font-family:var(--font);font-weight:500;padding:13px 14px;border-radius:13px;border:1.5px solid var(--g7);background:var(--g8);color:var(--g1);outline:none;-webkit-appearance:none;appearance:none;transition:border-color .2s,background .2s;min-height:50px}
+.fld textarea{min-height:80px;resize:none;line-height:1.5}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--gm);background:var(--wh);box-shadow:0 0 0 3px rgba(22,101,52,.08)}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{font-family:var(--font);font-size:16px;font-weight:700;padding:15px;border-radius:14px;border:none;cursor:pointer;width:100%;min-height:52px;letter-spacing:-.3px;transition:opacity .15s,transform .1s;-webkit-appearance:none}
+.btn:active{opacity:.82;transform:scale(.97)}
+.btn-g{background:linear-gradient(135deg,var(--gm),var(--gl));color:#fff;box-shadow:0 4px 16px rgba(22,101,52,.25)}
 .btn-outline{background:var(--g8);color:var(--g4);border:1.5px solid var(--g7)}
 .btn-red{background:var(--rp);color:var(--rd)}
-.btn-sm{font-size:14px;padding:11px;min-height:44px}
-.seg{display:flex;background:var(--g8);border-radius:11px;padding:4px;gap:3px;margin-bottom:12px}
-.sg{flex:1;padding:10px 8px;border-radius:8px;border:none;font-size:14px;font-weight:500;font-family:var(--font);cursor:pointer;background:none;color:var(--g5);transition:all .15s;min-height:40px}
-.sg.on{background:var(--wh);color:var(--gm);font-weight:600;box-shadow:0 1px 6px rgba(13,79,46,.12)}
+.btn-blue{background:var(--bp);color:var(--bl)}
+.btn-sm{font-size:13px;padding:11px;min-height:44px}
+.seg{display:flex;background:var(--g9);border-radius:13px;padding:4px;gap:4px;margin-bottom:14px}
+.sg{flex:1;padding:10px 8px;border-radius:10px;border:none;font-size:13px;font-weight:600;font-family:var(--font);cursor:pointer;background:none;color:var(--g5);transition:all .18s;min-height:42px}
+.sg.on{background:var(--wh);color:var(--gm);box-shadow:var(--shadow-sm)}
 
-/* WORKER ROW */
-.wr{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--g8)}
+/* ── WORKER ROW ── */
+.wr{display:flex;align-items:center;gap:11px;padding:13px 0;border-bottom:1px solid var(--g8)}
 .wr:last-child{border-bottom:none}
-.av{width:40px;height:40px;border-radius:50%;background:var(--gf);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gm);flex-shrink:0}
+.av{width:42px;height:42px;border-radius:13px;background:var(--gf);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gm);flex-shrink:0;border:1.5px solid rgba(22,101,52,.12)}
 .wi{flex:1;min-width:0}
-.wi .nm{font-size:14px;font-weight:600;color:var(--g1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.wi .sb{font-size:12px;color:var(--g5);margin-top:1px}
-.delbtn{width:36px;height:36px;border-radius:9px;background:var(--rp);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wi .nm{font-size:14px;font-weight:700;color:var(--g1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wi .sb{font-size:12px;color:var(--g5);margin-top:2px;font-weight:500}
+.delbtn{width:38px;height:38px;border-radius:11px;background:var(--rp);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
+.delbtn:active{background:#fee2e2}
 .delbtn svg{width:15px;height:15px;fill:var(--rd)}
 
-/* ATTENDANCE */
-.mnav{display:flex;align-items:center;justify-content:space-between;padding:13px 12px 9px}
+/* ── ATTENDANCE ── */
+.mnav{display:flex;align-items:center;justify-content:space-between;padding:14px 12px 10px}
 .mnav .ml{font-size:16px;font-weight:700;color:var(--g1)}
-.mnb{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--g7);background:var(--wh);font-size:19px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--g2);min-width:38px}
-.lgrow{display:flex;gap:8px;padding:0 12px 10px;flex-wrap:wrap}
-.li{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--g4);font-weight:500}
-.ld{width:10px;height:10px;border-radius:3px;flex-shrink:0}
-.att-blk{margin:0 12px 10px;background:var(--wh);border-radius:16px;padding:13px;box-shadow:0 1px 8px rgba(13,79,46,.09)}
-.anr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:6px}
+.mnb{width:40px;height:40px;border-radius:12px;border:1.5px solid var(--g7);background:var(--wh);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--g2);min-width:40px;transition:background .12s,border-color .12s;box-shadow:var(--shadow-sm)}
+.mnb:active{background:var(--g8)}
+.lgrow{display:flex;gap:6px;padding:0 12px 12px;flex-wrap:wrap}
+.li{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--g4);font-weight:600}
+.ld{width:11px;height:11px;border-radius:3px;flex-shrink:0}
+.att-blk{margin:0 12px 10px;background:var(--wh);border-radius:18px;padding:14px;box-shadow:var(--shadow-sm)}
+.att-blk.warn-abs{border-left:3px solid var(--rd)}
+.anr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px}
 .abadges{display:flex;gap:5px;flex-shrink:0}
-.ab{font-size:11px;font-weight:600;padding:3px 8px;border-radius:10px}
-.ab-h{background:var(--gp);color:var(--gd)}.ab-t{background:var(--bp);color:var(--bl)}
+.ab{font-size:11px;font-weight:700;padding:4px 9px;border-radius:10px;letter-spacing:.1px}
+.ab-h{background:var(--gp);color:var(--gd)}.ab-t{background:var(--bp);color:var(--bl)}.ab-vn{background:var(--rp);color:var(--rd)}
 .dgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
-.dc{height:40px;border-radius:8px;border:1.5px solid var(--g7);font-size:11px;font-weight:600;cursor:pointer;background:var(--g8);color:var(--g6);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1;transition:transform .1s;-webkit-user-select:none;user-select:none;touch-action:manipulation}
-.dc:active{transform:scale(.88)}
-.dc .dn{font-size:11px;font-weight:600}.dc .dow{font-size:8px;opacity:.7;font-weight:500}
-.dc.ph{background:var(--gp);color:var(--gd);border-color:#9fe1cb}
-.dc.pt{background:var(--bp);color:var(--bl);border-color:#90caf9}
-.dc.hh{background:#fffde7;color:#7a4f00;border-color:#fac775}
-.dc.ht{background:#e8f5e9;color:#1b5e20;border-color:#a5d6a7}
-.dc.vn{background:var(--rp);color:var(--rd);border-color:#f7c1c1}
-.dc.off{background:var(--g7);color:var(--g6);border-color:transparent;opacity:.5}
+.dc{height:42px;border-radius:9px;border:1.5px solid var(--g7);font-size:10px;font-weight:700;cursor:pointer;background:var(--g8);color:var(--g6);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;line-height:1;transition:transform .1s,box-shadow .1s;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.dc:active{transform:scale(.84);box-shadow:none}
+.dc .dn{font-size:11px;font-weight:700}.dc .dow{font-size:8px;opacity:.65;font-weight:600}
+.dc.ph{background:linear-gradient(135deg,#bbf7d0,#86efac);color:#14532d;border-color:#4ade80}
+.dc.pt{background:linear-gradient(135deg,#bfdbfe,#93c5fd);color:#1e3a8a;border-color:#60a5fa}
+.dc.hh{background:linear-gradient(135deg,#fef9c3,#fef08a);color:#713f12;border-color:#fbbf24}
+.dc.ht{background:linear-gradient(135deg,#bbf7d0,#d1fae5);color:#14532d;border-color:#34d399;opacity:.7}
+.dc.vn{background:linear-gradient(135deg,#fecaca,#fca5a5);color:#7f1d1d;border-color:#f87171}
+.dc.off{background:var(--g7);color:var(--g6);border-color:transparent;opacity:.45}
+.dc.today-mark{box-shadow:0 0 0 2px var(--gm)}
 
-/* HARVEST */
-.hvi{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--g8)}
+/* ── SEARCH BAR ── */
+.search-bar{margin:0 12px 10px;position:relative}
+.search-bar input{width:100%;padding:11px 14px 11px 40px;border-radius:13px;border:1.5px solid var(--g7);background:var(--wh);font-size:14px;font-family:var(--font);font-weight:500;color:var(--g1);outline:none;-webkit-appearance:none;transition:border-color .2s;min-height:46px;box-shadow:var(--shadow-sm)}
+.search-bar input:focus{border-color:var(--gm)}
+.search-bar svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;fill:var(--g6)}
+
+/* ── HARVEST ── */
+.hvi{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--g8)}
 .hvi:last-child{border-bottom:none}
-.hico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.hcf{background:var(--ap)}.hpp{background:var(--gf)}
+.hico{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.hcf{background:linear-gradient(135deg,var(--al),var(--ap))}.hpp{background:linear-gradient(135deg,var(--gp),var(--gf))}
 .hii{flex:1;min-width:0}
-.hii .tp{font-size:13px;font-weight:600;color:var(--g1)}
-.hii .bt{font-size:12px;color:var(--g5);margin-top:2px}
+.hii .tp{font-size:13px;font-weight:700;color:var(--g1)}
+.hii .bt{font-size:11px;color:var(--g5);margin-top:2px;font-weight:500}
 .hmoney{font-size:14px;font-weight:700;color:var(--gm)}
 
-/* SALARY */
-.si{padding:12px 0;border-bottom:1px solid var(--g8)}.si:last-child{border-bottom:none}
-.si-t{display:flex;align-items:center;gap:9px;margin-bottom:8px}
-.si-v{font-size:15px;font-weight:700;color:var(--gm);margin-left:auto;flex-shrink:0}
-.si-g{background:var(--g8);border-radius:10px;padding:9px 11px;display:grid;grid-template-columns:1fr 1fr;gap:4px}
-.si-r{font-size:12px;color:var(--g5);font-weight:500}.si-r span{color:var(--g1);font-weight:600}
+/* ── SALARY ── */
+.si{padding:13px 0;border-bottom:1px solid var(--g8)}.si:last-child{border-bottom:none}
+.si-t{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.si-v{font-size:16px;font-weight:800;color:var(--gm);margin-left:auto;flex-shrink:0;letter-spacing:-.5px}
+.si-g{background:var(--g8);border-radius:12px;padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.si-r{font-size:12px;color:var(--g5);font-weight:500}.si-r span{color:var(--g1);font-weight:700}
 
-/* SETTINGS */
-.slbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--g5);padding:14px 12px 5px}
-.ri{display:flex;align-items:center;padding:11px 0;border-bottom:1px solid var(--g8);gap:10px}
+/* ── ALERT BANNER ── */
+.alert-banner{margin:10px 12px 0;border-radius:14px;padding:11px 14px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600}
+.alert-banner.warn{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.alert-banner.info{background:var(--gf);color:#14532d;border:1px solid #bbf7d0}
+.alert-banner svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+
+/* ── MINI CHART ── */
+.chart-wrap{padding:4px 0 8px}
+.chart-bars{display:flex;align-items:flex-end;gap:4px;height:56px;padding:0 2px}
+.cbar{flex:1;border-radius:5px 5px 0 0;transition:height .4s cubic-bezier(.34,1.56,.64,1);cursor:default;position:relative;min-width:0}
+.cbar.cf{background:linear-gradient(to top,var(--am),#fbbf24)}.cbar.pp{background:linear-gradient(to top,var(--gm),var(--gx))}
+.chart-labels{display:flex;gap:4px;padding:4px 2px 0}
+.clbl{flex:1;font-size:9px;color:var(--g6);text-align:center;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chart-legend{display:flex;gap:14px;padding:8px 2px 0}
+.cleg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--g5);font-weight:600}
+.cleg-dot{width:9px;height:9px;border-radius:3px;flex-shrink:0}
+
+/* ── SETTINGS ── */
+.slbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--g5);padding:16px 14px 6px}
+.ri{display:flex;align-items:center;padding:13px 0;border-bottom:1px solid var(--g8);gap:10px}
 .ri:last-child{border-bottom:none}
-.ri .rl{font-size:14px;font-weight:500;color:var(--g1);flex:1}
-.ri .rv{font-size:14px;font-weight:600;color:var(--g4);text-align:right}
-.ri input{width:130px;font-size:14px;font-family:var(--font);font-weight:600;padding:9px 10px;border-radius:9px;border:1.5px solid var(--g7);background:var(--g8);color:var(--gd);text-align:right;outline:none;-webkit-appearance:none;min-height:42px}
+.ri .rl{font-size:14px;font-weight:600;color:var(--g1);flex:1;line-height:1.4}
+.ri .rv{font-size:14px;font-weight:700;color:var(--g4);text-align:right}
+.ri input{width:130px;font-size:15px;font-family:var(--font);font-weight:700;padding:10px 11px;border-radius:11px;border:1.5px solid var(--g7);background:var(--g8);color:var(--gd);text-align:right;outline:none;-webkit-appearance:none;min-height:44px;transition:border-color .2s}
 .ri input:focus{border-color:var(--gm);background:var(--wh)}
-.tog-row{display:flex;align-items:center;padding:11px 0;border-bottom:1px solid var(--g8);gap:10px}
+.tog-row{display:flex;align-items:center;padding:13px 0;border-bottom:1px solid var(--g8);gap:10px}
 .tog-row:last-child{border-bottom:none}
-.tog-row .rl{font-size:14px;font-weight:500;color:var(--g1);flex:1}
-.tog{width:48px;height:28px;border-radius:14px;background:var(--g7);position:relative;cursor:pointer;transition:background .2s;border:none;flex-shrink:0;min-width:48px}
+.tog-row .rl{font-size:14px;font-weight:600;color:var(--g1);flex:1}
+.tog{width:50px;height:30px;border-radius:15px;background:var(--g7);position:relative;cursor:pointer;transition:background .2s;border:none;flex-shrink:0;min-width:50px}
 .tog.on{background:var(--gm)}
-.tog::after{content:'';position:absolute;width:22px;height:22px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.tog::after{content:'';position:absolute;width:24px;height:24px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s;box-shadow:0 1px 6px rgba(0,0,0,.2)}
 .tog.on::after{left:23px}
 
-/* TAGS */
-.tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}
-.tcf{background:var(--ap);color:#7a4f00}.tpp{background:var(--gf);color:var(--gd)}
-.tph{background:var(--gp);color:var(--gd)}.tpt{background:var(--bp);color:var(--bl)}
+/* ── TAGS ── */
+.tag{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700}
+.tcf{background:var(--al);color:#92400e}.tpp{background:var(--gp);color:#14532d}
+.tph{background:var(--gp);color:#14532d}.tpt{background:var(--bp);color:#1e3a8a}
 
-/* TOAST */
-.toast{position:fixed;bottom:calc(var(--nav-h) + var(--sab) + 12px);left:50%;transform:translateX(-50%) translateY(8px);background:var(--g1);color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:600;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;white-space:nowrap;z-index:999;max-width:90vw;text-align:center}
+/* ── TOAST ── */
+.toast{position:fixed;bottom:calc(var(--nav-h) + var(--sab) + 14px);left:50%;transform:translateX(-50%) translateY(10px);background:var(--g1);color:#fff;padding:11px 22px;border-radius:22px;font-size:13px;font-weight:600;opacity:0;transition:opacity .22s,transform .22s;pointer-events:none;white-space:nowrap;z-index:999;max-width:90vw;text-align:center;box-shadow:var(--shadow-lg)}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-.empty{text-align:center;padding:22px 16px;color:var(--g6);font-size:14px}
 
-/* MISC */
-.backup-box{border:2px dashed var(--g7);border-radius:14px;padding:16px;margin-bottom:10px;text-align:center}
-.backup-box p{font-size:13px;color:var(--g5);margin-bottom:12px;line-height:1.5}
-.backup-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.fb-info{background:var(--gf);border:1px solid var(--gp);border-radius:11px;padding:11px 13px;margin-bottom:12px;font-size:13px;color:var(--gd);line-height:1.6}
+/* ── MISC ── */
+.empty{text-align:center;padding:28px 16px;color:var(--g6);font-size:14px;font-weight:500}
+.backup-box{border:2px dashed var(--g7);border-radius:16px;padding:18px;margin-bottom:12px;text-align:center;background:var(--g8)}
+.backup-box p{font-size:13px;color:var(--g5);margin-bottom:14px;line-height:1.6;font-weight:500}
+.backup-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.fb-info{background:var(--gf);border:1px solid var(--gp);border-radius:13px;padding:13px 15px;margin-bottom:14px;font-size:13px;color:var(--gd);line-height:1.7;font-weight:500}
 .fb-info strong{font-weight:700}
-.fb-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:12px}
-.fb-badge.connected{background:var(--gf);color:var(--gm)}
-.fb-badge.disconnected{background:var(--rp);color:var(--rd)}
-.role-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700}
-.role-admin{background:#fef3c7;color:#92400e}
-.role-manager{background:var(--bp);color:var(--bl)}
-.locked-box{background:var(--g8);border-radius:16px;margin:12px;padding:28px 20px;text-align:center}
-.locked-box p{color:var(--g5);font-size:14px;margin-top:10px;line-height:1.6}
+.fb-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:14px}
+.fb-badge.connected{background:var(--gf);color:var(--gm)}.fb-badge.disconnected{background:var(--rp);color:var(--rd)}
+.role-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700}
+.role-admin{background:#fef3c7;color:#92400e}.role-manager{background:var(--bp);color:var(--bl)}
+.locked-box{background:var(--g8);border-radius:18px;margin:12px;padding:36px 20px;text-align:center}
+.locked-box p{color:var(--g5);font-size:14px;margin-top:12px;line-height:1.7;font-weight:500}
 
-/* MODAL */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center;z-index:1000;padding-bottom:var(--sab)}
-.modal{background:var(--wh);border-radius:22px 22px 0 0;padding:22px 16px calc(16px + var(--sab));width:100%;max-width:480px;max-height:88vh;overflow-y:auto}
-.modal-handle{width:36px;height:4px;background:var(--g7);border-radius:2px;margin:0 auto 16px}
-.modal h3{font-size:17px;font-weight:700;margin-bottom:8px;color:var(--g1)}
-.modal p{font-size:14px;color:var(--g5);margin-bottom:14px;line-height:1.55}
-.step{background:var(--g8);border-radius:11px;padding:12px 13px;margin-bottom:8px;font-size:13px;color:var(--g1);line-height:1.65}
+/* ── MODAL / BOTTOM SHEET ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center;z-index:1000;padding-bottom:var(--sab);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.modal{background:var(--wh);border-radius:26px 26px 0 0;padding:0 0 calc(20px + var(--sab));width:100%;max-width:480px;max-height:88vh;overflow-y:auto;box-shadow:0 -4px 40px rgba(0,0,0,.12)}
+.modal-handle{width:40px;height:4px;background:var(--g7);border-radius:2px;margin:14px auto 18px}
+.modal-head{padding:0 20px 16px;border-bottom:1px solid var(--g7);margin-bottom:16px}
+.modal-head h3{font-size:18px;font-weight:700;color:var(--g1);letter-spacing:-.4px}
+.modal-head p{font-size:13px;color:var(--g5);margin-top:4px;line-height:1.55;font-weight:500}
+.modal-body{padding:0 20px}
+.step{background:var(--g8);border-radius:13px;padding:13px 14px;margin-bottom:9px;font-size:13px;color:var(--g1);line-height:1.7;font-weight:500}
 .step strong{font-weight:700;color:var(--gm)}
-.step code{background:var(--gp);color:var(--gd);padding:1px 6px;border-radius:5px;font-size:12px;font-family:monospace;word-break:break-all}
-.modal-close{width:100%;padding:14px;border-radius:12px;border:none;background:var(--g8);font-size:16px;font-weight:600;font-family:var(--font);cursor:pointer;margin-top:8px;color:var(--g1)}
+.step code{background:var(--gp);color:var(--gd);padding:2px 7px;border-radius:6px;font-size:12px;font-family:monospace;word-break:break-all}
+.modal-close{width:calc(100% - 40px);margin:8px 20px 0;padding:15px;border-radius:14px;border:none;background:var(--g8);font-size:16px;font-weight:600;font-family:var(--font);cursor:pointer;color:var(--g1)}
+
+/* ── TODAY BADGE ── */
+.today-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.4);border-radius:8px;padding:2px 7px;font-size:10px;font-weight:700;color:#14532d;vertical-align:middle;margin-left:6px}
+
+/* ── QUICK STAT STRIP ── */
+.qstrip{display:flex;gap:8px;padding:12px 12px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.qstrip::-webkit-scrollbar{display:none}
+.qs{background:var(--wh);border-radius:14px;padding:12px 14px;flex-shrink:0;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:8px;white-space:nowrap}
+.qs .qi{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.qs .qn{font-size:18px;font-weight:800;color:var(--g1);letter-spacing:-.5px}
+.qs .ql{font-size:11px;color:var(--g5);font-weight:600;margin-top:1px}
+
+/* ── SECTION HEADER ── */
+.sec-hd{padding:16px 14px 4px;font-size:12px;font-weight:700;color:var(--g5);text-transform:uppercase;letter-spacing:.7px;display:flex;align-items:center;justify-content:space-between}
+.sec-hd a{font-size:12px;font-weight:700;color:var(--gm);text-decoration:none;text-transform:none;letter-spacing:0}
 </style>
 </head>
 <body>
@@ -216,9 +278,9 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 
 <!-- LOADING -->
 <div id="loading-screen">
-  <div style="font-size:48px">🌿</div>
-  <div class="spinner"></div>
-  <p>Đang tải dữ liệu...</p>
+  <div class="load-logo">🌿</div>
+  <div class="load-ring"></div>
+  <p class="load-txt">Đang tải dữ liệu...</p>
 </div>
 
 <!-- LOGIN -->
@@ -269,14 +331,59 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 
   <!-- HOME -->
   <div class="sec on" id="sec-home">
+    <div id="home-alert"></div>
     <div class="mgrid">
-      <div class="mc dk"><div class="lb">Tổng lương</div><div class="vl" id="h-total">0</div><div class="ut">nghìn đồng</div></div>
-      <div class="mc"><div class="lb">Tổng công</div><div class="vl" id="h-days">0</div><div class="ut">ngày làm</div></div>
-      <div class="mc bl"><div class="lb">Công thường</div><div class="vl" id="h-thuong">0</div><div class="ut">ngày</div></div>
-      <div class="mc am"><div class="lb">Công hái</div><div class="vl" id="h-hai">0</div><div class="ut">ngày</div></div>
+      <div class="mc dk">
+        <div class="lb">Tổng lương</div>
+        <div class="vl" id="h-total">0</div>
+        <div class="ut">nghìn đồng</div>
+      </div>
+      <div class="mc gr">
+        <div class="lb">Tổng công</div>
+        <div class="vl" id="h-days">0</div>
+        <div class="ut">ngày làm</div>
+      </div>
+      <div class="mc bl">
+        <div class="lb">Công thường</div>
+        <div class="vl" id="h-thuong">0</div>
+        <div class="ut">ngày</div>
+      </div>
+      <div class="mc am">
+        <div class="lb">Công hái</div>
+        <div class="vl" id="h-hai">0</div>
+        <div class="ut">ngày</div>
+      </div>
     </div>
-    <div class="card"><div class="ch"><h2>👷 Hôm nay có mặt</h2></div><div class="cb" id="h-today"></div></div>
-    <div class="card" style="margin-bottom:12px"><div class="ch"><h2>📦 Sản lượng gần đây</h2></div><div class="cb" id="h-recent"></div></div>
+
+    <div class="card">
+      <div class="ch"><h2>📦 Sản lượng tuần này</h2></div>
+      <div class="cb">
+        <div class="chart-wrap">
+          <div class="chart-bars" id="home-chart"></div>
+          <div class="chart-labels" id="home-chart-labels"></div>
+          <div class="chart-legend">
+            <div class="cleg"><div class="cleg-dot" style="background:#fbbf24"></div>Cà phê (kg)</div>
+            <div class="cleg"><div class="cleg-dot" style="background:#4ade80"></div>Tiêu (kg)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch">
+        <h2>👷 Hôm nay <span id="today-date-lbl" class="today-badge"></span></h2>
+        <button class="ch-action" onclick="goTab('att')">Điểm danh →</button>
+      </div>
+      <div class="cb" id="h-today"></div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="ch">
+        <h2>📋 Sản lượng gần đây</h2>
+        <button class="ch-action" onclick="goTab('harvest')">Thêm →</button>
+      </div>
+      <div class="cb" id="h-recent"></div>
+    </div>
   </div>
 
   <!-- ATT -->
@@ -287,12 +394,16 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
       <button class="mnb" onclick="chgM(1)">›</button>
     </div>
     <div class="lgrow">
-      <div class="li"><div class="ld" style="background:var(--gp);border:1px solid #9fe1cb"></div>Hái</div>
-      <div class="li"><div class="ld" style="background:var(--bp);border:1px solid #90caf9"></div>Thường</div>
-      <div class="li"><div class="ld" style="background:#fffde7;border:1px solid #fac775"></div>½ Hái</div>
-      <div class="li"><div class="ld" style="background:#e8f5e9;border:1px solid #a5d6a7"></div>½ Thường</div>
-      <div class="li"><div class="ld" style="background:var(--rp);border:1px solid #f7c1c1"></div>Vắng</div>
+      <div class="li"><div class="ld" style="background:linear-gradient(135deg,#bbf7d0,#86efac);border:1px solid #4ade80"></div>Hái</div>
+      <div class="li"><div class="ld" style="background:linear-gradient(135deg,#bfdbfe,#93c5fd);border:1px solid #60a5fa"></div>Thường</div>
+      <div class="li"><div class="ld" style="background:linear-gradient(135deg,#fef9c3,#fef08a);border:1px solid #fbbf24"></div>½ Hái</div>
+      <div class="li"><div class="ld" style="background:#d1fae5;border:1px solid #34d399"></div>½ Thường</div>
+      <div class="li"><div class="ld" style="background:linear-gradient(135deg,#fecaca,#fca5a5);border:1px solid #f87171"></div>Vắng</div>
       <div class="li"><div class="ld" style="background:var(--g7)"></div>Nghỉ</div>
+    </div>
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      <input type="text" id="att-search" placeholder="Tìm công nhân..." oninput="renderAtt()" autocomplete="off">
     </div>
     <div id="attboard"></div>
   </div>
@@ -311,11 +422,18 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
           <div class="fld"><label>Ngày</label><input type="date" id="hvdt"></div>
           <div class="fld"><label>Số kg</label><input type="number" id="hvkg" value="10" min="0" step="0.5" inputmode="decimal"></div>
         </div>
-        <button class="btn btn-g" onclick="addHarvest()">Lưu sản lượng</button>
+        <div class="fld"><label>Ghi chú (tuỳ chọn)</label><textarea id="hvnote" placeholder="Vườn A, lô 2..."></textarea></div>
+        <button class="btn btn-g" onclick="addHarvest()">💾 Lưu sản lượng</button>
       </div>
     </div>
+
+    <div class="card">
+      <div class="ch"><h2>📊 Tổng tháng này</h2></div>
+      <div class="cb" id="hv-summary"></div>
+    </div>
+
     <div class="card" style="margin-bottom:12px">
-      <div class="ch"><h2>📋 Danh sách</h2></div>
+      <div class="ch"><h2>📋 Danh sách</h2><span id="hv-count" style="font-size:12px;color:var(--g5);font-weight:600"></span></div>
       <div class="cb" id="hvlist"></div>
     </div>
   </div>
@@ -323,13 +441,13 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
   <!-- SALARY -->
   <div class="sec" id="sec-salary">
     <div id="salary-locked" class="locked-box" style="display:none">
-      <div style="font-size:36px">🔒</div>
+      <div style="font-size:42px">🔒</div>
       <p>Chỉ <strong>Admin</strong> mới xem được bảng lương.</p>
     </div>
     <div id="salary-content">
       <div class="mgrid">
         <div class="mc dk"><div class="lb">Tổng chi lương</div><div class="vl" id="stotal">0đ</div><div class="ut">tháng này</div></div>
-        <div class="mc"><div class="lb">Số người</div><div class="vl" id="scount">0</div><div class="ut">công nhân</div></div>
+        <div class="mc gr"><div class="lb">Số người</div><div class="vl" id="scount">0</div><div class="ut">công nhân</div></div>
       </div>
       <div class="card" style="margin-bottom:12px">
         <div class="ch"><h2>💰 Chi tiết lương</h2></div>
@@ -346,7 +464,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
       <div class="cb">
         <div class="ri"><span class="rl">Đăng nhập</span><span class="rv" id="cur-user-name">--</span></div>
         <div class="ri" style="border:none"><span class="rl">Vai trò</span><span id="cur-role-badge"></span></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px">
           <button class="btn btn-outline btn-sm" onclick="showChangePw()">🔑 Đổi mật khẩu</button>
           <button class="btn btn-red btn-sm" onclick="doLogout()">Đăng xuất</button>
         </div>
@@ -359,7 +477,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
         <div class="cb">
           <div class="fld"><label>Mật khẩu mới</label><input type="password" id="pw-new" placeholder="Ít nhất 4 ký tự" autocomplete="new-password"></div>
           <div class="fld"><label>Xác nhận lại</label><input type="password" id="pw-confirm" placeholder="Nhập lại mật khẩu" autocomplete="new-password"></div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
             <button class="btn btn-g btn-sm" onclick="saveChangePw()">✓ Lưu</button>
             <button class="btn btn-outline btn-sm" onclick="hideChangePw()">Hủy</button>
           </div>
@@ -367,7 +485,6 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
       </div>
     </div>
 
-    <!-- Admin only sections below -->
     <div id="admin-sections">
 
       <div class="slbl">☁ Firebase</div>
@@ -382,7 +499,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
             <label>Mã nhóm</label>
             <input type="text" id="fb-group" value="nong-trai-01" autocomplete="off" autocapitalize="off" onchange="saveLocal()">
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
             <button class="btn btn-g btn-sm" onclick="connectFirebase()">🔄 Kết nối lại</button>
             <button class="btn btn-outline btn-sm" onclick="showFbGuide()">Hướng dẫn ›</button>
           </div>
@@ -400,7 +517,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
             </div>
             <input type="file" id="import-file" accept=".json" style="display:none" onchange="importJSON(event)">
           </div>
-          <div id="backup-log" style="font-size:12px;color:var(--g5);text-align:center;min-height:16px"></div>
+          <div id="backup-log" style="font-size:12px;color:var(--g5);text-align:center;min-height:16px;font-weight:500"></div>
         </div>
       </div>
 
@@ -410,7 +527,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
           <div class="ri"><span class="rl">💵 Công thường / ngày</span><input type="number" id="r-thuong" value="300000" inputmode="numeric" onchange="scheduleSync()"></div>
           <div class="ri"><span class="rl">🌾 Công hái / ngày</span><input type="number" id="r-hai" value="350000" inputmode="numeric" onchange="scheduleSync()"></div>
           <div class="ri"><span class="rl">☕ Cà phê / kg</span><input type="number" id="r-cf" value="5000" inputmode="numeric" onchange="scheduleSync()"></div>
-          <div class="ri"><span class="rl">🌿 Tiêu / kg</span><input type="number" id="r-pp" value="80000" inputmode="numeric" onchange="scheduleSync()"></div>
+          <div class="ri" style="border:none"><span class="rl">🌿 Tiêu / kg</span><input type="number" id="r-pp" value="80000" inputmode="numeric" onchange="scheduleSync()"></div>
         </div>
       </div>
 
@@ -418,7 +535,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
       <div class="card">
         <div class="cb">
           <div class="tog-row"><span class="rl">Nghỉ Thứ 7</span><button class="tog on" id="tog-sat" onclick="togOff('sat')"></button></div>
-          <div class="tog-row"><span class="rl">Nghỉ Chủ nhật</span><button class="tog on" id="tog-sun" onclick="togOff('sun')"></button></div>
+          <div class="tog-row" style="border:none"><span class="rl">Nghỉ Chủ nhật</span><button class="tog on" id="tog-sun" onclick="togOff('sun')"></button></div>
         </div>
       </div>
 
@@ -434,51 +551,67 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
               <option value="kg">Chỉ theo kg hái</option>
             </select>
           </div>
-          <button class="btn btn-g" onclick="addWorker()">Thêm công nhân</button>
+          <button class="btn btn-g" onclick="addWorker()">➕ Thêm công nhân</button>
         </div>
       </div>
+
       <div class="slbl">Danh sách công nhân</div>
       <div class="card" style="margin-bottom:12px">
         <div class="cb" id="wlist"></div>
       </div>
 
-    </div><!-- /admin-sections -->
-
+    </div>
   </div>
-</div>
+
+</div><!-- /screen -->
 
 <!-- NAVBAR -->
 <nav class="navbar">
   <button class="nb on" id="n-home" onclick="goTab('home')">
-    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Tổng hợp</span>
+    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    <span>Tổng hợp</span>
   </button>
   <button class="nb" id="n-att" onclick="goTab('att')">
-    <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 002 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg><span>Điểm danh</span>
+    <div class="nb-badge" id="badge-att">!</div>
+    <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 002 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+    <span>Điểm danh</span>
   </button>
   <button class="nb" id="n-harvest" onclick="goTab('harvest')">
-    <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 2-8 2 0-1.25.5-2.5 2-3 0 0-1 0-1 1zm-5 10c1.1 0 2 .9 2 2H6c0-1.1.9-2 2-2h4z"/></svg><span>Sản lượng</span>
+    <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 2-8 2 0-1.25.5-2.5 2-3 0 0-1 0-1 1zm-5 10c1.1 0 2 .9 2 2H6c0-1.1.9-2 2-2h4z"/></svg>
+    <span>Sản lượng</span>
   </button>
   <button class="nb" id="n-salary" onclick="goTab('salary')">
-    <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg><span>Lương</span>
+    <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+    <span>Lương</span>
   </button>
   <button class="nb" id="n-settings" onclick="goTab('settings')">
-    <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58c.19-.15.25-.42.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.19-.07.46.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.19.15-.25.42-.12.61l1.92 3.32c.12.22.37.3.59.22l2.39-.96c.5.37 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.57 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.19.07-.46-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg><span>Cài đặt</span>
+    <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58c.19-.15.25-.42.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.19-.07.46.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.19.15-.25.42-.12.61l1.92 3.32c.12.22.37.3.59.22l2.39-.96c.5.37 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.57 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.19.07-.46-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+    <span>Cài đặt</span>
   </button>
 </nav>
 
 <div class="toast" id="toast"></div>
-</div>
+</div><!-- /app -->
 
 <!-- FB GUIDE MODAL -->
 <div class="overlay" id="fb-modal" style="display:none" onclick="if(event.target===this)this.style.display='none'">
   <div class="modal">
     <div class="modal-handle"></div>
-    <h3>🔥 Fix Firestore Rules</h3>
-    <p>Nếu kết nối thất bại, nguyên nhân thường là Security Rules đã hết hạn (30 ngày).</p>
-    <div class="step">
-      <strong>Vào Firebase Console:</strong><br>
-      <code>console.firebase.google.com</code> → project <code>pythontest-393209</code> → <strong>Firestore Database</strong> → tab <strong>Rules</strong> → dán vào và nhấn Publish:<br><br>
-      <code>rules_version = '2';<br>service cloud.firestore {<br>&nbsp;match /databases/{database}/documents {<br>&nbsp;&nbsp;match /{document=**} {<br>&nbsp;&nbsp;&nbsp;allow read, write: if true;<br>&nbsp;&nbsp;}<br>&nbsp;}<br>}</code>
+    <div class="modal-head">
+      <h3>🔥 Fix Firestore Rules</h3>
+      <p>Nếu kết nối thất bại, Security Rules thường đã hết hạn (30 ngày).</p>
+    </div>
+    <div class="modal-body">
+      <div class="step">
+        <strong>1.</strong> Vào <code>console.firebase.google.com</code>
+      </div>
+      <div class="step">
+        <strong>2.</strong> Chọn project <code>pythontest-393209</code> → <strong>Firestore Database</strong> → tab <strong>Rules</strong>
+      </div>
+      <div class="step">
+        <strong>3.</strong> Dán vào và nhấn Publish:<br><br>
+        <code>rules_version = '2';<br>service cloud.firestore {<br>&nbsp;match /databases/{database}/documents {<br>&nbsp;&nbsp;match /{document=**} {<br>&nbsp;&nbsp;&nbsp;allow read, write: if true;<br>&nbsp;&nbsp;}<br>&nbsp;}<br>}</code>
+      </div>
     </div>
     <button class="modal-close" onclick="document.getElementById('fb-modal').style.display='none'">Đã hiểu, đóng lại</button>
   </div>
@@ -488,48 +621,39 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 import { initializeApp, getApps, deleteApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
 import { getFirestore, doc, setDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
-// ══════════════════════════════════
-//  FIREBASE CONFIG
-// ══════════════════════════════════
 const FB_CONFIG = {
-  apiKey: "AIzaSyB9gclYExZtnkJshazv4liTg4s4jhB_wQ0",
-  authDomain: "pythontest-393209.firebaseapp.com",
-  projectId: "pythontest-393209",
-  storageBucket: "pythontest-393209.firebasestorage.app",
-  messagingSenderId: "899971728736",
-  appId: "1:899971728736:web:8c6dbc138e3ab1d243ca05"
+  apiKey:"AIzaSyB9gclYExZtnkJshazv4liTg4s4jhB_wQ0",
+  authDomain:"pythontest-393209.firebaseapp.com",
+  projectId:"pythontest-393209",
+  storageBucket:"pythontest-393209.firebasestorage.app",
+  messagingSenderId:"899971728736",
+  appId:"1:899971728736:web:8c6dbc138e3ab1d243ca05"
 };
-const FB_APP_NAME = "conghai-v2";
+const FB_APP_NAME = "conghai-v3";
 
-// ══════════════════════════════════
-//  STATE
-// ══════════════════════════════════
+// ── STATE ──
 let workers=[], attendance={}, harvests=[];
 let offSat=true, offSun=true;
 let accounts = {
-  admin:  { password:"admin123",  role:"admin",   displayName:"Admin" },
-  quanly: { password:"quanly123", role:"manager", displayName:"Quản lý" }
+  admin:  {password:"admin123", role:"admin",   displayName:"Admin"},
+  quanly: {password:"quanly123",role:"manager", displayName:"Quản lý"}
 };
-let curUser = null;
-let hvType='coffee';
+let curUser=null, hvType='coffee';
 let curY=new Date().getFullYear(), curM=new Date().getMonth()+1;
 let fbApp=null, fbDb=null, fbGroup='nong-trai-01';
-let syncTimer=null, unsubFb=null;
-// Track whether incoming snapshot was triggered by our own push
-let isPushing=false;
+let syncTimer=null, unsubFb=null, isPushing=false;
 
 const TABS=['home','att','harvest','salary','settings'];
 const TITLES={home:'Tổng hợp',att:'Điểm danh công',harvest:'Sản lượng',salary:'Bảng lương',settings:'Cài đặt'};
 const CYCLE=['ph','pt','hh','ht','vn',''];
 const MN=['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
+const DOW_VN=['CN','T2','T3','T4','T5','T6','T7'];
 
-// ══════════════════════════════════
-//  UTILS
-// ══════════════════════════════════
+// ── UTILS ──
 const p=n=>n<10?'0'+n:''+n;
 const ym=()=>curY+'-'+p(curM);
 const tod=()=>new Date().toISOString().split('T')[0];
-const ini=n=>n.trim().split(' ').map(c=>c[0]).join('').toUpperCase().slice(0,2);
+const ini=n=>(n||'?').trim().split(' ').map(c=>c[0]).join('').toUpperCase().slice(0,2);
 const fmt=n=>Math.round(n).toLocaleString('vi-VN');
 const gv=id=>parseFloat(document.getElementById(id)?.value)||0;
 const dim=(y,m)=>new Date(y,m,0).getDate();
@@ -545,24 +669,33 @@ function s2w(s){
 }
 function cntDays(wid,ymStr){
   const a=attendance[wid]||{};
-  let hai=0,th=0;
-  Object.keys(a).filter(k=>k.startsWith(ymStr)).forEach(k=>{const w=s2w(a[k]);hai+=w.hai;th+=w.th;});
-  return{hai,th};
+  let hai=0,th=0,vn=0;
+  Object.keys(a).filter(k=>k.startsWith(ymStr)).forEach(k=>{
+    const w=s2w(a[k]);hai+=w.hai;th+=w.th;
+    if(a[k]==='vn')vn++;
+  });
+  return{hai,th,vn};
 }
 function calcSal(w){
   const d=cntDays(w.id,ym());
   const dSal=w.type==='kg'?0:d.hai*getR('hai')+d.th*getR('thuong');
-  const wh=harvests.filter(h=>h.wid===w.id);
+  const wh=harvests.filter(h=>h.wid===w.id&&h.date.startsWith(ym()));
   const cfKg=wh.filter(h=>h.type==='coffee').reduce((s,h)=>s+h.kg,0);
   const ppKg=wh.filter(h=>h.type==='pepper').reduce((s,h)=>s+h.kg,0);
   const kSal=w.type==='day'?0:cfKg*getR('coffee')+ppKg*getR('pepper');
   return{d,dSal,cfKg,ppKg,kSal,tot:dSal+kSal};
 }
-function toast(msg,dur=1900){
+
+function toast(msg,dur=2000){
   const el=document.getElementById('toast');
   el.textContent=msg;el.classList.add('on');
   clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),dur);
 }
+
+function vibrate(ms=30){
+  try{if(navigator.vibrate)navigator.vibrate(ms);}catch(e){}
+}
+
 function setSyncUI(state){
   const dot=document.getElementById('sdot'),bar=document.getElementById('syncstatus');
   dot.className='sdot';
@@ -577,9 +710,18 @@ function setSyncUI(state){
   }
 }
 
-// ══════════════════════════════════
-//  LOCAL STORAGE (UI prefs only — NOT data)
-// ══════════════════════════════════
+function updateAttBadge(){
+  const badge=document.getElementById('badge-att');
+  if(!badge)return;
+  const td=tod();
+  const missing=workers.filter(w=>{
+    const s=(attendance[w.id]||{})[td];
+    return !s;
+  });
+  badge.classList.toggle('on',missing.length>0&&workers.length>0);
+}
+
+// ── LOCAL STORAGE ──
 function saveLocal(){
   try{
     const grp=document.getElementById('fb-group').value.trim()||'nong-trai-01';
@@ -595,9 +737,7 @@ function loadLocalUI(){
   try{return JSON.parse(localStorage.getItem('conghai_ui')||'null');}catch(e){return null;}
 }
 
-// ══════════════════════════════════
-//  LOGIN / LOGOUT
-// ══════════════════════════════════
+// ── LOGIN ──
 window.doLogin=function(){
   const username=document.getElementById('login-user').value.trim().toLowerCase();
   const password=document.getElementById('login-pass').value;
@@ -605,6 +745,7 @@ window.doLogin=function(){
   if(!acc||acc.password!==password){
     document.getElementById('login-err').classList.add('on');
     document.getElementById('login-pass').value='';
+    vibrate(80);
     return;
   }
   document.getElementById('login-err').classList.remove('on');
@@ -635,16 +776,13 @@ function enterApp(){
   document.getElementById('cur-role-badge').innerHTML=isAdmin()
     ?'<span class="role-badge role-admin">👑 Admin</span>'
     :'<span class="role-badge role-manager">📋 Quản lý</span>';
-  // Show/hide admin sections
   document.getElementById('admin-sections').style.display=isAdmin()?'block':'none';
   document.getElementById('salary-locked').style.display=isAdmin()?'none':'block';
   document.getElementById('salary-content').style.display=isAdmin()?'block':'none';
   goTab('home');
 }
 
-// ══════════════════════════════════
-//  CHANGE PASSWORD
-// ══════════════════════════════════
+// ── CHANGE PASSWORD ──
 window.showChangePw=function(){document.getElementById('changepw-section').style.display='block';}
 window.hideChangePw=function(){document.getElementById('changepw-section').style.display='none';}
 window.saveChangePw=function(){
@@ -653,15 +791,12 @@ window.saveChangePw=function(){
   if(!nw||nw.length<4){toast('Mật khẩu ít nhất 4 ký tự');return;}
   if(nw!==cf){toast('Mật khẩu không khớp');return;}
   accounts[curUser.username].password=nw;
-  scheduleSync();
-  hideChangePw();
+  scheduleSync();hideChangePw();
   document.getElementById('pw-new').value='';document.getElementById('pw-confirm').value='';
   toast('✓ Đã đổi mật khẩu');
 };
 
-// ══════════════════════════════════
-//  FIREBASE — KEY FIX: Full replace on every snapshot
-// ══════════════════════════════════
+// ── FIREBASE — ✅ LISTEN FIRST, PUSH AFTER ──
 function buildPayload(){
   return{
     workers,attendance,harvests,offSat,offSun,accounts,
@@ -678,14 +813,10 @@ async function pushToFb(){
     await setDoc(doc(fbDb,'conghai',fbGroup),buildPayload());
     setSyncUI('ok');
   }catch(e){setSyncUI('err');console.error('Push:',e);}
-  // Reset isPushing after a short delay to allow Firestore to deliver our own event
   setTimeout(()=>{isPushing=false;},3000);
 }
 
 function applyRemoteData(d){
-  // ✅ FULL REPLACE — fixes realtime delete bug
-  // When machine A deletes a worker and pushes, machine B receives the new array
-  // and replaces its local copy completely. No merging = no ghost data.
   workers    = Array.isArray(d.workers)    ? d.workers    : [];
   attendance = (d.attendance&&typeof d.attendance==='object') ? d.attendance : {};
   harvests   = Array.isArray(d.harvests)   ? d.harvests   : [];
@@ -703,23 +834,41 @@ function applyRemoteData(d){
   document.getElementById('tog-sun').classList.toggle('on',offSun);
 }
 
-function listenFb(){
-  if(!fbDb)return;
-  if(unsubFb)try{unsubFb();}catch(e){}
-  const ref=doc(fbDb,'conghai',fbGroup);
-  unsubFb=onSnapshot(ref, snap=>{
-    if(!snap.exists())return;
-    // Skip snapshot triggered by our own push
-    if(isPushing){setSyncUI('ok');return;}
-    const d=snap.data();
-    applyRemoteData(d);
-    refreshActive();
-    setSyncUI('ok');
-    // If currently on settings & admin, re-render wlist
-    if(document.getElementById('sec-settings').classList.contains('on')&&isAdmin()){
-      renderWList();
-    }
-  }, err=>{console.error('Snapshot:',err);setSyncUI('err');});
+// ✅ FIXED: Listen first, don't push empty data on load
+function listenFbFirstLoad(){
+  return new Promise((resolve)=>{
+    if(!fbDb)return resolve();
+    if(unsubFb)try{unsubFb();}catch(e){}
+    const ref=doc(fbDb,'conghai',fbGroup);
+    let firstSnap=true;
+
+    unsubFb=onSnapshot(ref, snap=>{
+      if(firstSnap){
+        firstSnap=false;
+        if(snap.exists()){
+          applyRemoteData(snap.data());
+          refreshActive();
+        } else {
+          // First time — push initial empty data
+          pushToFb();
+        }
+        resolve();
+      } else {
+        // Real-time update from another device
+        if(isPushing){setSyncUI('ok');return;}
+        applyRemoteData(snap.data());
+        refreshActive();
+        setSyncUI('ok');
+        updateAttBadge();
+        if(document.getElementById('sec-settings').classList.contains('on')&&isAdmin()){
+          renderWList();
+        }
+      }
+    }, err=>{
+      console.error('Snapshot:',err);setSyncUI('err');
+      if(firstSnap){firstSnap=false;resolve();}
+    });
+  });
 }
 
 async function initFirebase(group){
@@ -730,8 +879,8 @@ async function initFirebase(group){
     if(existing)try{await deleteApp(existing);}catch(e){}
     fbApp=initializeApp(FB_CONFIG,FB_APP_NAME);
     fbDb=getFirestore(fbApp);
-    await pushToFb();
-    listenFb();
+    // ✅ Listen first — never push empty on load
+    await listenFbFirstLoad();
     setSyncUI('ok');
     return true;
   }catch(err){
@@ -745,7 +894,7 @@ window.connectFirebase=async function(){
   const grp=document.getElementById('fb-group').value.trim()||'nong-trai-01';
   saveLocal();
   const ok=await initFirebase(grp);
-  toast(ok?'✓ Kết nối thành công!':'⚠ Lỗi — xem hướng dẫn',ok?1900:3000);
+  toast(ok?'✓ Kết nối thành công!':'⚠ Lỗi — xem hướng dẫn',ok?2000:3000);
 };
 window.showFbGuide=function(){document.getElementById('fb-modal').style.display='flex';};
 
@@ -755,12 +904,10 @@ function scheduleSync(){
   syncTimer=setTimeout(pushToFb,800);
 }
 
-// ══════════════════════════════════
-//  BACKUP
-// ══════════════════════════════════
+// ── BACKUP ──
 window.exportJSON=function(){
   try{
-    const data={version:5,exportedAt:new Date().toISOString(),workers,attendance,harvests,offSat,offSun,
+    const data={version:6,exportedAt:new Date().toISOString(),workers,attendance,harvests,offSat,offSun,
       rates:{thuong:gv('r-thuong'),hai:gv('r-hai'),cf:gv('r-cf'),pp:gv('r-pp')}};
     const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob),a=document.createElement('a');
@@ -783,7 +930,12 @@ window.importJSON=function(event){
       if(!confirm(`Nhập backup?\n${d.workers.length} công nhân, ${d.harvests?.length||0} bản ghi\nDữ liệu hiện tại sẽ bị ghi đè!`))return;
       workers=d.workers||[];attendance=d.attendance||{};harvests=d.harvests||[];
       offSat=d.offSat!==undefined?d.offSat:true;offSun=d.offSun!==undefined?d.offSun:true;
-      if(d.rates){document.getElementById('r-thuong').value=d.rates.thuong||300000;document.getElementById('r-hai').value=d.rates.hai||350000;document.getElementById('r-cf').value=d.rates.cf||5000;document.getElementById('r-pp').value=d.rates.pp||80000;}
+      if(d.rates){
+        document.getElementById('r-thuong').value=d.rates.thuong||300000;
+        document.getElementById('r-hai').value=d.rates.hai||350000;
+        document.getElementById('r-cf').value=d.rates.cf||5000;
+        document.getElementById('r-pp').value=d.rates.pp||80000;
+      }
       document.getElementById('tog-sat').classList.toggle('on',offSat);
       document.getElementById('tog-sun').classList.toggle('on',offSun);
       scheduleSync();refreshActive();renderWList();
@@ -795,9 +947,7 @@ window.importJSON=function(event){
   reader.readAsText(file);event.target.value='';
 };
 
-// ══════════════════════════════════
-//  MONTH / TAB
-// ══════════════════════════════════
+// ── MONTH / TAB ──
 function updML(){
   document.getElementById('mlabel').textContent=MN[curM-1];
   document.getElementById('atitle').textContent=MN[curM-1]+' '+curY;
@@ -813,11 +963,11 @@ window.chgM=function(d){
   updML();refreshActive();
 };
 function refreshActive(){
-  const t=TABS.find(x=>document.getElementById('sec-'+x).classList.contains('on'))||'home';
+  const t=TABS.find(x=>document.getElementById('sec-'+x)?.classList.contains('on'))||'home';
   if(t==='home')renderHome();
   else if(t==='att')renderAtt();
   else if(t==='salary'){if(isAdmin())renderSal();}
-  else if(t==='harvest'){renderHvWk();renderHvList();}
+  else if(t==='harvest'){renderHvWk();renderHvList();renderHvSummary();}
 }
 window.goTab=function(t){
   TABS.forEach(id=>{
@@ -828,30 +978,26 @@ window.goTab=function(t){
   document.getElementById('screen').scrollTop=0;
   if(t==='home')renderHome();
   else if(t==='att')renderAtt();
-  else if(t==='harvest'){renderHvWk();renderHvList();}
+  else if(t==='harvest'){renderHvWk();renderHvList();renderHvSummary();}
   else if(t==='salary'){if(isAdmin())renderSal();}
   else if(t==='settings')renderWList();
 };
 
-// ══════════════════════════════════
-//  SETTINGS
-// ══════════════════════════════════
+// ── SETTINGS ──
 window.togOff=function(w){
   if(w==='sat'){offSat=!offSat;document.getElementById('tog-sat').classList.toggle('on',offSat);}
   else{offSun=!offSun;document.getElementById('tog-sun').classList.toggle('on',offSun);}
   scheduleSync();renderAtt();
 };
 
-// ══════════════════════════════════
-//  WORKERS
-// ══════════════════════════════════
+// ── WORKERS ──
 window.addWorker=function(){
   if(!isAdmin()){toast('Chỉ Admin mới thêm được');return;}
   const name=document.getElementById('wname').value.trim();
   if(!name){toast('Nhập tên công nhân');return;}
   workers.push({id:Date.now()+'',name,type:document.getElementById('wtype').value});
   document.getElementById('wname').value='';
-  renderWList();scheduleSync();toast('Đã thêm '+name);
+  renderWList();scheduleSync();toast('✓ Đã thêm '+name);vibrate(40);
 };
 window.rmWorker=function(id){
   if(!isAdmin()){toast('Chỉ Admin mới xóa được');return;}
@@ -860,9 +1006,7 @@ window.rmWorker=function(id){
   workers=workers.filter(x=>x.id!==id);
   delete attendance[id];
   harvests=harvests.filter(h=>h.wid!==id);
-  renderWList();
-  scheduleSync();  // ✅ Push to Firebase immediately — other machines get full replace
-  toast('Đã xóa');
+  renderWList();scheduleSync();toast('Đã xóa');
 };
 function renderWList(){
   const el=document.getElementById('wlist');if(!el)return;
@@ -870,35 +1014,49 @@ function renderWList(){
   if(!workers.length){el.innerHTML='<div class="empty">Chưa có công nhân nào</div>';return;}
   el.innerHTML=workers.map(w=>`<div class="wr">
     <div class="av">${ini(w.name)}</div>
-    <div class="wi"><div class="nm">${w.name}</div><div class="sb">${tl[w.type]}</div></div>
+    <div class="wi"><div class="nm">${w.name}</div><div class="sb">${tl[w.type]||'Công + Kg'}</div></div>
     ${isAdmin()?`<button class="delbtn" onclick="rmWorker('${w.id}')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>`:''}
   </div>`).join('');
 }
 
-// ══════════════════════════════════
-//  ATTENDANCE
-// ══════════════════════════════════
+// ── ATTENDANCE ──
 function renderAtt(){
-  const el=document.getElementById('attboard');
-  if(!workers.length){el.innerHTML='<div class="att-blk"><div class="empty">Chưa có công nhân nào</div></div>';return;}
+  const el=document.getElementById('attboard');if(!el)return;
+  const query=(document.getElementById('att-search')?.value||'').toLowerCase().trim();
+  const filtered=query?workers.filter(w=>w.name.toLowerCase().includes(query)):workers;
+  if(!filtered.length){
+    el.innerHTML='<div class="att-blk"><div class="empty">'+(query?'Không tìm thấy công nhân':'Chưa có công nhân nào')+'</div></div>';
+    return;
+  }
   const days=dim(curY,curM);
-  el.innerHTML=workers.map(w=>{
-    const {hai,th}=cntDays(w.id,ym());
-    return `<div class="att-blk">
+  const todStr=tod();
+  el.innerHTML=filtered.map(w=>{
+    const {hai,th,vn}=cntDays(w.id,ym());
+    const isWarnAbs=vn>=3;
+    return `<div class="att-blk${isWarnAbs?' warn-abs':''}">
       <div class="anr">
-        <div style="display:flex;align-items:center;gap:8px;min-width:0;flex:1">
-          <div class="av" style="width:32px;height:32px;font-size:11px;flex-shrink:0">${ini(w.name)}</div>
-          <span style="font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${w.name}</span>
+        <div style="display:flex;align-items:center;gap:9px;min-width:0;flex:1">
+          <div class="av" style="width:34px;height:34px;font-size:11px;flex-shrink:0;border-radius:10px">${ini(w.name)}</div>
+          <div style="min-width:0">
+            <div style="font-size:14px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${w.name}</div>
+            ${isWarnAbs?'<div style="font-size:10px;color:var(--rd);font-weight:700;margin-top:1px">⚠ Vắng '+vn+' ngày</div>':''}
+          </div>
         </div>
-        <div class="abadges"><span class="ab ab-h">${hai}H</span><span class="ab ab-t">${th}T</span></div>
+        <div class="abadges">
+          <span class="ab ab-h">${hai}H</span>
+          <span class="ab ab-t">${th}T</span>
+          ${vn>0?`<span class="ab ab-vn">${vn}V</span>`:''}
+        </div>
       </div>
       <div class="dgrid">${Array.from({length:days},(_,i)=>{
         const day=i+1,key=ym()+'-'+p(day);
         const s=(attendance[w.id]||{})[key]||'';
-        const d=dow(curY,curM,day),dl=d===0?'CN':d===6?'T7':'';
+        const d=dow(curY,curM,day);
+        const dl=DOW_VN[d];
         const offDay=isOff(curY,curM,day)&&!s;
-        return `<div class="dc${offDay?' off':s?' '+s:''}" onclick="cyDay('${w.id}','${key}')">
-          <span class="dn">${day}</span>${dl?`<span class="dow">${dl}</span>`:''}
+        const isToday=todStr===curY+'-'+p(curM)+'-'+p(day);
+        return `<div class="dc${offDay?' off':s?' '+s:''}${isToday?' today-mark':''}" onclick="cyDay('${w.id}','${key}')">
+          <span class="dn">${day}</span><span class="dow">${dl}</span>
         </div>`;
       }).join('')}</div>
     </div>`;
@@ -909,56 +1067,82 @@ window.cyDay=function(wid,key){
   const cur=attendance[wid][key]||'';
   const nx=CYCLE[(CYCLE.indexOf(cur)+1)%CYCLE.length];
   if(!nx)delete attendance[wid][key];else attendance[wid][key]=nx;
-  renderAtt();scheduleSync();
+  vibrate(25);
+  renderAtt();scheduleSync();updateAttBadge();
 };
 
-// ══════════════════════════════════
-//  HARVEST
-// ══════════════════════════════════
+// ── HARVEST ──
 window.setHT=function(t){
   hvType=t;
   document.getElementById('scf').classList.toggle('on',t==='coffee');
   document.getElementById('spp').classList.toggle('on',t==='pepper');
 };
 function renderHvWk(){
-  const s=document.getElementById('hvwk');
+  const s=document.getElementById('hvwk');if(!s)return;
   s.innerHTML=workers.length?workers.map(w=>`<option value="${w.id}">${w.name}</option>`).join(''):'<option>-- Thêm công nhân trước --</option>';
 }
 window.addHarvest=function(){
-  const wid=document.getElementById('hvwk').value,dt=document.getElementById('hvdt').value;
+  const wid=document.getElementById('hvwk').value;
+  const dt=document.getElementById('hvdt').value;
   const kg=parseFloat(document.getElementById('hvkg').value)||0;
+  const note=document.getElementById('hvnote').value.trim();
   if(!wid||!dt||kg<=0){toast('Điền đầy đủ thông tin');return;}
-  harvests.push({id:Date.now()+'',wid,type:hvType,date:dt,kg});
-  renderHvList();scheduleSync();
-  toast('Đã lưu '+kg+'kg '+(hvType==='coffee'?'cà phê':'tiêu'));
+  harvests.push({id:Date.now()+'',wid,type:hvType,date:dt,kg,...(note?{note}:{})});
+  document.getElementById('hvnote').value='';
+  renderHvList();renderHvSummary();scheduleSync();
+  toast('✓ Đã lưu '+kg+'kg '+(hvType==='coffee'?'cà phê':'tiêu'));
+  vibrate(40);
 };
 window.rmHarvest=function(id){
   harvests=harvests.filter(h=>h.id!==id);
-  renderHvList();scheduleSync();toast('Đã xóa');
+  renderHvList();renderHvSummary();scheduleSync();toast('Đã xóa');
 };
+function renderHvSummary(){
+  const el=document.getElementById('hv-summary');if(!el)return;
+  const mh=harvests.filter(h=>h.date.startsWith(ym()));
+  const cfKg=mh.filter(h=>h.type==='coffee').reduce((s,h)=>s+h.kg,0);
+  const ppKg=mh.filter(h=>h.type==='pepper').reduce((s,h)=>s+h.kg,0);
+  const cfVal=cfKg*getR('coffee'),ppVal=ppKg*getR('pepper');
+  el.innerHTML=`<div class="r2">
+    <div style="background:var(--al);border-radius:13px;padding:12px;text-align:center">
+      <div style="font-size:10px;font-weight:700;color:#92400e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">☕ Cà phê</div>
+      <div style="font-size:22px;font-weight:800;color:#92400e;letter-spacing:-1px">${cfKg.toFixed(1)}<span style="font-size:12px;font-weight:600;margin-left:2px">kg</span></div>
+      <div style="font-size:12px;color:#b45309;margin-top:3px;font-weight:600">${fmt(cfVal)}đ</div>
+    </div>
+    <div style="background:var(--gp);border-radius:13px;padding:12px;text-align:center">
+      <div style="font-size:10px;font-weight:700;color:#14532d;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">🌿 Tiêu</div>
+      <div style="font-size:22px;font-weight:800;color:#14532d;letter-spacing:-1px">${ppKg.toFixed(1)}<span style="font-size:12px;font-weight:600;margin-left:2px">kg</span></div>
+      <div style="font-size:12px;color:#166534;margin-top:3px;font-weight:600">${fmt(ppVal)}đ</div>
+    </div>
+  </div>`;
+}
 function renderHvList(){
-  const el=document.getElementById('hvlist');
-  if(!harvests.length){el.innerHTML='<div class="empty">Chưa có sản lượng nào</div>';return;}
-  el.innerHTML=[...harvests].sort((a,b)=>b.date.localeCompare(a.date)).map(h=>{
+  const el=document.getElementById('hvlist');if(!el)return;
+  const mh=[...harvests].filter(h=>h.date.startsWith(ym())).sort((a,b)=>b.date.localeCompare(a.date));
+  const cnt=document.getElementById('hv-count');
+  if(cnt)cnt.textContent=mh.length?mh.length+' bản ghi':'';
+  if(!mh.length){el.innerHTML='<div class="empty">Chưa có sản lượng tháng này</div>';return;}
+  el.innerHTML=mh.map(h=>{
     const w=workers.find(x=>x.id===h.wid)||{name:'?'};
     const cf=h.type==='coffee',m=h.kg*getR(h.type);
     return `<div class="hvi">
       <div class="hico ${cf?'hcf':'hpp'}">${cf?'☕':'🌿'}</div>
-      <div class="hii"><div class="tp">${w.name} — ${h.kg}kg</div><div class="bt">${h.date} · <span class="tag ${cf?'tcf':'tpp'}">${cf?'Cà phê':'Tiêu'}</span></div></div>
+      <div class="hii">
+        <div class="tp">${w.name} — ${h.kg}kg</div>
+        <div class="bt">${h.date} · <span class="tag ${cf?'tcf':'tpp'}">${cf?'Cà phê':'Tiêu'}</span>${h.note?` · <span style="color:var(--g6)">${h.note}</span>`:''}</div>
+      </div>
       <div style="text-align:right;flex-shrink:0">
         <div class="hmoney">${fmt(m)}đ</div>
-        <button onclick="rmHarvest('${h.id}')" style="font-size:11px;color:var(--g6);background:none;border:none;cursor:pointer;font-family:var(--font);margin-top:3px;padding:3px;min-width:32px">Xóa</button>
+        <button onclick="rmHarvest('${h.id}')" style="font-size:11px;color:var(--g6);background:none;border:none;cursor:pointer;font-family:var(--font);margin-top:3px;padding:4px;min-width:32px;font-weight:600">Xóa</button>
       </div>
     </div>`;
   }).join('');
 }
 
-// ══════════════════════════════════
-//  SALARY
-// ══════════════════════════════════
+// ── SALARY ──
 function renderSal(){
   if(!isAdmin())return;
-  const el=document.getElementById('slist');
+  const el=document.getElementById('slist');if(!el)return;
   if(!workers.length){
     document.getElementById('stotal').textContent='0đ';
     document.getElementById('scount').textContent='0';
@@ -966,16 +1150,18 @@ function renderSal(){
   }
   let tot=0;
   const rows=workers.map(w=>{const s=calcSal(w);tot+=s.tot;return{w,...s};});
+  rows.sort((a,b)=>b.tot-a.tot);
   document.getElementById('stotal').textContent=fmt(tot)+'đ';
   document.getElementById('scount').textContent=workers.length;
   el.innerHTML=rows.map(r=>`<div class="si">
     <div class="si-t">
-      <div class="av">${ini(r.w.name)}</div>
+      <div class="av" style="border-radius:12px">${ini(r.w.name)}</div>
       <div style="flex:1;min-width:0">
-        <div style="font-size:14px;font-weight:600">${r.w.name}</div>
-        <div style="margin-top:3px;display:flex;gap:4px;flex-wrap:wrap">
+        <div style="font-size:14px;font-weight:700">${r.w.name}</div>
+        <div style="margin-top:4px;display:flex;gap:5px;flex-wrap:wrap">
           <span class="tag tph">${r.d.hai} công hái</span>
           <span class="tag tpt">${r.d.th} công thường</span>
+          ${r.d.vn>0?`<span class="tag" style="background:var(--rp);color:var(--rd)">${r.d.vn} vắng</span>`:''}
         </div>
       </div>
       <div class="si-v">${fmt(r.tot)}đ</div>
@@ -989,9 +1175,38 @@ function renderSal(){
   </div>`).join('');
 }
 
-// ══════════════════════════════════
-//  HOME
-// ══════════════════════════════════
+// ── HOME ──
+function renderWeekChart(){
+  const chartEl=document.getElementById('home-chart');
+  const lblEl=document.getElementById('home-chart-labels');
+  if(!chartEl||!lblEl)return;
+
+  // Build last 7 days
+  const days=[];
+  for(let i=6;i>=0;i--){
+    const d=new Date();d.setDate(d.getDate()-i);
+    const key=d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
+    const dl=DOW_VN[d.getDay()];
+    const cfKg=harvests.filter(h=>h.type==='coffee'&&h.date===key).reduce((s,h)=>s+h.kg,0);
+    const ppKg=harvests.filter(h=>h.type==='pepper'&&h.date===key).reduce((s,h)=>s+h.kg,0);
+    days.push({key,dl,cfKg,ppKg});
+  }
+  const maxVal=Math.max(...days.map(d=>d.cfKg+d.ppKg),1);
+
+  chartEl.innerHTML=days.map(d=>{
+    const cfH=Math.round((d.cfKg/maxVal)*52)||0;
+    const ppH=Math.round((d.ppKg/maxVal)*52)||0;
+    const total=d.cfKg+d.ppKg;
+    return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;justify-content:flex-end" title="${d.key}: CF ${d.cfKg}kg, Tiêu ${d.ppKg}kg">
+      ${ppH>0?`<div class="cbar pp" style="height:${ppH}px;width:100%"></div>`:''}
+      ${cfH>0?`<div class="cbar cf" style="height:${cfH}px;width:100%"></div>`:''}
+      ${total===0?`<div style="height:3px;width:100%;background:var(--g7);border-radius:3px"></div>`:''}
+    </div>`;
+  }).join('');
+
+  lblEl.innerHTML=days.map(d=>`<div class="clbl">${d.dl}</div>`).join('');
+}
+
 function renderHome(){
   let ts=0,th=0,tth=0;
   workers.forEach(w=>{const s=calcSal(w);ts+=s.tot;th+=s.d.hai;tth+=s.d.th;});
@@ -999,26 +1214,51 @@ function renderHome(){
   document.getElementById('h-days').textContent=Math.round((th+tth)*10)/10;
   document.getElementById('h-hai').textContent=th;
   document.getElementById('h-thuong').textContent=tth;
+
+  // Today label
+  const now=new Date();
+  const lbl=document.getElementById('today-date-lbl');
+  if(lbl)lbl.textContent=now.getDate()+'/'+(now.getMonth()+1);
+
+  // Alert: workers not checked in today
   const td=tod();
+  const missing=workers.filter(w=>!(attendance[w.id]||{})[td]);
+  const alertEl=document.getElementById('home-alert');
+  if(alertEl){
+    if(missing.length>0&&workers.length>0){
+      alertEl.innerHTML=`<div class="alert-banner warn">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        ${missing.length} công nhân chưa điểm danh hôm nay
+      </div>`;
+    } else {
+      alertEl.innerHTML='';
+    }
+  }
+
+  updateAttBadge();
+  renderWeekChart();
+
   const pres=workers.filter(w=>{const s=(attendance[w.id]||{})[td]||'';return s&&s!=='vn';});
   document.getElementById('h-today').innerHTML=pres.length?pres.map(w=>{
     const s=(attendance[w.id]||{})[td];
     const lbl=s==='ph'?'Hái cả ngày':s==='pt'?'Thường cả ngày':s==='hh'?'½ ngày hái':'½ ngày thường';
     const cls=(s==='ph'||s==='hh')?'tph':'tpt';
-    return `<div class="wr" style="padding:10px 0"><div class="av" style="width:34px;height:34px;font-size:11px">${ini(w.name)}</div><div class="wi"><div class="nm">${w.name}</div></div><span class="tag ${cls}">${lbl}</span></div>`;
+    return `<div class="wr" style="padding:10px 0"><div class="av" style="width:36px;height:36px;font-size:11px;border-radius:10px">${ini(w.name)}</div><div class="wi"><div class="nm">${w.name}</div></div><span class="tag ${cls}">${lbl}</span></div>`;
   }).join(''):'<div class="empty">Chưa điểm danh hôm nay</div>';
-  const rec=[...harvests].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4);
+
+  const rec=[...harvests].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);
   document.getElementById('h-recent').innerHTML=rec.length?rec.map(h=>{
     const w=workers.find(x=>x.id===h.wid)||{name:'?'};const cf=h.type==='coffee';
-    return `<div class="hvi" style="padding:9px 0"><div class="hico ${cf?'hcf':'hpp'}" style="width:32px;height:32px;font-size:16px">${cf?'☕':'🌿'}</div><div class="hii"><div class="tp" style="font-size:13px">${w.name} — ${h.kg}kg</div><div class="bt">${h.date}</div></div><div class="hmoney" style="font-size:13px">${fmt(h.kg*getR(h.type))}đ</div></div>`;
+    return `<div class="hvi" style="padding:9px 0">
+      <div class="hico ${cf?'hcf':'hpp'}" style="width:34px;height:34px;font-size:15px">${cf?'☕':'🌿'}</div>
+      <div class="hii"><div class="tp" style="font-size:13px">${w.name} — ${h.kg}kg</div><div class="bt">${h.date}</div></div>
+      <div class="hmoney" style="font-size:13px">${fmt(h.kg*getR(h.type))}đ</div>
+    </div>`;
   }).join(''):'<div class="empty">Chưa có sản lượng nào</div>';
 }
 
-// ══════════════════════════════════
-//  INIT
-// ══════════════════════════════════
+// ── INIT ──
 async function init(){
-  // Load UI prefs
   const local=loadLocalUI();
   if(local?.fbGroup){
     fbGroup=local.fbGroup;
@@ -1028,15 +1268,13 @@ async function init(){
   document.getElementById('hvdt').value=tod();
   updML();
 
-  // Connect Firebase — loads latest data from cloud (accounts, workers, etc.)
+  // ✅ Connect Firebase — listen first, don't push empty data
   await initFirebase(fbGroup);
 
-  // Hide loading
   document.getElementById('loading-screen').classList.add('hidden');
 
-  // Auto-login from saved session
   const sess=local?.session;
-  if(sess?.username && accounts[sess.username]){
+  if(sess?.username&&accounts[sess.username]){
     const acc=accounts[sess.username];
     curUser={username:sess.username,role:acc.role,displayName:acc.displayName};
     enterApp();
