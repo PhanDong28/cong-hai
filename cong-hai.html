@@ -128,37 +128,6 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .sg{flex:1;padding:10px 8px;border-radius:10px;border:none;font-size:13px;font-weight:600;font-family:var(--font);cursor:pointer;background:none;color:var(--g5);transition:all .18s;min-height:42px}
 .sg.on{background:var(--wh);color:var(--gm);box-shadow:var(--shadow-sm)}
 
-/* ── WORKER CARD (mới) ── */
-.wcard{background:var(--wh);border-radius:16px;margin-bottom:10px;box-shadow:var(--shadow-sm);overflow:hidden;border:1.5px solid var(--g7);transition:border-color .2s}
-.wcard:last-child{margin-bottom:0}
-.wcard.editing{border-color:var(--gm)}
-.wcard-head{display:flex;align-items:center;gap:11px;padding:13px 14px 11px}
-.wcard-body{padding:0 14px 14px;display:none}
-.wcard.editing .wcard-body{display:block}
-.wcard-actions{display:flex;gap:7px;padding:0 14px 13px;display:none}
-.wcard.editing .wcard-actions{display:flex}
-.wcard-info{flex:1;min-width:0}
-.wcard-name{font-size:14px;font-weight:700;color:var(--g1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.wcard-rates{font-size:11px;color:var(--g5);margin-top:3px;font-weight:500;display:flex;gap:8px;flex-wrap:wrap}
-.wcard-rate-chip{display:inline-flex;align-items:center;gap:3px;background:var(--g8);border-radius:6px;padding:2px 6px;font-size:10px;font-weight:700;color:var(--g4)}
-.wcard-rate-chip.hai{background:var(--gp);color:#14532d}
-.wcard-rate-chip.th{background:var(--bp);color:var(--bl)}
-.wcard-rate-chip.cf{background:var(--al);color:#92400e}
-.wcard-rate-chip.pp{background:#ede9fe;color:#5b21b6}
-.wcard-btn-edit{padding:6px 11px;border-radius:9px;background:var(--g8);border:1.5px solid var(--g7);font-size:11px;font-weight:700;color:var(--g4);cursor:pointer;font-family:var(--font);flex-shrink:0;min-height:34px;transition:all .15s}
-.wcard-btn-edit:active{background:var(--g7)}
-.wcard-btn-del{width:34px;height:34px;border-radius:10px;background:var(--rp);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.wcard-btn-del svg{width:15px;height:15px;fill:var(--rd)}
-.wcard-divider{height:1px;background:var(--g7);margin:0 0 12px}
-.wcard-edit-label{font-size:10px;font-weight:700;color:var(--g5);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;margin-top:2px}
-.wcard-fld-sm input,.wcard-fld-sm select{font-size:14px;padding:10px 11px;min-height:44px;border-radius:11px}
-.rate-use-global{display:flex;align-items:center;gap:7px;padding:8px 10px;background:var(--gf);border-radius:10px;margin-bottom:10px;cursor:pointer;border:1.5px solid transparent;transition:border-color .15s}
-.rate-use-global.checked{border-color:var(--gm)}
-.rate-use-global input[type=checkbox]{width:16px;height:16px;accent-color:var(--gm);cursor:pointer;flex-shrink:0}
-.rate-use-global span{font-size:12px;font-weight:600;color:var(--gd)}
-.rate-custom-fields{display:none}
-.rate-custom-fields.show{display:block}
-
 /* ── ATTENDANCE ── */
 .mnav{display:flex;align-items:center;justify-content:space-between;padding:14px 12px 10px}
 .mnav .ml{font-size:16px;font-weight:700;color:var(--g1)}
@@ -242,17 +211,52 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .tog::after{content:'';position:absolute;width:24px;height:24px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s;box-shadow:0 1px 6px rgba(0,0,0,.2)}
 .tog.on::after{left:23px}
 
-/* ── RATES CARD ── */
-.rates-card{background:var(--wh);border-radius:16px;margin-bottom:0;overflow:hidden;border:1.5px solid var(--g7);transition:border-color .2s}
-.rates-card.editing{border-color:var(--gm)}
-.rates-card-head{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;border-bottom:1px solid var(--g7)}
-.rates-card-head h4{font-size:13px;font-weight:700;color:var(--g1)}
-.rates-view-body{padding:10px 14px 12px}
-.rates-edit-body{padding:12px 14px 14px;display:none}
-.rates-card.editing .rates-view-body{display:none}
-.rates-card.editing .rates-edit-body{display:block}
-.rates-save-btn{display:none;padding:0 14px 13px}
-.rates-card.editing .rates-save-btn{display:block}
+/* ── WORKER CARD (redesigned) ── */
+.wcard{background:var(--wh);border-radius:18px;margin-bottom:10px;box-shadow:var(--shadow-sm);overflow:hidden;border:1.5px solid var(--g7);transition:border-color .2s}
+.wcard:last-child{margin-bottom:0}
+.wcard.expanded{border-color:var(--gm)}
+.wcard-head{display:flex;align-items:center;gap:11px;padding:14px 14px 12px}
+.wcard-edit-body{padding:0 14px 14px;display:none}
+.wcard.expanded .wcard-edit-body{display:block}
+.wcard-info{flex:1;min-width:0}
+.wcard-name{font-size:15px;font-weight:700;color:var(--g1)}
+.wcard-subtitle{font-size:11px;color:var(--g5);margin-top:3px;font-weight:500}
+/* Chips hiển thị nhanh */
+.wcard-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
+.chip{display:inline-flex;align-items:center;gap:3px;border-radius:8px;padding:3px 8px;font-size:10px;font-weight:700}
+.chip-thuong{background:var(--bp);color:#1e3a8a}
+.chip-hai{background:var(--gp);color:#14532d}
+.chip-cf{background:var(--al);color:#92400e}
+.chip-pp{background:#ede9fe;color:#5b21b6}
+.chip-off{background:var(--g9);color:var(--g5)}
+/* Edit form inside wcard */
+.wedit-section{background:var(--g8);border-radius:14px;padding:13px 13px 10px;margin-bottom:10px}
+.wedit-section-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--g5);margin-bottom:10px}
+.wcard-fld input,.wcard-fld select{font-size:14px;padding:10px 12px;min-height:44px;border-radius:11px;border:1.5px solid var(--g7);background:var(--wh);font-family:var(--font);font-weight:500;width:100%;color:var(--g1);outline:none;-webkit-appearance:none;transition:border-color .2s}
+.wcard-fld input:focus,.wcard-fld select:focus{border-color:var(--gm)}
+.wcard-fld label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--g4);display:block;margin-bottom:5px}
+.wcard-fld{margin-bottom:10px}
+.wcard-fld:last-child{margin-bottom:0}
+/* Off days checkboxes */
+.offday-row{display:flex;gap:7px;flex-wrap:wrap}
+.offday-btn{flex:1;min-width:56px;padding:8px 4px;border-radius:10px;border:1.5px solid var(--g7);background:var(--wh);font-size:11px;font-weight:700;color:var(--g5);cursor:pointer;font-family:var(--font);text-align:center;transition:all .15s}
+.offday-btn.on{background:var(--gp);border-color:#4ade80;color:#14532d}
+/* Action btns */
+.wcard-actions{display:flex;gap:7px;padding:2px 0 0}
+.wcard-btn-edit{padding:7px 13px;border-radius:10px;background:var(--g8);border:1.5px solid var(--g7);font-size:12px;font-weight:700;color:var(--g4);cursor:pointer;font-family:var(--font);min-height:36px;transition:all .15s}
+.wcard-btn-edit:active{background:var(--g7)}
+.wcard-btn-del{width:36px;height:36px;border-radius:10px;background:var(--rp);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.wcard-btn-del svg{width:15px;height:15px;fill:var(--rd)}
+
+/* ── ADD WORKER FORM ── */
+.add-panel{background:var(--wh);border-radius:18px;margin:10px 12px 0;box-shadow:var(--shadow-sm);overflow:hidden;display:none}
+.add-panel.open{display:block;animation:fadeUp .2s ease}
+.add-panel .ap-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--g7)}
+.add-panel .ap-head h3{font-size:15px;font-weight:700;color:var(--g1)}
+.ap-close{background:var(--g8);border:none;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;color:var(--g5);display:flex;align-items:center;justify-content:center}
+.add-panel .ap-body{padding:14px 16px 16px}
+.ap-section{background:var(--g8);border-radius:13px;padding:13px 13px 10px;margin-bottom:12px}
+.ap-section-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--g5);margin-bottom:11px}
 
 /* ── TAGS ── */
 .tag{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700}
@@ -277,7 +281,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .locked-box{background:var(--g8);border-radius:18px;margin:12px;padding:36px 20px;text-align:center}
 .locked-box p{color:var(--g5);font-size:14px;margin-top:12px;line-height:1.7;font-weight:500}
 
-/* ── MODAL / BOTTOM SHEET ── */
+/* ── MODAL ── */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center;z-index:1000;padding-bottom:0;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
 .modal{background:var(--wh);border-radius:26px 26px 0 0;padding:0 0 calc(20px + var(--sab));width:100%;max-width:480px;max-height:88vh;overflow-y:auto;box-shadow:0 -4px 40px rgba(0,0,0,.12)}
 .modal-handle{width:40px;height:4px;background:var(--g7);border-radius:2px;margin:14px auto 18px}
@@ -293,24 +297,16 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 /* ── TODAY BADGE ── */
 .today-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.4);border-radius:8px;padding:2px 7px;font-size:10px;font-weight:700;color:#14532d;vertical-align:middle;margin-left:6px}
 
-/* ── ADD FORM PANEL ── */
-.add-panel{background:var(--wh);border-radius:18px;margin:10px 12px 0;box-shadow:var(--shadow-sm);overflow:hidden;display:none}
-.add-panel.open{display:block;animation:fadeUp .2s ease}
-.add-panel .ap-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--g7)}
-.add-panel .ap-head h3{font-size:14px;font-weight:700;color:var(--g1)}
-.ap-close{background:var(--g8);border:none;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;color:var(--g5);display:flex;align-items:center;justify-content:center}
-.add-panel .ap-body{padding:14px 16px 16px}
-
-/* ── GLOBAL RATES INFO BOX ── */
-.global-rates-note{background:var(--gf);border:1px solid var(--gp);border-radius:10px;padding:9px 11px;font-size:11px;color:var(--gd);font-weight:600;margin-bottom:10px;line-height:1.6}
-.global-rates-note strong{color:var(--gm)}
-
 /* ── OFFLINE BANNER ── */
 .offline-banner{background:#fef3c7;color:#92400e;padding:7px 14px;font-size:12px;font-weight:600;text-align:center;display:none}
 .offline-banner.on{display:block}
 
-/* ── DIVIDER LABEL ── */
-.div-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--g5);padding:8px 0 6px;border-top:1px solid var(--g8);margin-top:6px}
+/* Avatar */
+.av{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0;background:linear-gradient(135deg,var(--gm),var(--gl))}
+.wr{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--g8)}
+.wr:last-child{border-bottom:none}
+.wi{flex:1;min-width:0}
+.nm{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 </style>
 </head>
 <body>
@@ -562,76 +558,67 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
         </div>
       </div>
 
-      <!-- GLOBAL RATES -->
-      <div class="slbl">
-        💵 Đơn giá mặc định
-        <span style="font-size:10px;color:var(--g6);font-weight:500;text-transform:none;letter-spacing:0">(dùng khi không cài riêng)</span>
-      </div>
-      <div class="card" style="margin-bottom:0">
-        <div class="cb" id="global-rates-section"></div>
-      </div>
-
-      <!-- OFF DAYS -->
-      <div class="slbl">
-        Ngày nghỉ mặc định
-        <button class="slbl-btn" onclick="togglePanel('panel-offdays')">✎ Sửa</button>
-      </div>
-      <div class="add-panel" id="panel-offdays">
-        <div class="ap-head">
-          <h3>Ngày nghỉ mặc định</h3>
-          <button class="ap-close" onclick="togglePanel('panel-offdays')">✕</button>
-        </div>
-        <div class="ap-body">
-          <div class="tog-row"><span class="rl">Nghỉ Thứ 7</span><button class="tog on" id="tog-sat" onclick="togOff('sat')"></button></div>
-          <div class="tog-row" style="border:none"><span class="rl">Nghỉ Chủ nhật</span><button class="tog on" id="tog-sun" onclick="togOff('sun')"></button></div>
-          <div style="margin-top:12px">
-            <button class="btn btn-g" onclick="saveOffDays()">💾 Lưu ngày nghỉ</button>
-          </div>
-        </div>
-      </div>
-      <div class="card" id="offdays-display">
-        <div class="cb" id="offdays-view"></div>
-      </div>
-
       <!-- WORKERS -->
       <div class="slbl">
-        👷 Công nhân
+        👷 Danh sách công nhân
         <button class="slbl-btn" onclick="togglePanel('panel-addworker')">➕ Thêm mới</button>
       </div>
+
+      <!-- ADD WORKER FORM -->
       <div class="add-panel" id="panel-addworker">
         <div class="ap-head">
-          <h3>Thêm công nhân mới</h3>
+          <h3>➕ Thêm công nhân mới</h3>
           <button class="ap-close" onclick="togglePanel('panel-addworker')">✕</button>
         </div>
         <div class="ap-body">
-          <div class="fld"><label>Họ và tên</label><input type="text" id="wname" placeholder="Nguyễn Văn A" autocomplete="name"></div>
-          <div class="fld">
-            <label>Cách tính lương</label>
-            <select id="wtype">
-              <option value="both">Công + Kg hái</option>
-              <option value="day">Chỉ theo công</option>
-              <option value="kg">Chỉ theo kg hái</option>
-            </select>
-          </div>
-          <!-- Đơn giá riêng cho nhân sự mới -->
-          <div class="div-label">Đơn giá riêng (tuỳ chọn)</div>
-          <div class="rate-use-global checked" id="new-use-global-row" onclick="toggleNewGlobal()">
-            <input type="checkbox" id="new-use-global" checked onclick="event.stopPropagation();toggleNewGlobal()">
-            <span>Dùng đơn giá mặc định</span>
-          </div>
-          <div class="rate-custom-fields" id="new-custom-fields">
-            <div class="r2">
-              <div class="fld"><label>Công thường/ngày</label><input type="number" id="w-r-thuong" placeholder="300000" inputmode="numeric"></div>
-              <div class="fld"><label>Công hái/ngày</label><input type="number" id="w-r-hai" placeholder="350000" inputmode="numeric"></div>
-            </div>
-            <div class="r2">
-              <div class="fld"><label>Cà phê/kg</label><input type="number" id="w-r-cf" placeholder="5000" inputmode="numeric"></div>
-              <div class="fld"><label>Tiêu/kg</label><input type="number" id="w-r-pp" placeholder="80000" inputmode="numeric"></div>
+
+          <!-- Thông tin cơ bản -->
+          <div class="ap-section">
+            <div class="ap-section-title">Thông tin cơ bản</div>
+            <div class="fld"><label>Họ và tên</label><input type="text" id="wname" placeholder="Nguyễn Văn A" autocomplete="name"></div>
+            <div class="fld" style="margin-bottom:0">
+              <label>Cách tính lương</label>
+              <select id="wtype">
+                <option value="both">Công + Kg hái</option>
+                <option value="day">Chỉ theo công (không tính kg)</option>
+                <option value="kg">Chỉ theo kg hái (không tính công)</option>
+              </select>
             </div>
           </div>
+
+          <!-- Đơn giá -->
+          <div class="ap-section">
+            <div class="ap-section-title">💵 Đơn giá lương</div>
+            <div class="r2">
+              <div class="fld"><label>Công thường/ngày (đ)</label><input type="number" id="w-r-thuong" placeholder="300000" inputmode="numeric"></div>
+              <div class="fld"><label>Công hái/ngày (đ)</label><input type="number" id="w-r-hai" placeholder="350000" inputmode="numeric"></div>
+            </div>
+            <div class="r2" style="margin-bottom:0">
+              <div class="fld" style="margin-bottom:0"><label>Cà phê/kg (đ)</label><input type="number" id="w-r-cf" placeholder="5000" inputmode="numeric"></div>
+              <div class="fld" style="margin-bottom:0"><label>Tiêu/kg (đ)</label><input type="number" id="w-r-pp" placeholder="80000" inputmode="numeric"></div>
+            </div>
+          </div>
+
+          <!-- Ngày nghỉ -->
+          <div class="ap-section">
+            <div class="ap-section-title">📅 Ngày nghỉ trong tuần</div>
+            <div class="offday-row" id="new-offday-row">
+              <button class="offday-btn" data-dow="0" onclick="toggleNewOffDay(this)">CN</button>
+              <button class="offday-btn" data-dow="1" onclick="toggleNewOffDay(this)">T2</button>
+              <button class="offday-btn" data-dow="2" onclick="toggleNewOffDay(this)">T3</button>
+              <button class="offday-btn" data-dow="3" onclick="toggleNewOffDay(this)">T4</button>
+              <button class="offday-btn" data-dow="4" onclick="toggleNewOffDay(this)">T5</button>
+              <button class="offday-btn on" data-dow="5" onclick="toggleNewOffDay(this)">T6</button>
+              <button class="offday-btn on" data-dow="6" onclick="toggleNewOffDay(this)">T7</button>
+            </div>
+            <div style="font-size:11px;color:var(--g5);margin-top:8px;font-weight:500">Những ngày này sẽ tự động đánh dấu là ngày nghỉ trong điểm danh</div>
+          </div>
+
           <button class="btn btn-g" onclick="addWorker()">➕ Thêm công nhân</button>
         </div>
       </div>
+
+      <!-- WORKER LIST -->
       <div class="card" style="margin-bottom:12px">
         <div class="cb" id="wlist"></div>
       </div>
@@ -701,15 +688,12 @@ const FB_CONFIG = {
   messagingSenderId:"899971728736",
   appId:"1:899971728736:web:8c6dbc138e3ab1d243ca05"
 };
-const FB_APP_NAME = "conghai-v5";
-const LS_DATA_KEY = 'conghai_data_v5';
-const LS_UI_KEY   = 'conghai_ui_v5';
+const FB_APP_NAME = "conghai-v6";
+const LS_DATA_KEY = 'conghai_data_v6';
+const LS_UI_KEY   = 'conghai_ui_v6';
 
 // ── STATE ──
 let workers=[], attendance={}, harvests=[];
-let offSat=true, offSun=true;
-// Đơn giá MẶC ĐỊNH (toàn trại)
-let rates = { thuong:300000, hai:350000, cf:5000, pp:80000 };
 let accounts = {
   admin:  {password:"admin123", role:"admin",   displayName:"Admin"},
   quanly: {password:"quanly123",role:"manager", displayName:"Quản lý"}
@@ -727,6 +711,12 @@ const TITLES={home:'Tổng hợp',att:'Điểm danh công',harvest:'Sản lượ
 const CYCLE=['ph','pt','hh','ht','vn',''];
 const MN=['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
 const DOW_VN=['CN','T2','T3','T4','T5','T6','T7'];
+const DOW_FULL=['Chủ nhật','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'];
+
+// Default rates (fallback)
+const DEFAULT_RATES = { thuong:300000, hai:350000, cf:5000, pp:80000 };
+// Default off days: Sat(6) + Sun(0)
+const DEFAULT_OFF_DAYS = [0, 6];
 
 // ── UTILS ──
 const p=n=>n<10?'0'+n:''+n;
@@ -736,23 +726,22 @@ const ini=n=>(n||'?').trim().split(' ').map(c=>c[0]).join('').toUpperCase().slic
 const fmt=n=>Math.round(n).toLocaleString('vi-VN');
 const dim=(y,m)=>new Date(y,m,0).getDate();
 const dow=(y,m,d)=>new Date(y+'-'+p(m)+'-'+p(d)).getDay();
-const isOff=(y,m,d)=>(offSat&&dow(y,m,d)===6)||(offSun&&dow(y,m,d)===0);
 const isAdmin=()=>curUser?.role==='admin';
 
-// ── LẤY ĐƠN GIÁ CỦA TỪNG WORKER (riêng hoặc global) ──
+// ── LẤY ĐƠN GIÁ CỦA TỪNG WORKER (luôn dùng rates riêng) ──
 function getWRate(w, type){
-  // Nếu worker có custom rates và không dùng global
-  if(!w.useGlobalRates && w.rates){
-    if(type==='thuong') return w.rates.thuong || rates.thuong;
-    if(type==='hai')    return w.rates.hai    || rates.hai;
-    if(type==='coffee') return w.rates.cf     || rates.cf;
-    if(type==='pepper') return w.rates.pp     || rates.pp;
-  }
-  // Dùng global
-  if(type==='thuong') return rates.thuong;
-  if(type==='hai')    return rates.hai;
-  if(type==='coffee') return rates.cf;
-  return rates.pp;
+  const r = w.rates || DEFAULT_RATES;
+  if(type==='thuong') return r.thuong || DEFAULT_RATES.thuong;
+  if(type==='hai')    return r.hai    || DEFAULT_RATES.hai;
+  if(type==='coffee') return r.cf     || DEFAULT_RATES.cf;
+  if(type==='pepper') return r.pp     || DEFAULT_RATES.pp;
+  return 0;
+}
+
+// ── NGÀY NGHỈ CỦA WORKER ──
+function isWorkerOff(w, y, m, d){
+  const offDays = Array.isArray(w.offDays) ? w.offDays : DEFAULT_OFF_DAYS;
+  return offDays.includes(dow(y, m, d));
 }
 
 function s2w(s){
@@ -792,7 +781,7 @@ function vibrate(ms=30){try{if(navigator.vibrate)navigator.vibrate(ms);}catch(e)
 
 // ── LOCAL STORAGE ──
 function buildDataObj(){
-  return{ version:localVersion, device:DEVICE_ID, workers, attendance, harvests, offSat, offSun, rates, accounts };
+  return{ version:localVersion, device:DEVICE_ID, workers, attendance, harvests, accounts };
 }
 function saveLocal(){
   localVersion=Date.now();
@@ -806,18 +795,8 @@ function applyDataObj(d,fromRemote=false){
   workers    = Array.isArray(d.workers)    ? d.workers    : workers;
   attendance = (d.attendance&&typeof d.attendance==='object') ? d.attendance : attendance;
   harvests   = Array.isArray(d.harvests)   ? d.harvests   : harvests;
-  offSat     = d.offSat!==undefined ? d.offSat : offSat;
-  offSun     = d.offSun!==undefined ? d.offSun : offSun;
   if(d.accounts) accounts=d.accounts;
-  if(d.rates){ rates={...rates,...d.rates}; syncRateInputs(); }
-  document.getElementById('tog-sat').classList.toggle('on',offSat);
-  document.getElementById('tog-sun').classList.toggle('on',offSun);
   if(fromRemote&&d.version) localVersion=d.version;
-  renderGlobalRates();
-  renderOffDaysView();
-}
-function syncRateInputs(){
-  // Sync hidden inputs nếu panel đang mở
 }
 function saveUILocal(){
   try{ localStorage.setItem(LS_UI_KEY,JSON.stringify({fbGroup,session:curUser?{username:curUser.username}:null})); }catch(e){}
@@ -826,123 +805,49 @@ function loadUILocal(){
   try{ return JSON.parse(localStorage.getItem(LS_UI_KEY)||'null'); }catch(e){ return null; }
 }
 
-// ─────────────────────────────────────────────
-// GLOBAL RATES — hiển thị + sửa inline
-// ─────────────────────────────────────────────
-function renderGlobalRates(){
-  const el=document.getElementById('global-rates-section'); if(!el)return;
-  el.innerHTML=`
-    <div class="rates-card" id="rc-global">
-      <div class="rates-card-head">
-        <h4>Áp dụng cho tất cả (nếu không cài riêng)</h4>
-        ${isAdmin()?`<button class="wcard-btn-edit" onclick="toggleRateEdit('global')">✎ Sửa</button>`:''}
-      </div>
-      <div class="rates-view-body">
-        <div class="ri" style="padding:10px 0"><span class="rl">💵 Công thường / ngày</span><span class="rv">${fmt(rates.thuong)}đ</span></div>
-        <div class="ri" style="padding:10px 0"><span class="rl">🌾 Công hái / ngày</span><span class="rv">${fmt(rates.hai)}đ</span></div>
-        <div class="ri" style="padding:10px 0"><span class="rl">☕ Cà phê / kg</span><span class="rv">${fmt(rates.cf)}đ</span></div>
-        <div class="ri" style="padding:10px 0;border:none"><span class="rl">🌿 Tiêu / kg</span><span class="rv">${fmt(rates.pp)}đ</span></div>
-      </div>
-      <div class="rates-edit-body">
-        <div class="r2">
-          <div class="fld wcard-fld-sm"><label>Công thường/ngày</label><input type="number" id="ge-thuong" value="${rates.thuong}" inputmode="numeric"></div>
-          <div class="fld wcard-fld-sm"><label>Công hái/ngày</label><input type="number" id="ge-hai" value="${rates.hai}" inputmode="numeric"></div>
-        </div>
-        <div class="r2">
-          <div class="fld wcard-fld-sm"><label>Cà phê/kg</label><input type="number" id="ge-cf" value="${rates.cf}" inputmode="numeric"></div>
-          <div class="fld wcard-fld-sm"><label>Tiêu/kg</label><input type="number" id="ge-pp" value="${rates.pp}" inputmode="numeric"></div>
-        </div>
-      </div>
-      <div class="rates-save-btn">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-          <button class="btn btn-g btn-sm" onclick="saveGlobalRates()">💾 Lưu đơn giá</button>
-          <button class="btn btn-outline btn-sm" onclick="toggleRateEdit('global')">Hủy</button>
-        </div>
-      </div>
-    </div>`;
+// ── TOGGLE NEW WORKER OFF DAYS ──
+window.toggleNewOffDay = function(btn){
+  btn.classList.toggle('on');
+};
+function getNewOffDays(){
+  return Array.from(document.querySelectorAll('#new-offday-row .offday-btn.on')).map(b=>+b.dataset.dow);
 }
-window.toggleRateEdit=function(id){
-  const el=document.getElementById('rc-'+id); if(!el)return;
-  el.classList.toggle('editing');
-};
-window.saveGlobalRates=function(){
-  rates={
-    thuong:parseFloat(document.getElementById('ge-thuong').value)||300000,
-    hai:   parseFloat(document.getElementById('ge-hai').value)||350000,
-    cf:    parseFloat(document.getElementById('ge-cf').value)||5000,
-    pp:    parseFloat(document.getElementById('ge-pp').value)||80000
-  };
-  saveLocal(); scheduleSync(); renderGlobalRates();
-  toast('✓ Đã lưu đơn giá mặc định');
-};
 
 // ─────────────────────────────────────────────
-// OFF DAYS
-// ─────────────────────────────────────────────
-function renderOffDaysView(){
-  const el=document.getElementById('offdays-view'); if(!el)return;
-  el.innerHTML=`
-    <div class="ri"><span class="rl">Thứ 7</span><span class="rv" style="color:${offSat?'var(--gm)':'var(--rd)'}">${offSat?'Nghỉ':'Đi làm'}</span></div>
-    <div class="ri" style="border:none"><span class="rl">Chủ nhật</span><span class="rv" style="color:${offSun?'var(--gm)':'var(--rd)'}">${offSun?'Nghỉ':'Đi làm'}</span></div>`;
-}
-window.togOff=function(w){
-  if(w==='sat'){ offSat=!offSat; document.getElementById('tog-sat').classList.toggle('on',offSat); }
-  else         { offSun=!offSun; document.getElementById('tog-sun').classList.toggle('on',offSun); }
-};
-window.saveOffDays=function(){
-  saveLocal(); scheduleSync(); renderOffDaysView();
-  document.getElementById('panel-offdays').classList.remove('open');
-  toast('✓ Đã lưu ngày nghỉ'); renderAtt();
-};
-
-// ── PANEL TOGGLE ──
-window.togglePanel=function(id){
-  const el=document.getElementById(id);
-  el.classList.toggle('open');
-  if(el.classList.contains('open')) setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
-};
-
-// ── TOGGLE NEW WORKER GLOBAL RATES ──
-window.toggleNewGlobal=function(){
-  const cb=document.getElementById('new-use-global');
-  const row=document.getElementById('new-use-global-row');
-  const fields=document.getElementById('new-custom-fields');
-  // Toggle không cần event vì hàm này tự flip
-  const checked=cb.checked;
-  row.classList.toggle('checked',checked);
-  fields.classList.toggle('show',!checked);
-};
-
-// ─────────────────────────────────────────────
-// WORKERS — Card mới với rates riêng
+// WORKERS — Full per-worker settings
 // ─────────────────────────────────────────────
 window.addWorker=function(){
   if(!isAdmin()){ toast('Chỉ Admin mới thêm được'); return; }
   const name=document.getElementById('wname').value.trim();
   if(!name){ toast('Nhập tên công nhân'); return; }
-  const useGlobal=document.getElementById('new-use-global').checked;
+
+  const thuong = parseFloat(document.getElementById('w-r-thuong').value) || DEFAULT_RATES.thuong;
+  const hai    = parseFloat(document.getElementById('w-r-hai').value)    || DEFAULT_RATES.hai;
+  const cf     = parseFloat(document.getElementById('w-r-cf').value)     || DEFAULT_RATES.cf;
+  const pp     = parseFloat(document.getElementById('w-r-pp').value)     || DEFAULT_RATES.pp;
+
   const newW={
-    id:Date.now()+'',
+    id: Date.now()+'',
     name,
-    type:document.getElementById('wtype').value,
-    useGlobalRates: useGlobal
+    type: document.getElementById('wtype').value,
+    rates: { thuong, hai, cf, pp },
+    offDays: getNewOffDays()
   };
-  if(!useGlobal){
-    newW.rates={
-      thuong:parseFloat(document.getElementById('w-r-thuong').value)||rates.thuong,
-      hai:   parseFloat(document.getElementById('w-r-hai').value)||rates.hai,
-      cf:    parseFloat(document.getElementById('w-r-cf').value)||rates.cf,
-      pp:    parseFloat(document.getElementById('w-r-pp').value)||rates.pp
-    };
-  }
   workers.push(newW);
+
   // Reset form
   document.getElementById('wname').value='';
-  document.getElementById('new-use-global').checked=true;
-  document.getElementById('new-use-global-row').classList.add('checked');
-  document.getElementById('new-custom-fields').classList.remove('show');
+  document.getElementById('w-r-thuong').value='';
+  document.getElementById('w-r-hai').value='';
+  document.getElementById('w-r-cf').value='';
+  document.getElementById('w-r-pp').value='';
+  // Reset offdays to default (Sat+Sun)
+  document.querySelectorAll('#new-offday-row .offday-btn').forEach(b=>{
+    b.classList.toggle('on', b.dataset.dow==='0'||b.dataset.dow==='6');
+  });
   document.getElementById('panel-addworker').classList.remove('open');
-  renderWList(); scheduleSync(); toast('✓ Đã thêm '+name); vibrate(40);
+  saveLocal(); scheduleSync(); renderWList();
+  toast('✓ Đã thêm '+name); vibrate(40);
 };
 
 window.rmWorker=function(id){
@@ -957,142 +862,105 @@ window.rmWorker=function(id){
 
 window.toggleWEdit=function(id){
   const el=document.getElementById('wc-'+id); if(!el)return;
-  el.classList.toggle('editing');
-  if(el.classList.contains('editing')){
-    const w=workers.find(x=>x.id===id); if(!w)return;
-    const useG=w.useGlobalRates!==false;
-    const cbEl=document.getElementById('wug-'+id);
-    const rowEl=document.getElementById('wugrow-'+id);
-    const cfEl=document.getElementById('wcf-'+id);
-    if(cbEl){ cbEl.checked=useG; }
-    if(rowEl){ rowEl.classList.toggle('checked',useG); }
-    if(cfEl){ cfEl.classList.toggle('show',!useG); }
-    if(!useG&&w.rates){
-      const setV=(sfx,val)=>{ const i=document.getElementById('we-'+sfx+'-'+id); if(i)i.value=val; };
-      setV('thuong',w.rates.thuong||rates.thuong);
-      setV('hai',w.rates.hai||rates.hai);
-      setV('cf',w.rates.cf||rates.cf);
-      setV('pp',w.rates.pp||rates.pp);
-    }
+  el.classList.toggle('expanded');
+  if(el.classList.contains('expanded')){
     setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
   }
 };
 
-window.toggleWGlobal=function(id){
-  const cbEl=document.getElementById('wug-'+id);
-  const rowEl=document.getElementById('wugrow-'+id);
-  const cfEl=document.getElementById('wcf-'+id);
-  if(!cbEl)return;
-  const checked=cbEl.checked;
-  if(rowEl) rowEl.classList.toggle('checked',checked);
-  if(cfEl)  cfEl.classList.toggle('show',!checked);
-};
-
-window.saveWRates=function(id){
-  const w=workers.find(x=>x.id===id); if(!w)return;
-  const cbEl=document.getElementById('wug-'+id);
-  const useG=cbEl?cbEl.checked:true;
-  w.useGlobalRates=useG;
-  if(!useG){
-    const gv2=(sfx)=>parseFloat(document.getElementById('we-'+sfx+'-'+id)?.value)||0;
-    w.rates={
-      thuong:gv2('thuong')||rates.thuong,
-      hai:   gv2('hai')||rates.hai,
-      cf:    gv2('cf')||rates.cf,
-      pp:    gv2('pp')||rates.pp
-    };
-  } else {
-    w.rates=null;
-  }
-  saveLocal(); scheduleSync(); renderWList();
-  toast('✓ Đã lưu đơn giá cho '+w.name);
-};
-
-function renderWList(){
-  const el=document.getElementById('wlist'); if(!el)return;
-  const tl={both:'Công + Kg',day:'Theo công',kg:'Theo kg'};
-  if(!workers.length){ el.innerHTML='<div class="empty">Chưa có công nhân nào</div>'; return; }
-  el.innerHTML=workers.map(w=>{
-    const useG=w.useGlobalRates!==false;
-    const r=useG?rates:(w.rates||rates);
-    const chips=`
-      <span class="wcard-rate-chip hai">Hái ${fmt(r.hai)}đ</span>
-      <span class="wcard-rate-chip th">Thường ${fmt(r.thuong)}đ</span>
-      <span class="wcard-rate-chip cf">CF ${fmt(r.cf)}đ/kg</span>
-      <span class="wcard-rate-chip pp">Tiêu ${fmt(r.pp)}đ/kg</span>
-    `;
-    return `<div class="wcard" id="wc-${w.id}">
-      <div class="wcard-head">
-        <div class="av" style="width:40px;height:40px;font-size:12px;border-radius:12px">${ini(w.name)}</div>
-        <div class="wcard-info">
-          <div class="wcard-name">${w.name}</div>
-          <div style="margin-top:3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-            <span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;background:var(--g8);color:var(--g4)">${tl[w.type]||'Công + Kg'}</span>
-            ${useG?'<span style="font-size:10px;color:var(--g5);font-weight:600">đơn giá chung</span>':'<span style="font-size:10px;color:var(--gm);font-weight:700">đơn giá riêng</span>'}
-          </div>
-          <div class="wcard-rates" style="margin-top:5px">${chips}</div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0">
-          ${isAdmin()?`<button class="wcard-btn-edit" onclick="toggleWEdit('${w.id}')">✎ Sửa</button>`:''}
-          ${isAdmin()?`<button class="wcard-btn-del" onclick="rmWorker('${w.id}')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>`:''}
-        </div>
-      </div>
-      <div class="wcard-body">
-        <div class="wcard-divider"></div>
-        <div class="wcard-edit-label">Tên & loại lương</div>
-        <div class="fld wcard-fld-sm"><label>Họ và tên</label><input type="text" id="we-name-${w.id}" value="${w.name}"></div>
-        <div class="fld wcard-fld-sm"><label>Cách tính lương</label>
-          <select id="we-type-${w.id}">
-            <option value="both" ${w.type==='both'?'selected':''}>Công + Kg hái</option>
-            <option value="day"  ${w.type==='day' ?'selected':''}>Chỉ theo công</option>
-            <option value="kg"   ${w.type==='kg'  ?'selected':''}>Chỉ theo kg hái</option>
-          </select>
-        </div>
-        <div class="wcard-edit-label" style="margin-top:6px">Đơn giá</div>
-        <div class="rate-use-global ${useG?'checked':''}" id="wugrow-${w.id}" onclick="toggleWGlobal('${w.id}')">
-          <input type="checkbox" id="wug-${w.id}" ${useG?'checked':''} onclick="event.stopPropagation();toggleWGlobal('${w.id}')">
-          <span>Dùng đơn giá mặc định</span>
-        </div>
-        <div class="rate-custom-fields ${!useG?'show':''}" id="wcf-${w.id}">
-          <div class="r2">
-            <div class="fld wcard-fld-sm"><label>Công thường/ngày</label><input type="number" id="we-thuong-${w.id}" value="${r.thuong}" inputmode="numeric"></div>
-            <div class="fld wcard-fld-sm"><label>Công hái/ngày</label><input type="number" id="we-hai-${w.id}" value="${r.hai}" inputmode="numeric"></div>
-          </div>
-          <div class="r2">
-            <div class="fld wcard-fld-sm"><label>Cà phê/kg</label><input type="number" id="we-cf-${w.id}" value="${r.cf}" inputmode="numeric"></div>
-            <div class="fld wcard-fld-sm"><label>Tiêu/kg</label><input type="number" id="we-pp-${w.id}" value="${r.pp}" inputmode="numeric"></div>
-          </div>
-        </div>
-      </div>
-      <div class="wcard-actions" style="${isAdmin()?'display:flex':'display:none'}">
-        <button class="btn btn-g btn-sm" style="flex:1" onclick="saveWAll('${w.id}')">💾 Lưu thay đổi</button>
-        <button class="btn btn-outline btn-sm" style="flex:1" onclick="toggleWEdit('${w.id}')">Hủy</button>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// Lưu cả tên + loại + rates
 window.saveWAll=function(id){
   const w=workers.find(x=>x.id===id); if(!w)return;
   const newName=document.getElementById('we-name-'+id)?.value.trim();
   if(newName) w.name=newName;
   w.type=document.getElementById('we-type-'+id)?.value||w.type;
-  const cbEl=document.getElementById('wug-'+id);
-  const useG=cbEl?cbEl.checked:true;
-  w.useGlobalRates=useG;
-  if(!useG){
-    const gv2=(sfx)=>parseFloat(document.getElementById('we-'+sfx+'-'+id)?.value)||0;
-    w.rates={
-      thuong:gv2('thuong')||rates.thuong,
-      hai:   gv2('hai')||rates.hai,
-      cf:    gv2('cf')||rates.cf,
-      pp:    gv2('pp')||rates.pp
-    };
-  } else { w.rates=null; }
+  w.rates={
+    thuong: parseFloat(document.getElementById('we-thuong-'+id)?.value)||DEFAULT_RATES.thuong,
+    hai:    parseFloat(document.getElementById('we-hai-'+id)?.value)||DEFAULT_RATES.hai,
+    cf:     parseFloat(document.getElementById('we-cf-'+id)?.value)||DEFAULT_RATES.cf,
+    pp:     parseFloat(document.getElementById('we-pp-'+id)?.value)||DEFAULT_RATES.pp
+  };
+  // Off days
+  w.offDays = Array.from(document.querySelectorAll('#we-offday-'+id+' .offday-btn.on')).map(b=>+b.dataset.dow);
   saveLocal(); scheduleSync(); renderWList();
   toast('✓ Đã lưu '+w.name);
 };
+
+window.toggleEditOffDay=function(btn){
+  btn.classList.toggle('on');
+};
+
+function renderWList(){
+  const el=document.getElementById('wlist'); if(!el)return;
+  const tl={both:'Công + Kg hái',day:'Chỉ theo công',kg:'Chỉ theo kg hái'};
+  if(!workers.length){ el.innerHTML='<div class="empty">Chưa có công nhân nào<br><span style="font-size:12px">Nhấn ➕ Thêm mới ở trên</span></div>'; return; }
+  el.innerHTML=workers.map(w=>{
+    const r = w.rates || DEFAULT_RATES;
+    const offDays = Array.isArray(w.offDays) ? w.offDays : DEFAULT_OFF_DAYS;
+    const offStr = offDays.length ? offDays.map(d=>DOW_VN[d]).join(', ') : 'Không';
+
+    return `<div class="wcard" id="wc-${w.id}">
+      <div class="wcard-head">
+        <div class="av" style="width:42px;height:42px;font-size:13px;border-radius:12px">${ini(w.name)}</div>
+        <div class="wcard-info">
+          <div class="wcard-name">${w.name}</div>
+          <div class="wcard-subtitle">${tl[w.type]||'Công + Kg hái'} · Nghỉ: ${offStr}</div>
+          <div class="wcard-chips">
+            <span class="chip chip-thuong">Thường ${fmt(r.thuong)}đ</span>
+            <span class="chip chip-hai">Hái ${fmt(r.hai)}đ</span>
+            <span class="chip chip-cf">CF ${fmt(r.cf)}đ/kg</span>
+            <span class="chip chip-pp">Tiêu ${fmt(r.pp)}đ/kg</span>
+          </div>
+        </div>
+        ${isAdmin()?`
+        <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0">
+          <button class="wcard-btn-edit" onclick="toggleWEdit('${w.id}')">✎ Sửa</button>
+          <button class="wcard-btn-del" onclick="rmWorker('${w.id}')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>
+        </div>`:''}
+      </div>
+
+      <div class="wcard-edit-body">
+        <!-- Tên + loại -->
+        <div class="wedit-section">
+          <div class="wedit-section-title">Thông tin cơ bản</div>
+          <div class="r2">
+            <div class="wcard-fld"><label>Họ và tên</label><input type="text" id="we-name-${w.id}" value="${w.name}"></div>
+            <div class="wcard-fld"><label>Tính lương theo</label>
+              <select id="we-type-${w.id}">
+                <option value="both" ${w.type==='both'?'selected':''}>Công + Kg</option>
+                <option value="day"  ${w.type==='day' ?'selected':''}>Chỉ công</option>
+                <option value="kg"   ${w.type==='kg'  ?'selected':''}>Chỉ kg</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- Đơn giá -->
+        <div class="wedit-section">
+          <div class="wedit-section-title">💵 Đơn giá lương</div>
+          <div class="r2">
+            <div class="wcard-fld"><label>Công thường/ngày (đ)</label><input type="number" id="we-thuong-${w.id}" value="${r.thuong}" inputmode="numeric"></div>
+            <div class="wcard-fld"><label>Công hái/ngày (đ)</label><input type="number" id="we-hai-${w.id}" value="${r.hai}" inputmode="numeric"></div>
+          </div>
+          <div class="r2">
+            <div class="wcard-fld"><label>Cà phê/kg (đ)</label><input type="number" id="we-cf-${w.id}" value="${r.cf}" inputmode="numeric"></div>
+            <div class="wcard-fld" style="margin-bottom:0"><label>Tiêu/kg (đ)</label><input type="number" id="we-pp-${w.id}" value="${r.pp}" inputmode="numeric"></div>
+          </div>
+        </div>
+        <!-- Ngày nghỉ -->
+        <div class="wedit-section">
+          <div class="wedit-section-title">📅 Ngày nghỉ trong tuần</div>
+          <div class="offday-row" id="we-offday-${w.id}">
+            ${[0,1,2,3,4,5,6].map(d=>`<button class="offday-btn${offDays.includes(d)?' on':''}" data-dow="${d}" onclick="toggleEditOffDay(this)">${DOW_VN[d]}</button>`).join('')}
+          </div>
+        </div>
+        <!-- Actions -->
+        <div class="wcard-actions">
+          <button class="btn btn-g btn-sm" style="flex:1" onclick="saveWAll('${w.id}')">💾 Lưu thay đổi</button>
+          <button class="btn btn-outline btn-sm" style="flex:1" onclick="toggleWEdit('${w.id}')">Hủy</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
 
 // ── FIREBASE ──
 function setSyncUI(state){
@@ -1138,7 +1006,7 @@ function onRemoteSnap(snap){
   if(remoteDevice===DEVICE_ID&&remoteVer<=lastPushVer){ setSyncUI('ok'); return; }
   if(remoteVer<=localVersion&&localVersion>0){ setSyncUI('ok'); return; }
   applyDataObj(d,true); saveLocal(); refreshActive(); updateAttBadge(); setSyncUI('ok'); setOffline(false);
-  if(document.getElementById('sec-settings').classList.contains('on')&&isAdmin()){ renderWList(); renderGlobalRates(); renderOffDaysView(); }
+  if(document.getElementById('sec-settings').classList.contains('on')&&isAdmin()){ renderWList(); }
 }
 function startListening(){
   if(!fbDb) return Promise.resolve();
@@ -1185,7 +1053,7 @@ function scheduleSync(){ saveLocal(); if(!fbDb)return; clearTimeout(syncTimer); 
 // ── BACKUP ──
 window.exportJSON=function(){
   try{
-    const data={version:8,exportedAt:new Date().toISOString(),workers,attendance,harvests,offSat,offSun,rates};
+    const data={version:9,exportedAt:new Date().toISOString(),workers,attendance,harvests};
     const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob),a=document.createElement('a');
     const now=new Date();
@@ -1206,17 +1074,20 @@ window.importJSON=function(event){
       if(!d.workers) throw new Error('File không hợp lệ');
       if(!confirm(`Nhập backup?\n${d.workers.length} công nhân, ${d.harvests?.length||0} bản ghi\nDữ liệu hiện tại sẽ bị ghi đè!`)) return;
       workers=d.workers||[]; attendance=d.attendance||{}; harvests=d.harvests||[];
-      offSat=d.offSat!==undefined?d.offSat:true; offSun=d.offSun!==undefined?d.offSun:true;
-      if(d.rates) rates={...rates,...d.rates};
-      document.getElementById('tog-sat').classList.toggle('on',offSat);
-      document.getElementById('tog-sun').classList.toggle('on',offSun);
-      scheduleSync(); refreshActive(); renderWList(); renderGlobalRates(); renderOffDaysView();
+      scheduleSync(); refreshActive(); renderWList();
       const log=document.getElementById('backup-log');
       if(log) log.textContent='✓ Nhập từ '+(d.exportedAt?new Date(d.exportedAt).toLocaleDateString('vi-VN'):'?');
       toast('✓ Nhập thành công!');
     }catch(err){ toast('Lỗi: '+err.message); }
   };
   reader.readAsText(file); event.target.value='';
+};
+
+// ── PANEL TOGGLE ──
+window.togglePanel=function(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('open');
+  if(el.classList.contains('open')) setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
 };
 
 // ── LOGIN ──
@@ -1309,7 +1180,7 @@ window.goTab=function(t){
   else if(t==='att')renderAtt();
   else if(t==='harvest'){ renderHvWk(); renderHvList(); renderHvSummary(); }
   else if(t==='salary'){if(isAdmin())renderSal();}
-  else if(t==='settings'){ renderWList(); renderGlobalRates(); renderOffDaysView(); }
+  else if(t==='settings'){ renderWList(); }
 };
 
 // ── ATTENDANCE ──
@@ -1344,10 +1215,10 @@ function renderAtt(){
       <div class="dgrid">${Array.from({length:days},(_,i)=>{
         const day=i+1, key=ym()+'-'+p(day);
         const s=(attendance[w.id]||{})[key]||'';
+        const offDay=isWorkerOff(w,curY,curM,day)&&!s;
+        const isToday=todStr===curY+'-'+p(curM)+'-'+p(day);
         const d=dow(curY,curM,day);
         const dl=DOW_VN[d];
-        const offDay=isOff(curY,curM,day)&&!s;
-        const isToday=todStr===curY+'-'+p(curM)+'-'+p(day);
         return `<div class="dc${offDay?' off':s?' '+s:''}${isToday?' today-mark':''}" onclick="cyDay('${w.id}','${key}')">
           <span class="dn">${day}</span><span class="dow">${dl}</span>
         </div>`;
@@ -1396,7 +1267,14 @@ function renderHvSummary(){
   const mh=harvests.filter(h=>h.date.startsWith(ym()));
   const cfKg=mh.filter(h=>h.type==='coffee').reduce((s,h)=>s+h.kg,0);
   const ppKg=mh.filter(h=>h.type==='pepper').reduce((s,h)=>s+h.kg,0);
-  const cfVal=cfKg*rates.cf, ppVal=ppKg*rates.pp;
+  // Use average rates for summary display
+  let cfVal=0, ppVal=0;
+  workers.forEach(w=>{
+    const wcf=harvests.filter(h=>h.wid===w.id&&h.type==='coffee'&&h.date.startsWith(ym())).reduce((s,h)=>s+h.kg,0);
+    const wpp=harvests.filter(h=>h.wid===w.id&&h.type==='pepper'&&h.date.startsWith(ym())).reduce((s,h)=>s+h.kg,0);
+    cfVal+=wcf*getWRate(w,'coffee');
+    ppVal+=wpp*getWRate(w,'pepper');
+  });
   el.innerHTML=`<div class="r2">
     <div style="background:var(--al);border-radius:13px;padding:12px;text-align:center">
       <div style="font-size:10px;font-weight:700;color:#92400e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">☕ Cà phê</div>
@@ -1420,7 +1298,7 @@ function renderHvList(){
     const w=workers.find(x=>x.id===h.wid)||{name:'?'};
     const cf=h.type==='coffee';
     const ww=workers.find(x=>x.id===h.wid);
-    const rate=ww?getWRate(ww,h.type):( cf?rates.cf:rates.pp );
+    const rate=ww?getWRate(ww,h.type):(cf?DEFAULT_RATES.cf:DEFAULT_RATES.pp);
     const m=h.kg*rate;
     return `<div class="hvi">
       <div class="hico ${cf?'hcf':'hpp'}">${cf?'☕':'🌿'}</div>
@@ -1451,26 +1329,30 @@ function renderSal(){
   document.getElementById('stotal').textContent=fmt(tot)+'đ';
   document.getElementById('scount').textContent=workers.length;
   el.innerHTML=rows.map(r=>{
-    const useG=r.w.useGlobalRates!==false;
+    const hasKg = r.w.type !== 'day';
+    const hasDay = r.w.type !== 'kg';
     return `<div class="si">
       <div class="si-t">
         <div class="av" style="border-radius:12px">${ini(r.w.name)}</div>
         <div style="flex:1;min-width:0">
           <div style="font-size:14px;font-weight:700">${r.w.name}</div>
           <div style="margin-top:4px;display:flex;gap:5px;flex-wrap:wrap">
-            <span class="tag tph">${r.d.hai} công hái</span>
-            <span class="tag tpt">${r.d.th} công thường</span>
+            ${hasDay?`<span class="tag tph">${r.d.hai} công hái</span>`:''}
+            ${hasDay?`<span class="tag tpt">${r.d.th} công thường</span>`:''}
             ${r.d.vn>0?`<span class="tag" style="background:var(--rp);color:var(--rd)">${r.d.vn} vắng</span>`:''}
-            ${!useG?`<span style="font-size:10px;background:#ede9fe;color:#5b21b6;padding:3px 7px;border-radius:8px;font-weight:700">đơn giá riêng</span>`:''}
           </div>
         </div>
         <div class="si-v">${fmt(r.tot)}đ</div>
       </div>
       <div class="si-g">
-        <div class="si-r">Công hái (${fmt(r.rHai)}đ): <span>${fmt(r.d.hai*r.rHai)}đ</span></div>
-        <div class="si-r">Công thường (${fmt(r.rThuong)}đ): <span>${fmt(r.d.th*r.rThuong)}đ</span></div>
-        <div class="si-r">CF ${r.cfKg.toFixed(1)}kg (${fmt(r.rCf)}đ): <span>${fmt(r.cfKg*r.rCf)}đ</span></div>
-        <div class="si-r">Tiêu ${r.ppKg.toFixed(1)}kg (${fmt(r.rPp)}đ): <span>${fmt(r.ppKg*r.rPp)}đ</span></div>
+        ${hasDay?`
+        <div class="si-r">Hái ${r.d.hai}ng (${fmt(r.rHai)}đ/ng): <span>${fmt(r.d.hai*r.rHai)}đ</span></div>
+        <div class="si-r">Thường ${r.d.th}ng (${fmt(r.rThuong)}đ/ng): <span>${fmt(r.d.th*r.rThuong)}đ</span></div>
+        `:''}
+        ${hasKg?`
+        <div class="si-r">CF ${r.cfKg.toFixed(1)}kg × ${fmt(r.rCf)}đ: <span>${fmt(r.cfKg*r.rCf)}đ</span></div>
+        <div class="si-r">Tiêu ${r.ppKg.toFixed(1)}kg × ${fmt(r.rPp)}đ: <span>${fmt(r.ppKg*r.rPp)}đ</span></div>
+        `:''}
       </div>
     </div>`;
   }).join('');
@@ -1531,7 +1413,7 @@ function renderHome(){
         const s=(attendance[w.id]||{})[td];
         const lbl=s==='ph'?'Hái cả ngày':s==='pt'?'Thường cả ngày':s==='hh'?'½ ngày hái':'½ ngày thường';
         const cls=(s==='ph'||s==='hh')?'tph':'tpt';
-        return `<div class="wr" style="padding:10px 0"><div class="av" style="width:36px;height:36px;font-size:11px;border-radius:10px">${ini(w.name)}</div><div class="wi"><div class="nm">${w.name}</div></div><span class="tag ${cls}">${lbl}</span></div>`;
+        return `<div class="wr"><div class="av" style="width:36px;height:36px;font-size:11px;border-radius:10px">${ini(w.name)}</div><div class="wi"><div class="nm">${w.name}</div></div><span class="tag ${cls}">${lbl}</span></div>`;
       }).join('')
     :'<div class="empty">Chưa điểm danh hôm nay</div>';
   const rec=[...harvests].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);
@@ -1539,7 +1421,7 @@ function renderHome(){
     ?rec.map(h=>{
         const w=workers.find(x=>x.id===h.wid)||{name:'?'}; const cf=h.type==='coffee';
         const ww=workers.find(x=>x.id===h.wid);
-        const rate=ww?getWRate(ww,h.type):(cf?rates.cf:rates.pp);
+        const rate=ww?getWRate(ww,h.type):(cf?DEFAULT_RATES.cf:DEFAULT_RATES.pp);
         return `<div class="hvi" style="padding:9px 0">
           <div class="hico ${cf?'hcf':'hpp'}" style="width:34px;height:34px;font-size:15px">${cf?'☕':'🌿'}</div>
           <div class="hii"><div class="tp" style="font-size:13px">${w.name} — ${h.kg}kg</div><div class="bt">${h.date}</div></div>
@@ -1561,7 +1443,7 @@ async function init(){
     document.getElementById('fb-group-display').textContent=uiData.fbGroup;
   }
   document.getElementById('hvdt').value=tod();
-  updML(); renderGlobalRates(); renderOffDaysView();
+  updML();
   document.getElementById('load-txt').textContent='Đang kết nối Firebase...';
   await initFirebase(fbGroup);
   document.getElementById('loading-screen').classList.add('hidden');
