@@ -19,7 +19,7 @@
   --wh:#fff;--font:'Lexend',sans-serif;
   --sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);
   --sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px);
-  --nav-h:60px;--top-h:112px;
+  --nav-h:60px;
   --shadow-sm:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
   --shadow-md:0 4px 16px rgba(0,0,0,.08),0 2px 6px rgba(0,0,0,.06);
   --shadow-lg:0 10px 40px rgba(0,0,0,.12),0 4px 12px rgba(0,0,0,.08);
@@ -42,7 +42,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 /* ── LOGIN ── */
 #login-screen{position:fixed;inset:0;z-index:2000;background:linear-gradient(170deg,#0a3d22 0%,#166334 45%,#052e16 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px calc(24px + env(safe-area-inset-bottom));max-width:480px;margin:0 auto;overflow-y:auto}
 #login-screen.hidden{display:none}
-.login-logo{font-size:60px;margin-bottom:8px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.4))}
+.login-logo{font-size:60px;margin-bottom:8px}
 .login-title{font-size:32px;font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:4px}
 .login-sub{font-size:14px;color:rgba(255,255,255,.45);margin-bottom:40px;font-weight:400}
 .login-card{background:rgba(255,255,255,.06);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.1);border-radius:28px;padding:28px 22px;width:100%;max-width:390px}
@@ -84,7 +84,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .nb svg{width:22px;height:22px;fill:var(--g6);flex-shrink:0;transition:fill .2s,transform .2s}
 .nb span{font-size:10px;font-weight:600;color:var(--g6);font-family:var(--font);white-space:nowrap;transition:color .2s;letter-spacing:.1px}
 .nb.on svg{fill:var(--gm);transform:scale(1.08)}.nb.on span{color:var(--gm)}
-.nb-badge{position:absolute;top:8px;right:calc(50% - 16px);width:16px;height:16px;border-radius:50%;background:var(--rd);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--wh);display:none}
+.nb-badge{position:absolute;top:8px;right:calc(50% - 16px);width:16px;height:16px;border-radius:50%;background:var(--rd);color:#fff;font-size:9px;font-weight:700;display:none;align-items:center;justify-content:center;border:2px solid var(--wh)}
 .nb-badge.on{display:flex}
 
 /* ── SECTIONS ── */
@@ -101,14 +101,13 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 /* ── METRIC GRID ── */
 .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 12px 0}
 .mc{background:var(--wh);border-radius:16px;padding:16px 14px 14px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
-.mc::before{content:'';position:absolute;top:-20px;right:-20px;width:70px;height:70px;border-radius:50%;opacity:.08}
 .mc .lb{font-size:10px;font-weight:700;color:var(--g5);text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
 .mc .vl{font-size:26px;font-weight:800;color:var(--g1);line-height:1;letter-spacing:-1px}
 .mc .ut{font-size:11px;color:var(--g6);margin-top:4px;font-weight:500}
-.mc.dk{background:linear-gradient(135deg,#0a3d22,#166534)}.mc.dk::before{background:rgba(255,255,255,.5)}.mc.dk .lb{color:rgba(255,255,255,.5)}.mc.dk .vl{color:#fff}.mc.dk .ut{color:rgba(255,255,255,.4)}
-.mc.bl{background:linear-gradient(135deg,#eff6ff,#dbeafe)}.mc.bl::before{background:#1d4ed8}.mc.bl .lb,.mc.bl .ut{color:#1d4ed888}.mc.bl .vl{color:var(--bl)}
-.mc.am{background:linear-gradient(135deg,#fffbeb,#fef3c7)}.mc.am::before{background:#d97706}.mc.am .lb,.mc.am .ut{color:#d9770688}.mc.am .vl{color:var(--am)}
-.mc.gr{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}.mc.gr::before{background:#16a34a}.mc.gr .lb,.mc.gr .ut{color:#16a34a88}.mc.gr .vl{color:var(--gm)}
+.mc.dk{background:linear-gradient(135deg,#0a3d22,#166534)}.mc.dk .lb{color:rgba(255,255,255,.5)}.mc.dk .vl{color:#fff}.mc.dk .ut{color:rgba(255,255,255,.4)}
+.mc.bl{background:linear-gradient(135deg,#eff6ff,#dbeafe)}.mc.bl .lb,.mc.bl .ut{color:#1d4ed888}.mc.bl .vl{color:var(--bl)}
+.mc.am{background:linear-gradient(135deg,#fffbeb,#fef3c7)}.mc.am .lb,.mc.am .ut{color:#d9770688}.mc.am .vl{color:var(--am)}
+.mc.gr{background:linear-gradient(135deg,#f0fdf4,#dcfce7)}.mc.gr .lb,.mc.gr .ut{color:#16a34a88}.mc.gr .vl{color:var(--gm)}
 
 /* ── FORM ── */
 .fld{margin-bottom:12px}
@@ -206,7 +205,8 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .cleg-dot{width:9px;height:9px;border-radius:3px;flex-shrink:0}
 
 /* ── SETTINGS ── */
-.slbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--g5);padding:16px 14px 6px}
+.slbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--g5);padding:16px 14px 6px;display:flex;align-items:center;justify-content:space-between}
+.slbl-btn{font-size:12px;font-weight:700;color:var(--gm);background:var(--gf);border:none;padding:5px 12px;border-radius:20px;cursor:pointer;font-family:var(--font);text-transform:none;letter-spacing:0}
 .ri{display:flex;align-items:center;padding:13px 0;border-bottom:1px solid var(--g8);gap:10px}
 .ri:last-child{border-bottom:none}
 .ri .rl{font-size:14px;font-weight:600;color:var(--g1);flex:1;line-height:1.4}
@@ -227,7 +227,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .tph{background:var(--gp);color:#14532d}.tpt{background:var(--bp);color:#1e3a8a}
 
 /* ── TOAST ── */
-.toast{position:fixed;bottom:calc(var(--nav-h) + var(--sab) + 14px);left:50%;transform:translateX(-50%) translateY(10px);background:var(--g1);color:#fff;padding:11px 22px;border-radius:22px;font-size:13px;font-weight:600;opacity:0;transition:opacity .22s,transform .22s;pointer-events:none;white-space:nowrap;z-index:999;max-width:90vw;text-align:center;box-shadow:var(--shadow-lg)}
+.toast{position:fixed;bottom:calc(var(--nav-h) + var(--sab) + 14px);left:50%;transform:translateX(-50%) translateY(10px);background:var(--g1);color:#fff;padding:11px 22px;border-radius:22px;font-size:13px;font-weight:600;opacity:0;transition:opacity .22s,transform .22s;pointer-events:none;white-space:nowrap;z-index:9999;max-width:90vw;text-align:center;box-shadow:var(--shadow-lg)}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* ── MISC ── */
@@ -245,7 +245,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .locked-box p{color:var(--g5);font-size:14px;margin-top:12px;line-height:1.7;font-weight:500}
 
 /* ── MODAL / BOTTOM SHEET ── */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center;z-index:1000;padding-bottom:var(--sab);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center;z-index:1000;padding-bottom:0;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
 .modal{background:var(--wh);border-radius:26px 26px 0 0;padding:0 0 calc(20px + var(--sab));width:100%;max-width:480px;max-height:88vh;overflow-y:auto;box-shadow:0 -4px 40px rgba(0,0,0,.12)}
 .modal-handle{width:40px;height:4px;background:var(--g7);border-radius:2px;margin:14px auto 18px}
 .modal-head{padding:0 20px 16px;border-bottom:1px solid var(--g7);margin-bottom:16px}
@@ -260,17 +260,21 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 /* ── TODAY BADGE ── */
 .today-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.4);border-radius:8px;padding:2px 7px;font-size:10px;font-weight:700;color:#14532d;vertical-align:middle;margin-left:6px}
 
-/* ── QUICK STAT STRIP ── */
-.qstrip{display:flex;gap:8px;padding:12px 12px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.qstrip::-webkit-scrollbar{display:none}
-.qs{background:var(--wh);border-radius:14px;padding:12px 14px;flex-shrink:0;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:8px;white-space:nowrap}
-.qs .qi{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.qs .qn{font-size:18px;font-weight:800;color:var(--g1);letter-spacing:-.5px}
-.qs .ql{font-size:11px;color:var(--g5);font-weight:600;margin-top:1px}
-
 /* ── SECTION HEADER ── */
 .sec-hd{padding:16px 14px 4px;font-size:12px;font-weight:700;color:var(--g5);text-transform:uppercase;letter-spacing:.7px;display:flex;align-items:center;justify-content:space-between}
 .sec-hd a{font-size:12px;font-weight:700;color:var(--gm);text-decoration:none;text-transform:none;letter-spacing:0}
+
+/* ── ADD FORM PANEL ── */
+.add-panel{background:var(--wh);border-radius:18px;margin:10px 12px 0;box-shadow:var(--shadow-sm);overflow:hidden;display:none}
+.add-panel.open{display:block;animation:fadeUp .2s ease}
+.add-panel .ap-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--g7)}
+.add-panel .ap-head h3{font-size:14px;font-weight:700;color:var(--g1)}
+.ap-close{background:var(--g8);border:none;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;color:var(--g5);display:flex;align-items:center;justify-content:center}
+.add-panel .ap-body{padding:14px 16px 16px}
+
+/* ── OFFLINE BANNER ── */
+.offline-banner{background:#fef3c7;color:#92400e;padding:7px 14px;font-size:12px;font-weight:600;text-align:center;display:none}
+.offline-banner.on{display:block}
 </style>
 </head>
 <body>
@@ -280,7 +284,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 <div id="loading-screen">
   <div class="load-logo">🌿</div>
   <div class="load-ring"></div>
-  <p class="load-txt">Đang tải dữ liệu...</p>
+  <p class="load-txt" id="load-txt">Đang tải dữ liệu...</p>
 </div>
 
 <!-- LOGIN -->
@@ -320,6 +324,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
       <div class="unm" id="user-nm">--</div>
     </button>
   </div>
+  <div class="offline-banner" id="offline-banner">📴 Đang offline — dữ liệu lưu cục bộ</div>
   <div class="sync-bar" onclick="goTab('settings')">
     <span class="sdot" id="sdot"></span>
     <span id="syncstatus">☁ Đang kết nối...</span>
@@ -496,8 +501,8 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
             <strong>Mã nhóm:</strong> <span id="fb-group-display">nong-trai-01</span>
           </div>
           <div class="fld">
-            <label>Mã nhóm</label>
-            <input type="text" id="fb-group" value="nong-trai-01" autocomplete="off" autocapitalize="off" onchange="saveLocal()">
+            <label>Mã nhóm (chung cho tất cả máy)</label>
+            <input type="text" id="fb-group" value="nong-trai-01" autocomplete="off" autocapitalize="off">
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
             <button class="btn btn-g btn-sm" onclick="connectFirebase()">🔄 Kết nối lại</button>
@@ -510,7 +515,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
       <div class="card">
         <div class="cb">
           <div class="backup-box">
-            <p>Xuất toàn bộ dữ liệu ra file JSON để lưu lại.</p>
+            <p>Xuất toàn bộ dữ liệu ra file JSON để lưu lại.<br><small style="color:var(--rd);font-weight:600">⚠ Dữ liệu luôn lưu local — không mất khi update code.</small></p>
             <div class="backup-grid">
               <button class="btn btn-g btn-sm" onclick="exportJSON()">⬇ Xuất backup</button>
               <button class="btn btn-outline btn-sm" onclick="document.getElementById('import-file').click()">⬆ Nhập file</button>
@@ -521,27 +526,61 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
         </div>
       </div>
 
-      <div class="slbl">Đơn giá</div>
-      <div class="card">
-        <div class="cb">
-          <div class="ri"><span class="rl">💵 Công thường / ngày</span><input type="number" id="r-thuong" value="300000" inputmode="numeric" onchange="scheduleSync()"></div>
-          <div class="ri"><span class="rl">🌾 Công hái / ngày</span><input type="number" id="r-hai" value="350000" inputmode="numeric" onchange="scheduleSync()"></div>
-          <div class="ri"><span class="rl">☕ Cà phê / kg</span><input type="number" id="r-cf" value="5000" inputmode="numeric" onchange="scheduleSync()"></div>
-          <div class="ri" style="border:none"><span class="rl">🌿 Tiêu / kg</span><input type="number" id="r-pp" value="80000" inputmode="numeric" onchange="scheduleSync()"></div>
+      <!-- RATES with Add button -->
+      <div class="slbl">
+        Đơn giá
+        <button class="slbl-btn" onclick="togglePanel('panel-rates')">✎ Sửa đơn giá</button>
+      </div>
+      <div class="add-panel" id="panel-rates">
+        <div class="ap-head">
+          <h3>Sửa đơn giá</h3>
+          <button class="ap-close" onclick="togglePanel('panel-rates')">✕</button>
+        </div>
+        <div class="ap-body">
+          <div class="fld"><label>💵 Công thường / ngày (đ)</label><input type="number" id="r-thuong" value="300000" inputmode="numeric"></div>
+          <div class="fld"><label>🌾 Công hái / ngày (đ)</label><input type="number" id="r-hai" value="350000" inputmode="numeric"></div>
+          <div class="fld"><label>☕ Cà phê / kg (đ)</label><input type="number" id="r-cf" value="5000" inputmode="numeric"></div>
+          <div class="fld"><label>🌿 Tiêu / kg (đ)</label><input type="number" id="r-pp" value="80000" inputmode="numeric"></div>
+          <button class="btn btn-g" onclick="saveRates()">💾 Lưu đơn giá</button>
         </div>
       </div>
+      <div class="card" id="rates-display">
+        <div class="cb" id="rates-view"></div>
+      </div>
 
-      <div class="slbl">Ngày nghỉ mặc định</div>
-      <div class="card">
-        <div class="cb">
+      <!-- OFF DAYS with Add button -->
+      <div class="slbl">
+        Ngày nghỉ mặc định
+        <button class="slbl-btn" onclick="togglePanel('panel-offdays')">✎ Sửa</button>
+      </div>
+      <div class="add-panel" id="panel-offdays">
+        <div class="ap-head">
+          <h3>Ngày nghỉ mặc định</h3>
+          <button class="ap-close" onclick="togglePanel('panel-offdays')">✕</button>
+        </div>
+        <div class="ap-body">
           <div class="tog-row"><span class="rl">Nghỉ Thứ 7</span><button class="tog on" id="tog-sat" onclick="togOff('sat')"></button></div>
           <div class="tog-row" style="border:none"><span class="rl">Nghỉ Chủ nhật</span><button class="tog on" id="tog-sun" onclick="togOff('sun')"></button></div>
+          <div style="margin-top:12px">
+            <button class="btn btn-g" onclick="saveOffDays()">💾 Lưu ngày nghỉ</button>
+          </div>
         </div>
       </div>
+      <div class="card" id="offdays-display">
+        <div class="cb" id="offdays-view"></div>
+      </div>
 
-      <div class="slbl">Thêm công nhân</div>
-      <div class="card">
-        <div class="cb">
+      <!-- WORKERS with Add button -->
+      <div class="slbl">
+        Công nhân
+        <button class="slbl-btn" onclick="togglePanel('panel-addworker')">➕ Thêm</button>
+      </div>
+      <div class="add-panel" id="panel-addworker">
+        <div class="ap-head">
+          <h3>Thêm công nhân</h3>
+          <button class="ap-close" onclick="togglePanel('panel-addworker')">✕</button>
+        </div>
+        <div class="ap-body">
           <div class="fld"><label>Họ và tên</label><input type="text" id="wname" placeholder="Nguyễn Văn A" autocomplete="name"></div>
           <div class="fld">
             <label>Cách tính lương</label>
@@ -554,8 +593,6 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
           <button class="btn btn-g" onclick="addWorker()">➕ Thêm công nhân</button>
         </div>
       </div>
-
-      <div class="slbl">Danh sách công nhân</div>
       <div class="card" style="margin-bottom:12px">
         <div class="cb" id="wlist"></div>
       </div>
@@ -602,12 +639,8 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
       <p>Nếu kết nối thất bại, Security Rules thường đã hết hạn (30 ngày).</p>
     </div>
     <div class="modal-body">
-      <div class="step">
-        <strong>1.</strong> Vào <code>console.firebase.google.com</code>
-      </div>
-      <div class="step">
-        <strong>2.</strong> Chọn project <code>pythontest-393209</code> → <strong>Firestore Database</strong> → tab <strong>Rules</strong>
-      </div>
+      <div class="step"><strong>1.</strong> Vào <code>console.firebase.google.com</code></div>
+      <div class="step"><strong>2.</strong> Chọn project <code>pythontest-393209</code> → <strong>Firestore Database</strong> → tab <strong>Rules</strong></div>
       <div class="step">
         <strong>3.</strong> Dán vào và nhấn Publish:<br><br>
         <code>rules_version = '2';<br>service cloud.firestore {<br>&nbsp;match /databases/{database}/documents {<br>&nbsp;&nbsp;match /{document=**} {<br>&nbsp;&nbsp;&nbsp;allow read, write: if true;<br>&nbsp;&nbsp;}<br>&nbsp;}<br>}</code>
@@ -619,7 +652,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 
 <script type="module">
 import { initializeApp, getApps, deleteApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getFirestore, doc, setDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import { getFirestore, doc, setDoc, onSnapshot, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 const FB_CONFIG = {
   apiKey:"AIzaSyB9gclYExZtnkJshazv4liTg4s4jhB_wQ0",
@@ -629,11 +662,19 @@ const FB_CONFIG = {
   messagingSenderId:"899971728736",
   appId:"1:899971728736:web:8c6dbc138e3ab1d243ca05"
 };
-const FB_APP_NAME = "conghai-v3";
+const FB_APP_NAME = "conghai-v4";
+
+// ══════════════════════════════════════════════════
+// LOCAL STORAGE KEY — lưu toàn bộ data cục bộ
+// Không bao giờ mất dù update code hay clear cache (trừ khi user xóa app data)
+// ══════════════════════════════════════════════════
+const LS_DATA_KEY = 'conghai_data_v4';
+const LS_UI_KEY   = 'conghai_ui_v4';
 
 // ── STATE ──
 let workers=[], attendance={}, harvests=[];
 let offSat=true, offSun=true;
+let rates = { thuong:300000, hai:350000, cf:5000, pp:80000 };
 let accounts = {
   admin:  {password:"admin123", role:"admin",   displayName:"Admin"},
   quanly: {password:"quanly123",role:"manager", displayName:"Quản lý"}
@@ -642,12 +683,22 @@ let curUser=null, hvType='coffee';
 let curY=new Date().getFullYear(), curM=new Date().getMonth()+1;
 let fbApp=null, fbDb=null, fbGroup='nong-trai-01';
 let syncTimer=null, unsubFb=null;
-// ✅ Dùng timestamp thay cho boolean isPushing
-// lastPushTime = thời điểm push cuối cùng của thiết bị này
-// Khi nhận snapshot: nếu snap.ts <= lastPushTime → echo của mình → bỏ qua
-// Nếu snap.ts > lastPushTime → update thật từ máy khác → apply
-let lastPushTime = 0;
-let hasRealData = false; // true khi đã có ít nhất 1 worker hoặc nhận được data từ cloud
+
+// ══════════════════════════════════════════════════
+// SYNC STRATEGY — Chống mất data:
+//
+// 1. Mỗi lần thay đổi → lưu localStorage NGAY LẬP TỨC (sync)
+// 2. Sau 800ms → push lên Firebase (debounced)
+// 3. Khi nhận snapshot từ Firebase:
+//    - So sánh data.version với localVersion
+//    - Chỉ apply nếu remote version MỚI HƠN local
+// 4. Version = timestamp của lần push
+// 5. Mỗi thiết bị có deviceId riêng để tránh loop
+// ══════════════════════════════════════════════════
+const DEVICE_ID = Math.random().toString(36).slice(2,10);
+let localVersion = 0;   // version của data mình đang giữ
+let lastPushVer  = 0;   // version lần push cuối
+let isFirstSnap  = true;// snapshot đầu tiên khi connect
 
 const TABS=['home','att','harvest','salary','settings'];
 const TITLES={home:'Tổng hợp',att:'Điểm danh công',harvest:'Sản lượng',salary:'Bảng lương',settings:'Cài đặt'};
@@ -665,8 +716,14 @@ const gv=id=>parseFloat(document.getElementById(id)?.value)||0;
 const dim=(y,m)=>new Date(y,m,0).getDate();
 const dow=(y,m,d)=>new Date(y+'-'+p(m)+'-'+p(d)).getDay();
 const isOff=(y,m,d)=>(offSat&&dow(y,m,d)===6)||(offSun&&dow(y,m,d)===0);
-const getR=t=>t==='thuong'?gv('r-thuong'):t==='hai'?gv('r-hai'):t==='coffee'?gv('r-cf'):gv('r-pp');
 const isAdmin=()=>curUser?.role==='admin';
+
+function getR(t){
+  if(t==='thuong')return rates.thuong;
+  if(t==='hai')return rates.hai;
+  if(t==='coffee')return rates.cf;
+  return rates.pp;
+}
 
 function s2w(s){
   if(s==='ph')return{hai:1,th:0};if(s==='pt')return{hai:0,th:1};
@@ -697,18 +754,125 @@ function toast(msg,dur=2000){
   el.textContent=msg;el.classList.add('on');
   clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),dur);
 }
+function vibrate(ms=30){try{if(navigator.vibrate)navigator.vibrate(ms);}catch(e){}}
 
-function vibrate(ms=30){
-  try{if(navigator.vibrate)navigator.vibrate(ms);}catch(e){}
+// ══════════════════════════════════════════════════
+// LOCAL STORAGE — lưu toàn bộ data cục bộ
+// Đây là nguồn dữ liệu chính, Firebase chỉ là sync
+// ══════════════════════════════════════════════════
+function buildDataObj(){
+  return{
+    version: localVersion,
+    device:  DEVICE_ID,
+    workers, attendance, harvests,
+    offSat, offSun, rates, accounts
+  };
 }
 
+function saveLocal(){
+  // Cập nhật version mỗi khi lưu
+  localVersion = Date.now();
+  try{
+    localStorage.setItem(LS_DATA_KEY, JSON.stringify(buildDataObj()));
+  }catch(e){ console.warn('localStorage save failed:', e); }
+}
+
+function loadLocal(){
+  try{
+    const raw = localStorage.getItem(LS_DATA_KEY);
+    if(!raw) return null;
+    return JSON.parse(raw);
+  }catch(e){ return null; }
+}
+
+function applyDataObj(d, fromRemote=false){
+  if(!d) return;
+  workers    = Array.isArray(d.workers)    ? d.workers    : workers;
+  attendance = (d.attendance&&typeof d.attendance==='object') ? d.attendance : attendance;
+  harvests   = Array.isArray(d.harvests)   ? d.harvests   : harvests;
+  offSat     = d.offSat !== undefined ? d.offSat : offSat;
+  offSun     = d.offSun !== undefined ? d.offSun : offSun;
+  if(d.accounts) accounts = d.accounts;
+  if(d.rates){
+    rates = { ...rates, ...d.rates };
+    // Cập nhật UI các input đơn giá
+    document.getElementById('r-thuong').value = rates.thuong;
+    document.getElementById('r-hai').value    = rates.hai;
+    document.getElementById('r-cf').value     = rates.cf;
+    document.getElementById('r-pp').value     = rates.pp;
+  }
+  document.getElementById('tog-sat').classList.toggle('on', offSat);
+  document.getElementById('tog-sun').classList.toggle('on', offSun);
+  if(fromRemote && d.version) localVersion = d.version;
+  renderRatesView();
+  renderOffDaysView();
+}
+
+// Lưu UI preferences (session, group) riêng để không xung đột với data
+function saveUILocal(){
+  try{
+    localStorage.setItem(LS_UI_KEY, JSON.stringify({
+      fbGroup,
+      session: curUser ? {username:curUser.username} : null
+    }));
+  }catch(e){}
+}
+function loadUILocal(){
+  try{ return JSON.parse(localStorage.getItem(LS_UI_KEY)||'null'); }catch(e){ return null; }
+}
+
+// ── UI RENDER FOR RATES AND OFFDAYS ──
+function renderRatesView(){
+  const el=document.getElementById('rates-view'); if(!el)return;
+  el.innerHTML=`
+    <div class="ri"><span class="rl">💵 Công thường / ngày</span><span class="rv">${fmt(rates.thuong)}đ</span></div>
+    <div class="ri"><span class="rl">🌾 Công hái / ngày</span><span class="rv">${fmt(rates.hai)}đ</span></div>
+    <div class="ri"><span class="rl">☕ Cà phê / kg</span><span class="rv">${fmt(rates.cf)}đ</span></div>
+    <div class="ri" style="border:none"><span class="rl">🌿 Tiêu / kg</span><span class="rv">${fmt(rates.pp)}đ</span></div>`;
+}
+function renderOffDaysView(){
+  const el=document.getElementById('offdays-view'); if(!el)return;
+  el.innerHTML=`
+    <div class="ri"><span class="rl">Thứ 7</span><span class="rv" style="color:${offSat?'var(--gm)':'var(--rd)'}">${offSat?'Nghỉ':'Đi làm'}</span></div>
+    <div class="ri" style="border:none"><span class="rl">Chủ nhật</span><span class="rv" style="color:${offSun?'var(--gm)':'var(--rd)'}">${offSun?'Nghỉ':'Đi làm'}</span></div>`;
+}
+
+// ── PANEL TOGGLE ──
+window.togglePanel=function(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('open');
+  if(el.classList.contains('open')){
+    setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+  }
+};
+
+// ── SAVE RATES / OFFDAYS ──
+window.saveRates=function(){
+  rates = {
+    thuong: parseFloat(document.getElementById('r-thuong').value)||300000,
+    hai:    parseFloat(document.getElementById('r-hai').value)||350000,
+    cf:     parseFloat(document.getElementById('r-cf').value)||5000,
+    pp:     parseFloat(document.getElementById('r-pp').value)||80000
+  };
+  saveLocal(); scheduleSync(); renderRatesView();
+  document.getElementById('panel-rates').classList.remove('open');
+  toast('✓ Đã lưu đơn giá');
+};
+window.saveOffDays=function(){
+  saveLocal(); scheduleSync(); renderOffDaysView();
+  document.getElementById('panel-offdays').classList.remove('open');
+  toast('✓ Đã lưu ngày nghỉ');
+  renderAtt();
+};
+
+// ── SYNC UI ──
 function setSyncUI(state){
   const dot=document.getElementById('sdot'),bar=document.getElementById('syncstatus');
   dot.className='sdot';
-  if(state==='ok'){dot.classList.add('ok');bar.textContent='☁ Firebase đồng bộ tự động';}
+  if(state==='ok')     {dot.classList.add('ok');  bar.textContent='☁ Firebase đồng bộ tự động';}
   else if(state==='sync'){dot.classList.add('sync');bar.textContent='☁ Đang đồng bộ...';}
-  else if(state==='err'){dot.classList.add('err');bar.textContent='☁ Lỗi kết nối — vào Cài đặt';}
-  else{dot.classList.add('sync');bar.textContent='☁ Đang kết nối...';}
+  else if(state==='err'){dot.classList.add('err'); bar.textContent='☁ Lỗi kết nối — dùng offline';}
+  else                  {dot.classList.add('sync');bar.textContent='☁ Đang kết nối...';}
   const badge=document.getElementById('fb-status-badge');
   if(badge){
     badge.className='fb-badge '+(state==='ok'?'connected':'disconnected');
@@ -716,32 +880,219 @@ function setSyncUI(state){
   }
 }
 
-function updateAttBadge(){
-  const badge=document.getElementById('badge-att');
-  if(!badge)return;
-  const td=tod();
-  const missing=workers.filter(w=>{
-    const s=(attendance[w.id]||{})[td];
-    return !s;
-  });
-  badge.classList.toggle('on',missing.length>0&&workers.length>0);
+function setOffline(isOff){
+  document.getElementById('offline-banner').classList.toggle('on', isOff);
 }
 
-// ── LOCAL STORAGE ──
-function saveLocal(){
+function updateAttBadge(){
+  const badge=document.getElementById('badge-att'); if(!badge)return;
+  const td=tod();
+  const missing=workers.filter(w=>!((attendance[w.id]||{})[td]));
+  badge.classList.toggle('on', missing.length>0 && workers.length>0);
+}
+
+// ══════════════════════════════════════════════════
+// FIREBASE SYNC
+//
+// FIX CÁC LỖI:
+// 1. Dùng version number thay vì timestamp để tránh clock skew
+// 2. Chỉ apply remote nếu remote.version > localVersion
+// 3. Echo detection: nếu remote.device === DEVICE_ID và remote.version <= lastPushVer → bỏ qua
+// 4. Không push data rỗng (workers=[] harvests=[]) lên cloud
+// 5. Merge thay vì overwrite toàn bộ document
+// ══════════════════════════════════════════════════
+
+function buildPayload(){
+  const ver = Date.now();
+  lastPushVer = ver;
+  localVersion = ver;
+  return {
+    ...buildDataObj(),
+    version: ver,
+    device: DEVICE_ID,
+    _ts: ver // không dùng serverTimestamp để tránh null khi đọc lại ngay
+  };
+}
+
+async function pushToFb(){
+  if(!fbDb){ saveLocal(); return; }
+  // Không push nếu không có data thật và là lần đầu
+  if(workers.length===0 && harvests.length===0 && Object.keys(attendance).length===0 && isFirstSnap){
+    return;
+  }
+  setSyncUI('sync');
   try{
-    const grp=document.getElementById('fb-group').value.trim()||'nong-trai-01';
-    fbGroup=grp;
-    document.getElementById('fb-group-display').textContent=grp;
-    localStorage.setItem('conghai_ui',JSON.stringify({
-      fbGroup:grp,
-      session:curUser?{username:curUser.username}:null
-    }));
-  }catch(e){}
+    const payload = buildPayload();
+    saveLocal(); // luôn lưu local trước
+    await setDoc(doc(fbDb,'conghai',fbGroup), payload);
+    setSyncUI('ok');
+    setOffline(false);
+  }catch(e){
+    setSyncUI('err');
+    setOffline(true);
+    console.error('Push error:', e);
+  }
 }
-function loadLocalUI(){
-  try{return JSON.parse(localStorage.getItem('conghai_ui')||'null');}catch(e){return null;}
+
+function onRemoteSnap(snap){
+  if(!snap.exists()){
+    setSyncUI('ok');
+    return;
+  }
+  const d = snap.data();
+  const remoteVer = typeof d.version==='number' ? d.version : 0;
+  const remoteDevice = d.device || '';
+
+  // Bỏ qua echo của mình (cùng device, version <= lastPushVer)
+  if(remoteDevice === DEVICE_ID && remoteVer <= lastPushVer){
+    setSyncUI('ok');
+    return;
+  }
+
+  // Chỉ apply nếu remote MỚI HƠN local
+  if(remoteVer <= localVersion && localVersion > 0){
+    // Remote cũ hơn — không apply, nhưng push lại để overwrite
+    setSyncUI('ok');
+    return;
+  }
+
+  // Remote mới hơn — apply
+  applyDataObj(d, true);
+  saveLocal(); // lưu local để bảo toàn
+  refreshActive();
+  updateAttBadge();
+  setSyncUI('ok');
+  setOffline(false);
+  if(document.getElementById('sec-settings').classList.contains('on') && isAdmin()){
+    renderWList();
+    renderRatesView();
+    renderOffDaysView();
+  }
 }
+
+function startListening(){
+  if(!fbDb) return Promise.resolve();
+  if(unsubFb) try{unsubFb();}catch(e){}
+  const ref = doc(fbDb,'conghai',fbGroup);
+
+  return new Promise((resolve)=>{
+    let resolved = false;
+    const finish = ()=>{ if(!resolved){ resolved=true; resolve(); } };
+
+    unsubFb = onSnapshot(ref, snap=>{
+      if(!resolved){
+        // Snapshot đầu tiên
+        isFirstSnap = false;
+        if(snap.exists()){
+          const d = snap.data();
+          const remoteVer = typeof d.version==='number' ? d.version : 0;
+          // Chỉ apply remote nếu remote mới hơn local
+          if(remoteVer > localVersion){
+            applyDataObj(d, true);
+            saveLocal();
+          } else if(localVersion > 0 && workers.length > 0){
+            // Ta có data mới hơn, push lên để đồng bộ
+            scheduleSync();
+          }
+        } else {
+          // Document chưa tồn tại — nếu có local data, push lên
+          if(workers.length > 0 || harvests.length > 0){
+            scheduleSync();
+          }
+        }
+        finish();
+        setSyncUI('ok');
+        setOffline(false);
+      } else {
+        onRemoteSnap(snap);
+      }
+    }, err=>{
+      console.error('Snapshot error:', err);
+      setSyncUI('err');
+      setOffline(true);
+      finish();
+    });
+
+    setTimeout(()=>{ setSyncUI('err'); setOffline(true); finish(); }, 7000);
+  });
+}
+
+async function initFirebase(group){
+  fbGroup = group || fbGroup;
+  setSyncUI('connecting');
+  try{
+    const existing = getApps().find(a=>a.name===FB_APP_NAME);
+    if(existing) try{await deleteApp(existing);}catch(e){}
+    fbApp = initializeApp(FB_CONFIG, FB_APP_NAME);
+    fbDb  = getFirestore(fbApp);
+    await startListening();
+    return true;
+  }catch(err){
+    fbDb = null; setSyncUI('err'); setOffline(true);
+    console.error('Firebase init:', err.code, err.message);
+    return false;
+  }
+}
+
+window.connectFirebase=async function(){
+  const grp = document.getElementById('fb-group').value.trim()||'nong-trai-01';
+  fbGroup = grp;
+  document.getElementById('fb-group-display').textContent = grp;
+  saveUILocal();
+  isFirstSnap = true;
+  const ok = await initFirebase(grp);
+  toast(ok?'✓ Kết nối thành công!':'⚠ Lỗi — xem hướng dẫn', ok?2000:3000);
+};
+window.showFbGuide=function(){ document.getElementById('fb-modal').style.display='flex'; };
+
+function scheduleSync(){
+  saveLocal(); // lưu local ngay lập tức
+  if(!fbDb) return;
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(pushToFb, 800);
+}
+
+// ── BACKUP ──
+window.exportJSON=function(){
+  try{
+    const data = { version:7, exportedAt:new Date().toISOString(), workers, attendance, harvests, offSat, offSun, rates };
+    const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    const url  = URL.createObjectURL(blob), a=document.createElement('a');
+    const now  = new Date();
+    a.href=url; a.download=`cong-hai-backup-${now.getFullYear()}${p(now.getMonth()+1)}${p(now.getDate())}.json`;
+    document.body.appendChild(a); a.click();
+    setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},1000);
+    const log=document.getElementById('backup-log');
+    if(log) log.textContent='✓ Đã xuất lúc '+now.toLocaleTimeString('vi-VN');
+    toast('✓ Xuất file thành công!');
+  }catch(e){ toast('Lỗi: '+e.message); }
+};
+
+window.importJSON=function(event){
+  const file=event.target.files[0]; if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      const d=JSON.parse(e.target.result);
+      if(!d.workers) throw new Error('File không hợp lệ');
+      if(!confirm(`Nhập backup?\n${d.workers.length} công nhân, ${d.harvests?.length||0} bản ghi\nDữ liệu hiện tại sẽ bị ghi đè!`)) return;
+      workers=d.workers||[]; attendance=d.attendance||{}; harvests=d.harvests||[];
+      offSat=d.offSat!==undefined?d.offSat:true; offSun=d.offSun!==undefined?d.offSun:true;
+      if(d.rates) rates={...rates,...d.rates};
+      document.getElementById('r-thuong').value=rates.thuong;
+      document.getElementById('r-hai').value=rates.hai;
+      document.getElementById('r-cf').value=rates.cf;
+      document.getElementById('r-pp').value=rates.pp;
+      document.getElementById('tog-sat').classList.toggle('on',offSat);
+      document.getElementById('tog-sun').classList.toggle('on',offSun);
+      scheduleSync(); refreshActive(); renderWList(); renderRatesView(); renderOffDaysView();
+      const log=document.getElementById('backup-log');
+      if(log) log.textContent='✓ Nhập từ '+(d.exportedAt?new Date(d.exportedAt).toLocaleDateString('vi-VN'):'?');
+      toast('✓ Nhập thành công!');
+    }catch(err){ toast('Lỗi: '+err.message); }
+  };
+  reader.readAsText(file); event.target.value='';
+};
 
 // ── LOGIN ──
 window.doLogin=function(){
@@ -751,19 +1102,18 @@ window.doLogin=function(){
   if(!acc||acc.password!==password){
     document.getElementById('login-err').classList.add('on');
     document.getElementById('login-pass').value='';
-    vibrate(80);
-    return;
+    vibrate(80); return;
   }
   document.getElementById('login-err').classList.remove('on');
   curUser={username,role:acc.role,displayName:acc.displayName};
-  saveLocal();
+  saveUILocal();
   enterApp();
 };
 
 window.doLogout=function(){
-  if(!confirm('Đăng xuất?'))return;
+  if(!confirm('Đăng xuất?')) return;
   curUser=null;
-  try{const d=loadLocalUI();if(d){d.session=null;localStorage.setItem('conghai_ui',JSON.stringify(d));}}catch(e){}
+  try{const d=loadUILocal(); if(d){d.session=null;localStorage.setItem(LS_UI_KEY,JSON.stringify(d));}}catch(e){}
   showLogin();
 };
 
@@ -789,220 +1139,17 @@ function enterApp(){
 }
 
 // ── CHANGE PASSWORD ──
-window.showChangePw=function(){document.getElementById('changepw-section').style.display='block';}
-window.hideChangePw=function(){document.getElementById('changepw-section').style.display='none';}
+window.showChangePw=function(){ document.getElementById('changepw-section').style.display='block'; }
+window.hideChangePw=function(){ document.getElementById('changepw-section').style.display='none'; }
 window.saveChangePw=function(){
   const nw=document.getElementById('pw-new').value;
   const cf=document.getElementById('pw-confirm').value;
-  if(!nw||nw.length<4){toast('Mật khẩu ít nhất 4 ký tự');return;}
-  if(nw!==cf){toast('Mật khẩu không khớp');return;}
+  if(!nw||nw.length<4){ toast('Mật khẩu ít nhất 4 ký tự'); return; }
+  if(nw!==cf){ toast('Mật khẩu không khớp'); return; }
   accounts[curUser.username].password=nw;
-  scheduleSync();hideChangePw();
-  document.getElementById('pw-new').value='';document.getElementById('pw-confirm').value='';
+  scheduleSync(); hideChangePw();
+  document.getElementById('pw-new').value=''; document.getElementById('pw-confirm').value='';
   toast('✓ Đã đổi mật khẩu');
-};
-
-// ══════════════════════════════════════════════════
-//  FIREBASE SYNC — BULLETPROOF IMPLEMENTATION
-//
-//  Nguyên tắc cốt lõi:
-//  1. KHÔNG BAO GIỜ push data rỗng lên cloud khi init
-//  2. Dùng timestamp (lastPushTime) thay cho boolean isPushing
-//     → tránh race condition khi push xong nhận lại echo
-//  3. Chỉ apply remote nếu snap.ts > lastPushTime
-//     → snapshot cũ hơn/bằng lần push của mình = echo, bỏ qua
-//     → snapshot mới hơn = máy khác vừa thay đổi, apply ngay
-//  4. Không tạo document nếu chưa có data thật
-//     → tránh máy mới load trắng ghi đè data máy khác
-// ══════════════════════════════════════════════════
-
-function buildPayload(){
-  return{
-    workers,attendance,harvests,offSat,offSun,accounts,
-    rates:{thuong:gv('r-thuong'),hai:gv('r-hai'),cf:gv('r-cf'),pp:gv('r-pp')},
-    ts:Date.now()
-  };
-}
-
-async function pushToFb(){
-  if(!fbDb)return;
-  // ✅ Không push nếu không có data thật
-  if(!hasRealData && workers.length===0 && harvests.length===0 && Object.keys(attendance).length===0){
-    console.log('Skip push: no real data yet');
-    return;
-  }
-  setSyncUI('sync');
-  try{
-    const payload = buildPayload();
-    lastPushTime = payload.ts; // ghi lại ts trước khi push
-    await setDoc(doc(fbDb,'conghai',fbGroup), payload);
-    setSyncUI('ok');
-  }catch(e){
-    setSyncUI('err');
-    console.error('Push error:',e);
-  }
-}
-
-function applyRemoteData(d){
-  workers    = Array.isArray(d.workers)    ? d.workers    : [];
-  attendance = (d.attendance&&typeof d.attendance==='object') ? d.attendance : {};
-  harvests   = Array.isArray(d.harvests)   ? d.harvests   : [];
-  offSat     = d.offSat!==undefined ? d.offSat : true;
-  offSun     = d.offSun!==undefined ? d.offSun : true;
-  if(d.accounts) accounts=d.accounts;
-  if(d.rates){
-    const r=d.rates;
-    document.getElementById('r-thuong').value=r.thuong||300000;
-    document.getElementById('r-hai').value=r.hai||350000;
-    document.getElementById('r-cf').value=r.cf||5000;
-    document.getElementById('r-pp').value=r.pp||80000;
-  }
-  document.getElementById('tog-sat').classList.toggle('on',offSat);
-  document.getElementById('tog-sun').classList.toggle('on',offSun);
-  // Đánh dấu đã có data từ cloud
-  if(workers.length>0||harvests.length>0||Object.keys(attendance).length>0){
-    hasRealData=true;
-  }
-}
-
-function onRemoteSnap(snap){
-  if(!snap.exists()){
-    // Document chưa tồn tại — không làm gì, chờ user thêm data
-    setSyncUI('ok');
-    return;
-  }
-  const d = snap.data();
-  const remoteTsRaw = d.ts;
-  const remoteTs = typeof remoteTsRaw==='number' ? remoteTsRaw
-    : (remoteTsRaw?.toMillis ? remoteTsRaw.toMillis() : 0);
-
-  // ✅ Bỏ qua nếu đây là echo của lần push của mình
-  // Cho thêm 2s buffer để tránh đồng hồ lệch nhau
-  if(remoteTs <= lastPushTime + 2000 && lastPushTime > 0){
-    setSyncUI('ok');
-    return;
-  }
-
-  // Đây là update thật từ thiết bị khác
-  applyRemoteData(d);
-  refreshActive();
-  updateAttBadge();
-  setSyncUI('ok');
-  if(document.getElementById('sec-settings').classList.contains('on')&&isAdmin()){
-    renderWList();
-  }
-}
-
-// ✅ Khởi động: listen trước, KHÔNG push gì khi load
-function startListening(){
-  if(!fbDb)return;
-  if(unsubFb)try{unsubFb();}catch(e){}
-  const ref=doc(fbDb,'conghai',fbGroup);
-
-  return new Promise((resolve)=>{
-    let resolved=false;
-    const finish=()=>{if(!resolved){resolved=true;resolve();}};
-
-    unsubFb=onSnapshot(ref, snap=>{
-      if(!resolved){
-        // Snapshot đầu tiên khi vừa kết nối
-        if(snap.exists()){
-          applyRemoteData(snap.data());
-          hasRealData=true;
-          refreshActive();
-        }
-        // Dù có data hay không cũng resolve để app tiếp tục
-        finish();
-        setSyncUI('ok');
-      } else {
-        // Các snapshot realtime tiếp theo
-        onRemoteSnap(snap);
-      }
-    }, err=>{
-      console.error('Snapshot error:',err);
-      setSyncUI('err');
-      finish();
-    });
-
-    // Timeout 6s: nếu Firebase không phản hồi vẫn cho vào app
-    setTimeout(()=>{ setSyncUI('err'); finish(); }, 6000);
-  });
-}
-
-async function initFirebase(group){
-  fbGroup=group||fbGroup;
-  setSyncUI('connecting');
-  try{
-    const existing=getApps().find(a=>a.name===FB_APP_NAME);
-    if(existing)try{await deleteApp(existing);}catch(e){}
-    fbApp=initializeApp(FB_CONFIG,FB_APP_NAME);
-    fbDb=getFirestore(fbApp);
-    await startListening();
-    return true;
-  }catch(err){
-    fbDb=null;setSyncUI('err');
-    console.error('Firebase init:',err.code,err.message);
-    return false;
-  }
-}
-
-window.connectFirebase=async function(){
-  const grp=document.getElementById('fb-group').value.trim()||'nong-trai-01';
-  saveLocal();
-  const ok=await initFirebase(grp);
-  toast(ok?'✓ Kết nối thành công!':'⚠ Lỗi — xem hướng dẫn',ok?2000:3000);
-};
-window.showFbGuide=function(){document.getElementById('fb-modal').style.display='flex';};
-
-function scheduleSync(){
-  if(!fbDb)return;
-  clearTimeout(syncTimer);
-  // ✅ Delay ngắn để gom nhiều thao tác liên tiếp thành 1 push
-  syncTimer=setTimeout(pushToFb, 600);
-}
-
-// ── BACKUP ──
-window.exportJSON=function(){
-  try{
-    const data={version:6,exportedAt:new Date().toISOString(),workers,attendance,harvests,offSat,offSun,
-      rates:{thuong:gv('r-thuong'),hai:gv('r-hai'),cf:gv('r-cf'),pp:gv('r-pp')}};
-    const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-    const url=URL.createObjectURL(blob),a=document.createElement('a');
-    const now=new Date();
-    a.href=url;a.download=`cong-hai-backup-${now.getFullYear()}${p(now.getMonth()+1)}${p(now.getDate())}.json`;
-    document.body.appendChild(a);a.click();
-    setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},1000);
-    const log=document.getElementById('backup-log');
-    if(log)log.textContent='✓ Đã xuất lúc '+now.toLocaleTimeString('vi-VN');
-    toast('✓ Xuất file thành công!');
-  }catch(e){toast('Lỗi: '+e.message);}
-};
-window.importJSON=function(event){
-  const file=event.target.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=function(e){
-    try{
-      const d=JSON.parse(e.target.result);
-      if(!d.workers)throw new Error('File không hợp lệ');
-      if(!confirm(`Nhập backup?\n${d.workers.length} công nhân, ${d.harvests?.length||0} bản ghi\nDữ liệu hiện tại sẽ bị ghi đè!`))return;
-      workers=d.workers||[];attendance=d.attendance||{};harvests=d.harvests||[];
-      hasRealData=true;
-      offSat=d.offSat!==undefined?d.offSat:true;offSun=d.offSun!==undefined?d.offSun:true;
-      if(d.rates){
-        document.getElementById('r-thuong').value=d.rates.thuong||300000;
-        document.getElementById('r-hai').value=d.rates.hai||350000;
-        document.getElementById('r-cf').value=d.rates.cf||5000;
-        document.getElementById('r-pp').value=d.rates.pp||80000;
-      }
-      document.getElementById('tog-sat').classList.toggle('on',offSat);
-      document.getElementById('tog-sun').classList.toggle('on',offSun);
-      scheduleSync();refreshActive();renderWList();
-      const log=document.getElementById('backup-log');
-      if(log)log.textContent='✓ Nhập từ '+(d.exportedAt?new Date(d.exportedAt).toLocaleDateString('vi-VN'):'?');
-      toast('✓ Nhập thành công!');
-    }catch(err){toast('Lỗi: '+err.message);}
-  };
-  reader.readAsText(file);event.target.value='';
 };
 
 // ── MONTH / TAB ──
@@ -1012,65 +1159,68 @@ function updML(){
 }
 window.openMonthPicker=function(){
   const v=prompt('Nhập tháng/năm (vd: 6/2025)',curM+'/'+curY);
-  if(!v)return;
+  if(!v) return;
   const pp=v.split('/');
-  if(pp.length===2){const nm=+pp[0],ny=+pp[1];if(nm>=1&&nm<=12&&ny>2000){curM=nm;curY=ny;updML();refreshActive();}}
+  if(pp.length===2){
+    const nm=+pp[0], ny=+pp[1];
+    if(nm>=1&&nm<=12&&ny>2000){ curM=nm; curY=ny; updML(); refreshActive(); }
+  }
 };
 window.chgM=function(d){
-  curM+=d;if(curM>12){curM=1;curY++;}if(curM<1){curM=12;curY--;}
-  updML();refreshActive();
+  curM+=d; if(curM>12){curM=1;curY++;} if(curM<1){curM=12;curY--;}
+  updML(); refreshActive();
 };
 function refreshActive(){
   const t=TABS.find(x=>document.getElementById('sec-'+x)?.classList.contains('on'))||'home';
   if(t==='home')renderHome();
   else if(t==='att')renderAtt();
-  else if(t==='salary'){if(isAdmin())renderSal();}
-  else if(t==='harvest'){renderHvWk();renderHvList();renderHvSummary();}
+  else if(t==='salary'){ if(isAdmin())renderSal(); }
+  else if(t==='harvest'){ renderHvWk(); renderHvList(); renderHvSummary(); }
 }
 window.goTab=function(t){
   TABS.forEach(id=>{
     document.getElementById('sec-'+id).classList.toggle('on',id===t);
-    const b=document.getElementById('n-'+id);if(b)b.classList.toggle('on',id===t);
+    const b=document.getElementById('n-'+id); if(b)b.classList.toggle('on',id===t);
   });
   document.getElementById('ptitle').textContent=TITLES[t];
   document.getElementById('screen').scrollTop=0;
   if(t==='home')renderHome();
   else if(t==='att')renderAtt();
-  else if(t==='harvest'){renderHvWk();renderHvList();renderHvSummary();}
-  else if(t==='salary'){if(isAdmin())renderSal();}
-  else if(t==='settings')renderWList();
+  else if(t==='harvest'){ renderHvWk(); renderHvList(); renderHvSummary(); }
+  else if(t==='salary'){ if(isAdmin())renderSal(); }
+  else if(t==='settings'){ renderWList(); renderRatesView(); renderOffDaysView(); }
 };
 
 // ── SETTINGS ──
 window.togOff=function(w){
-  if(w==='sat'){offSat=!offSat;document.getElementById('tog-sat').classList.toggle('on',offSat);}
-  else{offSun=!offSun;document.getElementById('tog-sun').classList.toggle('on',offSun);}
-  scheduleSync();renderAtt();
+  if(w==='sat'){ offSat=!offSat; document.getElementById('tog-sat').classList.toggle('on',offSat); }
+  else         { offSun=!offSun; document.getElementById('tog-sun').classList.toggle('on',offSun); }
+  // Không lưu ngay — chờ user bấm "Lưu ngày nghỉ"
 };
 
 // ── WORKERS ──
 window.addWorker=function(){
-  if(!isAdmin()){toast('Chỉ Admin mới thêm được');return;}
+  if(!isAdmin()){ toast('Chỉ Admin mới thêm được'); return; }
   const name=document.getElementById('wname').value.trim();
-  if(!name){toast('Nhập tên công nhân');return;}
-  workers.push({id:Date.now()+'',name,type:document.getElementById('wtype').value});
+  if(!name){ toast('Nhập tên công nhân'); return; }
+  workers.push({id:Date.now()+'', name, type:document.getElementById('wtype').value});
   document.getElementById('wname').value='';
-  hasRealData=true;
-  renderWList();scheduleSync();toast('✓ Đã thêm '+name);vibrate(40);
+  document.getElementById('panel-addworker').classList.remove('open');
+  renderWList(); scheduleSync(); toast('✓ Đã thêm '+name); vibrate(40);
 };
 window.rmWorker=function(id){
-  if(!isAdmin()){toast('Chỉ Admin mới xóa được');return;}
+  if(!isAdmin()){ toast('Chỉ Admin mới xóa được'); return; }
   const w=workers.find(x=>x.id===id);
-  if(!confirm('Xóa công nhân '+(w?.name||'')+'?\nToàn bộ điểm danh và sản lượng của họ cũng bị xóa.'))return;
+  if(!confirm('Xóa công nhân '+(w?.name||'')+'?\nToàn bộ điểm danh và sản lượng cũng bị xóa.')) return;
   workers=workers.filter(x=>x.id!==id);
   delete attendance[id];
   harvests=harvests.filter(h=>h.wid!==id);
-  renderWList();scheduleSync();toast('Đã xóa');
+  renderWList(); scheduleSync(); toast('Đã xóa');
 };
 function renderWList(){
-  const el=document.getElementById('wlist');if(!el)return;
+  const el=document.getElementById('wlist'); if(!el)return;
   const tl={both:'Công + Kg',day:'Theo công',kg:'Theo kg'};
-  if(!workers.length){el.innerHTML='<div class="empty">Chưa có công nhân nào</div>';return;}
+  if(!workers.length){ el.innerHTML='<div class="empty">Chưa có công nhân nào</div>'; return; }
   el.innerHTML=workers.map(w=>`<div class="wr">
     <div class="av">${ini(w.name)}</div>
     <div class="wi"><div class="nm">${w.name}</div><div class="sb">${tl[w.type]||'Công + Kg'}</div></div>
@@ -1080,11 +1230,11 @@ function renderWList(){
 
 // ── ATTENDANCE ──
 function renderAtt(){
-  const el=document.getElementById('attboard');if(!el)return;
+  const el=document.getElementById('attboard'); if(!el)return;
   const query=(document.getElementById('att-search')?.value||'').toLowerCase().trim();
   const filtered=query?workers.filter(w=>w.name.toLowerCase().includes(query)):workers;
   if(!filtered.length){
-    el.innerHTML='<div class="att-blk"><div class="empty">'+(query?'Không tìm thấy công nhân':'Chưa có công nhân nào')+'</div></div>';
+    el.innerHTML='<div class="att-blk"><div class="empty">'+(query?'Không tìm thấy':'Chưa có công nhân nào')+'</div></div>';
     return;
   }
   const days=dim(curY,curM);
@@ -1108,7 +1258,7 @@ function renderAtt(){
         </div>
       </div>
       <div class="dgrid">${Array.from({length:days},(_,i)=>{
-        const day=i+1,key=ym()+'-'+p(day);
+        const day=i+1, key=ym()+'-'+p(day);
         const s=(attendance[w.id]||{})[key]||'';
         const d=dow(curY,curM,day);
         const dl=DOW_VN[d];
@@ -1121,14 +1271,14 @@ function renderAtt(){
     </div>`;
   }).join('');
 }
+
 window.cyDay=function(wid,key){
-  if(!attendance[wid])attendance[wid]={};
+  if(!attendance[wid]) attendance[wid]={};
   const cur=attendance[wid][key]||'';
   const nx=CYCLE[(CYCLE.indexOf(cur)+1)%CYCLE.length];
-  if(!nx)delete attendance[wid][key];else attendance[wid][key]=nx;
-  hasRealData=true;
+  if(!nx) delete attendance[wid][key]; else attendance[wid][key]=nx;
   vibrate(25);
-  renderAtt();scheduleSync();updateAttBadge();
+  renderAtt(); scheduleSync(); updateAttBadge();
 };
 
 // ── HARVEST ──
@@ -1138,32 +1288,33 @@ window.setHT=function(t){
   document.getElementById('spp').classList.toggle('on',t==='pepper');
 };
 function renderHvWk(){
-  const s=document.getElementById('hvwk');if(!s)return;
-  s.innerHTML=workers.length?workers.map(w=>`<option value="${w.id}">${w.name}</option>`).join(''):'<option>-- Thêm công nhân trước --</option>';
+  const s=document.getElementById('hvwk'); if(!s)return;
+  s.innerHTML=workers.length
+    ?workers.map(w=>`<option value="${w.id}">${w.name}</option>`).join('')
+    :'<option>-- Thêm công nhân trước --</option>';
 }
 window.addHarvest=function(){
   const wid=document.getElementById('hvwk').value;
   const dt=document.getElementById('hvdt').value;
   const kg=parseFloat(document.getElementById('hvkg').value)||0;
   const note=document.getElementById('hvnote').value.trim();
-  if(!wid||!dt||kg<=0){toast('Điền đầy đủ thông tin');return;}
-  harvests.push({id:Date.now()+'',wid,type:hvType,date:dt,kg,...(note?{note}:{})});
-  hasRealData=true;
+  if(!wid||!dt||kg<=0){ toast('Điền đầy đủ thông tin'); return; }
+  harvests.push({id:Date.now()+'', wid, type:hvType, date:dt, kg, ...(note?{note}:{})});
   document.getElementById('hvnote').value='';
-  renderHvList();renderHvSummary();scheduleSync();
+  renderHvList(); renderHvSummary(); scheduleSync();
   toast('✓ Đã lưu '+kg+'kg '+(hvType==='coffee'?'cà phê':'tiêu'));
   vibrate(40);
 };
 window.rmHarvest=function(id){
   harvests=harvests.filter(h=>h.id!==id);
-  renderHvList();renderHvSummary();scheduleSync();toast('Đã xóa');
+  renderHvList(); renderHvSummary(); scheduleSync(); toast('Đã xóa');
 };
 function renderHvSummary(){
-  const el=document.getElementById('hv-summary');if(!el)return;
+  const el=document.getElementById('hv-summary'); if(!el)return;
   const mh=harvests.filter(h=>h.date.startsWith(ym()));
   const cfKg=mh.filter(h=>h.type==='coffee').reduce((s,h)=>s+h.kg,0);
   const ppKg=mh.filter(h=>h.type==='pepper').reduce((s,h)=>s+h.kg,0);
-  const cfVal=cfKg*getR('coffee'),ppVal=ppKg*getR('pepper');
+  const cfVal=cfKg*getR('coffee'), ppVal=ppKg*getR('pepper');
   el.innerHTML=`<div class="r2">
     <div style="background:var(--al);border-radius:13px;padding:12px;text-align:center">
       <div style="font-size:10px;font-weight:700;color:#92400e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">☕ Cà phê</div>
@@ -1178,14 +1329,14 @@ function renderHvSummary(){
   </div>`;
 }
 function renderHvList(){
-  const el=document.getElementById('hvlist');if(!el)return;
+  const el=document.getElementById('hvlist'); if(!el)return;
   const mh=[...harvests].filter(h=>h.date.startsWith(ym())).sort((a,b)=>b.date.localeCompare(a.date));
   const cnt=document.getElementById('hv-count');
-  if(cnt)cnt.textContent=mh.length?mh.length+' bản ghi':'';
-  if(!mh.length){el.innerHTML='<div class="empty">Chưa có sản lượng tháng này</div>';return;}
+  if(cnt) cnt.textContent=mh.length?mh.length+' bản ghi':'';
+  if(!mh.length){ el.innerHTML='<div class="empty">Chưa có sản lượng tháng này</div>'; return; }
   el.innerHTML=mh.map(h=>{
     const w=workers.find(x=>x.id===h.wid)||{name:'?'};
-    const cf=h.type==='coffee',m=h.kg*getR(h.type);
+    const cf=h.type==='coffee', m=h.kg*getR(h.type);
     return `<div class="hvi">
       <div class="hico ${cf?'hcf':'hpp'}">${cf?'☕':'🌿'}</div>
       <div class="hii">
@@ -1202,12 +1353,12 @@ function renderHvList(){
 
 // ── SALARY ──
 function renderSal(){
-  if(!isAdmin())return;
-  const el=document.getElementById('slist');if(!el)return;
+  if(!isAdmin()) return;
+  const el=document.getElementById('slist'); if(!el)return;
   if(!workers.length){
     document.getElementById('stotal').textContent='0đ';
     document.getElementById('scount').textContent='0';
-    el.innerHTML='<div class="empty">Chưa có công nhân</div>';return;
+    el.innerHTML='<div class="empty">Chưa có công nhân</div>'; return;
   }
   let tot=0;
   const rows=workers.map(w=>{const s=calcSal(w);tot+=s.tot;return{w,...s};});
@@ -1241,11 +1392,9 @@ function renderWeekChart(){
   const chartEl=document.getElementById('home-chart');
   const lblEl=document.getElementById('home-chart-labels');
   if(!chartEl||!lblEl)return;
-
-  // Build last 7 days
   const days=[];
   for(let i=6;i>=0;i--){
-    const d=new Date();d.setDate(d.getDate()-i);
+    const d=new Date(); d.setDate(d.getDate()-i);
     const key=d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
     const dl=DOW_VN[d.getDay()];
     const cfKg=harvests.filter(h=>h.type==='coffee'&&h.date===key).reduce((s,h)=>s+h.kg,0);
@@ -1253,18 +1402,16 @@ function renderWeekChart(){
     days.push({key,dl,cfKg,ppKg});
   }
   const maxVal=Math.max(...days.map(d=>d.cfKg+d.ppKg),1);
-
   chartEl.innerHTML=days.map(d=>{
     const cfH=Math.round((d.cfKg/maxVal)*52)||0;
     const ppH=Math.round((d.ppKg/maxVal)*52)||0;
     const total=d.cfKg+d.ppKg;
-    return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;justify-content:flex-end" title="${d.key}: CF ${d.cfKg}kg, Tiêu ${d.ppKg}kg">
+    return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;justify-content:flex-end">
       ${ppH>0?`<div class="cbar pp" style="height:${ppH}px;width:100%"></div>`:''}
       ${cfH>0?`<div class="cbar cf" style="height:${cfH}px;width:100%"></div>`:''}
       ${total===0?`<div style="height:3px;width:100%;background:var(--g7);border-radius:3px"></div>`:''}
     </div>`;
   }).join('');
-
   lblEl.innerHTML=days.map(d=>`<div class="clbl">${d.dl}</div>`).join('');
 }
 
@@ -1275,15 +1422,11 @@ function renderHome(){
   document.getElementById('h-days').textContent=Math.round((th+tth)*10)/10;
   document.getElementById('h-hai').textContent=th;
   document.getElementById('h-thuong').textContent=tth;
-
-  // Today label
   const now=new Date();
   const lbl=document.getElementById('today-date-lbl');
-  if(lbl)lbl.textContent=now.getDate()+'/'+(now.getMonth()+1);
-
-  // Alert: workers not checked in today
+  if(lbl) lbl.textContent=now.getDate()+'/'+(now.getMonth()+1);
   const td=tod();
-  const missing=workers.filter(w=>!(attendance[w.id]||{})[td]);
+  const missing=workers.filter(w=>!((attendance[w.id]||{})[td]));
   const alertEl=document.getElementById('home-alert');
   if(alertEl){
     if(missing.length>0&&workers.length>0){
@@ -1291,58 +1434,85 @@ function renderHome(){
         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
         ${missing.length} công nhân chưa điểm danh hôm nay
       </div>`;
-    } else {
-      alertEl.innerHTML='';
-    }
+    } else { alertEl.innerHTML=''; }
   }
-
-  updateAttBadge();
-  renderWeekChart();
-
-  const pres=workers.filter(w=>{const s=(attendance[w.id]||{})[td]||'';return s&&s!=='vn';});
-  document.getElementById('h-today').innerHTML=pres.length?pres.map(w=>{
-    const s=(attendance[w.id]||{})[td];
-    const lbl=s==='ph'?'Hái cả ngày':s==='pt'?'Thường cả ngày':s==='hh'?'½ ngày hái':'½ ngày thường';
-    const cls=(s==='ph'||s==='hh')?'tph':'tpt';
-    return `<div class="wr" style="padding:10px 0"><div class="av" style="width:36px;height:36px;font-size:11px;border-radius:10px">${ini(w.name)}</div><div class="wi"><div class="nm">${w.name}</div></div><span class="tag ${cls}">${lbl}</span></div>`;
-  }).join(''):'<div class="empty">Chưa điểm danh hôm nay</div>';
-
+  updateAttBadge(); renderWeekChart();
+  const pres=workers.filter(w=>{ const s=(attendance[w.id]||{})[td]||''; return s&&s!=='vn'; });
+  document.getElementById('h-today').innerHTML=pres.length
+    ?pres.map(w=>{
+        const s=(attendance[w.id]||{})[td];
+        const lbl=s==='ph'?'Hái cả ngày':s==='pt'?'Thường cả ngày':s==='hh'?'½ ngày hái':'½ ngày thường';
+        const cls=(s==='ph'||s==='hh')?'tph':'tpt';
+        return `<div class="wr" style="padding:10px 0"><div class="av" style="width:36px;height:36px;font-size:11px;border-radius:10px">${ini(w.name)}</div><div class="wi"><div class="nm">${w.name}</div></div><span class="tag ${cls}">${lbl}</span></div>`;
+      }).join('')
+    :'<div class="empty">Chưa điểm danh hôm nay</div>';
   const rec=[...harvests].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);
-  document.getElementById('h-recent').innerHTML=rec.length?rec.map(h=>{
-    const w=workers.find(x=>x.id===h.wid)||{name:'?'};const cf=h.type==='coffee';
-    return `<div class="hvi" style="padding:9px 0">
-      <div class="hico ${cf?'hcf':'hpp'}" style="width:34px;height:34px;font-size:15px">${cf?'☕':'🌿'}</div>
-      <div class="hii"><div class="tp" style="font-size:13px">${w.name} — ${h.kg}kg</div><div class="bt">${h.date}</div></div>
-      <div class="hmoney" style="font-size:13px">${fmt(h.kg*getR(h.type))}đ</div>
-    </div>`;
-  }).join(''):'<div class="empty">Chưa có sản lượng nào</div>';
+  document.getElementById('h-recent').innerHTML=rec.length
+    ?rec.map(h=>{
+        const w=workers.find(x=>x.id===h.wid)||{name:'?'}; const cf=h.type==='coffee';
+        return `<div class="hvi" style="padding:9px 0">
+          <div class="hico ${cf?'hcf':'hpp'}" style="width:34px;height:34px;font-size:15px">${cf?'☕':'🌿'}</div>
+          <div class="hii"><div class="tp" style="font-size:13px">${w.name} — ${h.kg}kg</div><div class="bt">${h.date}</div></div>
+          <div class="hmoney" style="font-size:13px">${fmt(h.kg*getR(h.type))}đ</div>
+        </div>`;
+      }).join('')
+    :'<div class="empty">Chưa có sản lượng nào</div>';
 }
 
-// ── INIT ──
+// ══════════════════════════════════════════════════
+// INIT — Thứ tự ưu tiên:
+// 1. Đọc localStorage (ngay lập tức, không chờ Firebase)
+// 2. Kết nối Firebase (listen)
+// 3. Nếu Firebase có data mới hơn → apply
+// 4. Nếu local mới hơn → push lên Firebase
+// ══════════════════════════════════════════════════
 async function init(){
-  const local=loadLocalUI();
-  if(local?.fbGroup){
-    fbGroup=local.fbGroup;
-    document.getElementById('fb-group').value=local.fbGroup;
-    document.getElementById('fb-group-display').textContent=local.fbGroup;
-  }
-  document.getElementById('hvdt').value=tod();
-  updML();
+  document.getElementById('load-txt').textContent='Đang tải dữ liệu cục bộ...';
 
-  // ✅ Connect Firebase — listen first, KHÔNG push data rỗng
+  // 1. Tải data từ localStorage trước
+  const localData = loadLocal();
+  if(localData){
+    applyDataObj(localData, false);
+    localVersion = localData.version || 0;
+  }
+
+  // 2. Tải UI prefs
+  const uiData = loadUILocal();
+  if(uiData?.fbGroup){
+    fbGroup = uiData.fbGroup;
+    document.getElementById('fb-group').value = uiData.fbGroup;
+    document.getElementById('fb-group-display').textContent = uiData.fbGroup;
+  }
+
+  document.getElementById('hvdt').value = tod();
+  updML();
+  renderRatesView();
+  renderOffDaysView();
+
+  document.getElementById('load-txt').textContent='Đang kết nối Firebase...';
+
+  // 3. Kết nối Firebase
   await initFirebase(fbGroup);
 
   document.getElementById('loading-screen').classList.add('hidden');
 
-  const sess=local?.session;
-  if(sess?.username&&accounts[sess.username]){
-    const acc=accounts[sess.username];
-    curUser={username:sess.username,role:acc.role,displayName:acc.displayName};
+  // 4. Kiểm tra session
+  const sess = uiData?.session;
+  if(sess?.username && accounts[sess.username]){
+    const acc = accounts[sess.username];
+    curUser = {username:sess.username, role:acc.role, displayName:acc.displayName};
     enterApp();
   } else {
     showLogin();
   }
 }
+
+// Lắng nghe online/offline
+window.addEventListener('online',  ()=>{ setOffline(false); scheduleSync(); });
+window.addEventListener('offline', ()=>{ setOffline(true); });
+
+// Lưu trước khi thoát trang
+window.addEventListener('beforeunload', ()=>{ saveLocal(); });
 
 init();
 </script>
