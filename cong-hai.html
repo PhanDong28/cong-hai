@@ -130,6 +130,12 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .sg{flex:1;padding:11px 8px;border-radius:11px;border:none;font-size:15px;font-weight:700;font-family:var(--font);cursor:pointer;background:none;color:var(--g5);transition:all .18s;min-height:46px}
 .sg.on{background:var(--wh);color:var(--bm);box-shadow:var(--sh1)}
 
+/* FILTER BAR */
+.filter-bar{display:flex;gap:8px;padding:12px 12px 0;flex-wrap:wrap}
+.fb-chip{padding:8px 14px;border-radius:24px;border:2px solid var(--g7);background:var(--wh);font-size:13px;font-weight:700;color:var(--g4);cursor:pointer;font-family:var(--font);transition:all .15s}
+.fb-chip.on{background:var(--bm);border-color:var(--bm);color:#fff}
+.fb-chip:active{opacity:.7}
+
 /* ATTENDANCE */
 .mnav{display:flex;align-items:center;justify-content:space-between;padding:14px 14px 10px}
 .mnav .ml{font-size:17px;font-weight:800;color:var(--g1)}
@@ -189,7 +195,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .hii .bt{font-size:12px;color:var(--g5);margin-top:3px;font-weight:600}
 .hmoney{font-size:15px;font-weight:800;color:var(--gn)}
 
-/* ADVANCE (tạm ứng) */
+/* ADVANCE */
 .adv-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1.5px solid var(--g8)}
 .adv-item:last-child{border-bottom:none}
 .adv-ico{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--pup),#ede9fe);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
@@ -213,13 +219,16 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .si-row{font-size:14px;color:var(--g3);font-weight:600;padding:3px 0;border-bottom:1px solid var(--g8)}
 .si-row:last-child{border-bottom:none}
 .si-row strong{color:var(--g1);font-weight:800}
-/* advance rows inside salary */
 .si-adv-row{font-size:14px;font-weight:700;padding:6px 0;border-bottom:1px solid var(--g8);display:flex;align-items:center;justify-content:space-between}
 .si-adv-row:last-child{border-bottom:none}
 .si-net{display:flex;align-items:center;justify-content:space-between;padding:10px 0 0;margin-top:6px;border-top:2px solid var(--g7)}
 .si-net-lbl{font-size:14px;font-weight:700;color:var(--g4)}
 .si-net-val{font-size:20px;font-weight:900}
 .si-net-val.positive{color:var(--gn)}.si-net-val.zero{color:var(--g5)}
+
+/* PHIEU LUONG BUTTON */
+.phieu-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:10px;background:var(--bp);border:1.5px solid var(--bx);font-size:12px;font-weight:800;color:var(--bm);cursor:pointer;font-family:var(--font);margin-top:10px}
+.phieu-btn:active{opacity:.7}
 
 /* TAGS */
 .tag{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:800}
@@ -458,7 +467,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
         <button class="qa-btn ph on" id="qa-ph" onclick="setQaMode('ph')">🌾 Hái</button>
         <button class="qa-btn pt" id="qa-pt" onclick="setQaMode('pt')">💼 Thường</button>
         <button class="qa-btn vn" id="qa-vn" onclick="setQaMode('vn')">✗ Vắng</button>
-        <button class="qa-btn bulk" onclick="bulkAttend()" title="Điểm danh tất cả chưa điểm theo loại đang chọn">✓ Tất cả</button>
+        <button class="qa-btn bulk" onclick="bulkAttend()">✓ Tất cả</button>
       </div>
       <div class="qa-workers" id="qa-workers"></div>
     </div>
@@ -489,13 +498,17 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
       </div>
     </div>
     <div class="card"><div class="ch"><h2>📊 Tổng tháng này</h2></div><div class="cb" id="hv-summary"></div></div>
+
+    <!-- FILTER BAR for harvest -->
+    <div class="filter-bar" id="hv-filter-bar"></div>
+
     <div class="card" style="margin-bottom:14px">
       <div class="ch"><h2>📋 Danh sách</h2><span id="hv-count" style="font-size:13px;color:var(--g5);font-weight:700"></span></div>
       <div class="cb" id="hvlist"></div>
     </div>
   </div>
 
-  <!-- ADVANCE (Tạm ứng) -->
+  <!-- ADVANCE -->
   <div class="sec" id="sec-advance">
     <div class="card">
       <div class="ch"><h2>➕ Ghi tạm ứng</h2></div>
@@ -509,13 +522,10 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
         <button class="btn btn-pu" onclick="addAdvance()">💸 Ghi tạm ứng</button>
       </div>
     </div>
-
-    <!-- Summary by worker this month -->
     <div class="card">
       <div class="ch"><h2>📊 Tổng tạm ứng tháng này</h2></div>
       <div class="cb" id="adv-summary"></div>
     </div>
-
     <div class="card" style="margin-bottom:14px">
       <div class="ch">
         <h2>📋 Danh sách</h2>
@@ -545,7 +555,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
         <div class="mc pu"><div class="lb">Tổng tạm ứng</div><div class="vl" id="sadv-total">0đ</div><div class="ut">đã ứng</div></div>
       </div>
       <div style="padding:10px 12px 0;display:flex;gap:8px">
-        <button class="btn btn-out btn-sm" style="flex:1" onclick="printSalary()">🖨️ In bảng lương</button>
+        <button class="btn btn-br btn-sm" style="flex:1" onclick="printSalaryMonth()">🖨️ In bảng lương tháng này</button>
       </div>
       <div class="card" style="margin-bottom:14px"><div class="ch"><h2>💰 Chi tiết lương</h2></div><div class="cb" id="slist"></div></div>
     </div>
@@ -698,7 +708,6 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
   </div>
 </div>
 
-<!-- PRINT AREA (hidden, shown only when printing) -->
 <div id="print-area"></div>
 
 <script type="module">
@@ -706,9 +715,9 @@ import { initializeApp, getApps, deleteApp } from 'https://www.gstatic.com/fireb
 import { getFirestore, doc, setDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 const FB_CONFIG={apiKey:"AIzaSyB9gclYExZtnkJshazv4liTg4s4jhB_wQ0",authDomain:"pythontest-393209.firebaseapp.com",projectId:"pythontest-393209",storageBucket:"pythontest-393209.firebasestorage.app",messagingSenderId:"899971728736",appId:"1:899971728736:web:8c6dbc138e3ab1d243ca05"};
-const FB_APP_NAME="conghai-v8";
-const LS_DATA="conghai_data_v8";
-const LS_UI="conghai_ui_v8";
+const FB_APP_NAME="conghai-v9";
+const LS_DATA="conghai_data_v9";
+const LS_UI="conghai_ui_v9";
 
 // ── STATE ──
 let workers=[], attendance={}, harvests=[], advances=[];
@@ -720,6 +729,9 @@ let fbApp=null, fbDb=null, fbGroup='nong-trai-01';
 let syncTimer=null, unsubFb=null;
 let qaMode='ph';
 
+// ✅ NEW: Harvest filter state
+let hvFilterWorker='all', hvFilterType='all';
+
 const DEVICE_ID=Math.random().toString(36).slice(2,10);
 let localVersion=0, lastPushVer=0, isFirstSnap=true;
 
@@ -728,7 +740,6 @@ const TITLES={home:'Tổng hợp',att:'Điểm danh',harvest:'Sản lượng',ad
 const CYCLE=['ph','pt','hh','ht','vn',''];
 const MN=['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
 const DOW_VN=['CN','T2','T3','T4','T5','T6','T7'];
-// Default rates used as fallback if worker has no rates (migration safety)
 const DEF={thuong:300000,hai:350000,cf:5000,pp:80000};
 
 // ── UTILS ──
@@ -742,17 +753,15 @@ const dim=(y,m)=>new Date(y,m,0).getDate();
 const dow=(y,m,d)=>new Date(y+'-'+p(m)+'-'+p(d)).getDay();
 const isAdmin=()=>curUser?.role==='admin';
 
-// ✅ FIX: getRate uses worker's own rates with DEF fallback (migration safe)
 function getRate(w,type){
   const r=w.rates||{};
-  if(type==='thuong') return r.thuong||DEF.thuong;
-  if(type==='hai')    return r.hai||DEF.hai;
-  if(type==='coffee') return r.cf||DEF.cf;
-  if(type==='pepper') return r.pp||DEF.pp;
+  if(type==='thuong') return Number(r.thuong)||DEF.thuong;
+  if(type==='hai')    return Number(r.hai)||DEF.hai;
+  if(type==='coffee') return Number(r.cf)||DEF.cf;
+  if(type==='pepper') return Number(r.pp)||DEF.pp;
   return 0;
 }
 
-// ✅ FIX: isWOff uses worker's offDays with [0,6] fallback
 function isWOff(w,y,m,d){
   const off=Array.isArray(w.offDays)?w.offDays:[0,6];
   return off.includes(dow(y,m,d));
@@ -771,21 +780,31 @@ function cntDays(wid,ymStr){
   return{hai,th,vn};
 }
 
-// ── SALARY CALC (any month) ──
+// ✅ FIX CORE: calcSalForMonth — correctly computes kg salary for ALL worker types
 function calcSalForMonth(w,ymStr){
   const d=cntDays(w.id,ymStr);
   const rT=getRate(w,'thuong'),rH=getRate(w,'hai');
   const rC=getRate(w,'coffee'),rP=getRate(w,'pepper');
-  const dSal=w.type==='kg'?0:d.hai*rH+d.th*rT;
-  const wh=harvests.filter(h=>h.wid===w.id&&h.date.startsWith(ymStr));
-  const cfKg=wh.filter(h=>h.type==='coffee').reduce((s,h)=>s+h.kg,0);
-  const ppKg=wh.filter(h=>h.type==='pepper').reduce((s,h)=>s+h.kg,0);
-  const kSal=w.type==='day'?0:cfKg*rC+ppKg*rP;
+  const wType=w.type||'both';
+
+  // Lương theo công (ngày làm)
+  const dSal=(wType==='kg') ? 0 : (d.hai*rH + d.th*rT);
+
+  // Lương theo kg sản lượng — ✅ FIX: filter correctly by wid AND type
+  const wHarvests=harvests.filter(h=>h.wid===w.id && h.date.startsWith(ymStr));
+  const cfKg=wHarvests.filter(h=>h.type==='coffee').reduce((s,h)=>s+(Number(h.kg)||0),0);
+  const ppKg=wHarvests.filter(h=>h.type==='pepper').reduce((s,h)=>s+(Number(h.kg)||0),0);
+
+  // ✅ FIX: Only skip kg salary when type is 'day'
+  const kSal=(wType==='day') ? 0 : (cfKg*rC + ppKg*rP);
+
   const gross=dSal+kSal;
+
   // Tạm ứng tháng này
-  const advAmt=advances.filter(a=>a.wid===w.id&&a.date.startsWith(ymStr)).reduce((s,a)=>s+a.amount,0);
+  const wAdv=advances.filter(a=>a.wid===w.id&&a.date.startsWith(ymStr));
+  const advAmt=wAdv.reduce((s,a)=>s+(Number(a.amount)||0),0);
   const net=gross-advAmt;
-  return{d,dSal,cfKg,ppKg,kSal,gross,advAmt,net,rT,rH,rC,rP};
+  return{d,dSal,cfKg,ppKg,kSal,gross,advAmt,net,rT,rH,rC,rP,wAdv,wType};
 }
 const calcSal=w=>calcSalForMonth(w,ym());
 
@@ -804,23 +823,18 @@ function saveLocal(){
 }
 function loadLocal(){try{const r=localStorage.getItem(LS_DATA);return r?JSON.parse(r):null;}catch(e){return null;}}
 
-// ✅ FIX: Migration — ensure all workers have rates & offDays
 function migrateWorkers(ws){
   if(!Array.isArray(ws))return[];
   return ws.map(w=>{
-    // If worker has no rates at all, give them defaults
     if(!w.rates){
       w.rates={thuong:DEF.thuong,hai:DEF.hai,cf:DEF.cf,pp:DEF.pp};
     } else {
-      // Fill any missing rate keys
-      w.rates.thuong=w.rates.thuong||DEF.thuong;
-      w.rates.hai=w.rates.hai||DEF.hai;
-      w.rates.cf=w.rates.cf||DEF.cf;
-      w.rates.pp=w.rates.pp||DEF.pp;
+      w.rates.thuong=Number(w.rates.thuong)||DEF.thuong;
+      w.rates.hai=Number(w.rates.hai)||DEF.hai;
+      w.rates.cf=Number(w.rates.cf)||DEF.cf;
+      w.rates.pp=Number(w.rates.pp)||DEF.pp;
     }
-    // If worker has no offDays, default to [0,6]
     if(!Array.isArray(w.offDays)) w.offDays=[0,6];
-    // If worker has no type, default to 'both'
     if(!w.type) w.type='both';
     return w;
   });
@@ -828,11 +842,9 @@ function migrateWorkers(ws){
 
 function applyData(d,fromRemote=false){
   if(!d)return;
-  // ✅ Always migrate workers on load
   if(Array.isArray(d.workers))   workers=migrateWorkers(d.workers);
   if(d.attendance&&typeof d.attendance==='object') attendance=d.attendance;
   if(Array.isArray(d.harvests))  harvests=d.harvests;
-  // ✅ advances — new field, safe default
   if(Array.isArray(d.advances))  advances=d.advances; else advances=[];
   if(d.accounts) accounts=d.accounts;
   if(fromRemote&&d.version) localVersion=d.version;
@@ -840,7 +852,7 @@ function applyData(d,fromRemote=false){
 function saveUI(){try{localStorage.setItem(LS_UI,JSON.stringify({fbGroup,session:curUser?{username:curUser.username}:null}));}catch(e){}}
 function loadUI(){try{return JSON.parse(localStorage.getItem(LS_UI)||'null');}catch(e){return null;}}
 
-// ── ADVANCE (TẠM ỨNG) ──
+// ── ADVANCE ──
 window.addAdvance=function(){
   const wid=document.getElementById('adv-wk').value;
   const dt=document.getElementById('adv-dt').value;
@@ -868,7 +880,7 @@ function renderAdvSummary(){
   const mAdv=advances.filter(a=>a.date.startsWith(ym()));
   if(!mAdv.length){el.innerHTML='<div class="empty">Chưa có tạm ứng tháng này</div>';return;}
   const byW={};
-  mAdv.forEach(a=>{byW[a.wid]=(byW[a.wid]||0)+a.amount;});
+  mAdv.forEach(a=>{byW[a.wid]=(byW[a.wid]||0)+(Number(a.amount)||0);});
   const total=Object.values(byW).reduce((s,v)=>s+v,0);
   el.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;margin-bottom:10px;border-bottom:1.5px solid var(--g7)">
     <span style="font-size:14px;font-weight:700;color:var(--g4)">Tổng tạm ứng tháng này</span>
@@ -904,7 +916,6 @@ function renderAdvList(){
 }
 
 // ── QUICK ATTEND ──
-// ✅ FIX: Show warning if viewing a different month than today
 function updateQaMonthWarn(){
   const now=new Date();
   const isCurrentMonth=(curY===now.getFullYear()&&curM===now.getMonth()+1);
@@ -915,7 +926,6 @@ window.setQaMode=function(m){
   qaMode=m;
   ['ph','pt','vn'].forEach(k=>{const el=document.getElementById('qa-'+k);if(el)el.classList.toggle('on',k===m);});
 };
-// ✅ NEW: Bulk attend — set all workers not yet attended today
 window.bulkAttend=function(){
   const td=tod();
   const notYet=workers.filter(w=>!((attendance[w.id]||{})[td]));
@@ -970,12 +980,11 @@ window.addWorker=function(){
     offDays:Array.from(document.querySelectorAll('#new-offday-row .odd-btn.on')).map(b=>+b.dataset.dow)
   };
   workers.push(newW);
-  // Reset form
   document.getElementById('wname').value='';
   ['w-r-thuong','w-r-hai','w-r-cf','w-r-pp'].forEach(id=>{document.getElementById(id).value='';});
   document.querySelectorAll('#new-offday-row .odd-btn').forEach(b=>b.classList.toggle('on',b.dataset.dow==='0'||b.dataset.dow==='6'));
   document.getElementById('panel-addworker').classList.remove('open');
-  saveLocal();scheduleSync();renderWList();renderHvWk();renderAdvWk();
+  saveLocal();scheduleSync();renderWList();renderHvWk();renderAdvWk();renderHvFilterBar();
   toast('✓ Đã thêm '+name);vibrate(40);
 };
 window.rmWorker=function(id){
@@ -986,7 +995,7 @@ window.rmWorker=function(id){
   delete attendance[id];
   harvests=harvests.filter(h=>h.wid!==id);
   advances=advances.filter(a=>a.wid!==id);
-  renderWList();saveLocal();scheduleSync();toast('Đã xóa');
+  renderWList();renderHvFilterBar();saveLocal();scheduleSync();toast('Đã xóa');
 };
 window.toggleWEdit=function(id){
   const el=document.getElementById('wc-'+id);if(!el)return;
@@ -1025,8 +1034,8 @@ function renderWList(){
           <div class="wcard-chips">
             <span class="chip chip-t">Thường ${fmt(r.thuong)}đ</span>
             <span class="chip chip-h">Hái ${fmt(r.hai)}đ</span>
-            <span class="chip chip-cf">CF ${fmt(r.cf)}đ</span>
-            <span class="chip chip-pp">Tiêu ${fmt(r.pp)}đ</span>
+            <span class="chip chip-cf">CF ${fmt(r.cf)}đ/kg</span>
+            <span class="chip chip-pp">Tiêu ${fmt(r.pp)}đ/kg</span>
           </div>
         </div>
         ${isAdmin()?`<div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
@@ -1084,13 +1093,14 @@ function setSyncUI(s){
 }
 function setOffline(v){document.getElementById('offline-banner').classList.toggle('on',v);}
 
-// ✅ FIX: Badge shows count of missing workers
+// ✅ Badge: shows count of missing workers TODAY
 function updateAttBadge(){
   const b=document.getElementById('badge-att');if(!b)return;
   const td=tod();
   const missing=workers.filter(w=>!((attendance[w.id]||{})[td]));
-  b.classList.toggle('on',missing.length>0&&workers.length>0);
-  b.textContent=missing.length>0?missing.length:'';
+  const count=missing.length;
+  b.classList.toggle('on',count>0&&workers.length>0);
+  b.textContent=count>0?String(count):'';
 }
 
 function buildPayload(){const v=Date.now();lastPushVer=v;localVersion=v;return{...buildObj(),version:v,device:DEVICE_ID};}
@@ -1145,7 +1155,7 @@ function scheduleSync(){saveLocal();if(!fbDb)return;clearTimeout(syncTimer);sync
 // ── BACKUP ──
 window.exportJSON=function(){
   try{
-    const data={version:11,exportedAt:new Date().toISOString(),workers,attendance,harvests,advances};
+    const data={version:12,exportedAt:new Date().toISOString(),workers,attendance,harvests,advances};
     const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob),a=document.createElement('a');
     const now=new Date();
@@ -1155,19 +1165,17 @@ window.exportJSON=function(){
     toast('✓ Xuất file thành công!');
   }catch(e){toast('Lỗi: '+e.message);}
 };
-// ✅ FIX: importJSON migrates workers automatically
 window.importJSON=function(event){
   const file=event.target.files[0];if(!file)return;
   const reader=new FileReader();
   reader.onload=function(e){
     try{const d=JSON.parse(e.target.result);if(!d.workers)throw new Error('File không hợp lệ');
       if(!confirm(`Nhập backup?\n${d.workers.length} công nhân, ${d.harvests?.length||0} sản lượng, ${d.advances?.length||0} tạm ứng\nDữ liệu hiện tại sẽ bị ghi đè!`))return;
-      // ✅ Migrate workers from old backups
       workers=migrateWorkers(d.workers||[]);
       attendance=d.attendance||{};
       harvests=d.harvests||[];
-      advances=d.advances||[]; // safe default for old backups without advances
-      saveLocal();scheduleSync();refreshActive();renderWList();renderHvWk();renderAdvWk();
+      advances=d.advances||[];
+      saveLocal();scheduleSync();refreshActive();renderWList();renderHvWk();renderAdvWk();renderHvFilterBar();
       const log=document.getElementById('backup-log');if(log)log.textContent='✓ Nhập từ '+(d.exportedAt?new Date(d.exportedAt).toLocaleDateString('vi-VN'):'?');
       toast('✓ Nhập thành công!');
     }catch(err){toast('Lỗi: '+err.message);}
@@ -1175,46 +1183,125 @@ window.importJSON=function(event){
   reader.readAsText(file);event.target.value='';
 };
 
-// ── PRINT SALARY ──
-window.printSalary=function(){
+// ── ✅ NEW: PRINT PHIEU LUONG (individual slip) ──
+window.printPhieuLuong=function(wid,ymStr){
+  const w=workers.find(x=>x.id===wid);if(!w)return;
+  const s=calcSalForMonth(w,ymStr);
+  const mnLbl=MN[(parseInt(ymStr.split('-')[1])-1)]+' '+ymStr.split('-')[0];
+  const wType=w.type||'both';
+  const hasDay=wType!=='kg', hasKg=wType!=='day';
+
+  let lines='';
+  if(hasDay){
+    if(s.d.hai>0) lines+=`<tr><td>Công hái</td><td>${s.d.hai} ngày × ${fmt(s.rH)}đ</td><td class="num">${fmt(s.d.hai*s.rH)}đ</td></tr>`;
+    if(s.d.th>0)  lines+=`<tr><td>Công thường</td><td>${s.d.th} ngày × ${fmt(s.rT)}đ</td><td class="num">${fmt(s.d.th*s.rT)}đ</td></tr>`;
+  }
+  if(hasKg){
+    if(s.cfKg>0)  lines+=`<tr><td>Cà phê</td><td>${s.cfKg.toFixed(1)} kg × ${fmt(s.rC)}đ</td><td class="num">${fmt(s.cfKg*s.rC)}đ</td></tr>`;
+    if(s.ppKg>0)  lines+=`<tr><td>Tiêu</td><td>${s.ppKg.toFixed(1)} kg × ${fmt(s.rP)}đ</td><td class="num">${fmt(s.ppKg*s.rP)}đ</td></tr>`;
+  }
+  let advLines='';
+  s.wAdv.forEach(a=>{advLines+=`<tr style="color:#6d28d9"><td>Tạm ứng</td><td>${a.date}${a.note?' · '+a.note:''}</td><td class="num" style="color:#6d28d9">−${fmt(a.amount)}đ</td></tr>`;});
+
+  const html=`<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><title>Phiếu lương ${w.name}</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800;900&display=swap');
+body{font-family:'Be Vietnam Pro',Arial,sans-serif;margin:0;padding:20px;color:#1a1108;background:#fff}
+.slip{max-width:380px;margin:0 auto;border:2px solid #e0d4c4;border-radius:16px;overflow:hidden}
+.slip-head{background:linear-gradient(135deg,#5c3d11,#7c5220);padding:20px 22px;color:#fff}
+.slip-head h1{font-size:18px;font-weight:900;margin-bottom:2px}
+.slip-head p{font-size:13px;opacity:.65;font-weight:600}
+.slip-name{font-size:22px;font-weight:900;padding:18px 22px 10px;border-bottom:2px solid #f5efe6}
+.slip-body{padding:14px 22px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td{padding:7px 0;border-bottom:1px solid #f5efe6;font-weight:600}
+.num{text-align:right;font-weight:800}
+.gross-row td{font-size:15px;font-weight:800;border-top:2px solid #e0d4c4;padding-top:12px;border-bottom:none}
+.net-row{background:#e8f5e8;margin:12px -22px;padding:14px 22px;display:flex;justify-content:space-between;align-items:center}
+.net-lbl{font-size:14px;font-weight:700;color:#2d6a2d}
+.net-val{font-size:26px;font-weight:900;color:#2d6a2d;letter-spacing:-1px}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:16px 22px;border-top:2px solid #f5efe6}
+.sig-box{text-align:center;font-size:12px;color:#8c7560;font-weight:700}
+.sig-box::before{content:'';display:block;height:40px;border-bottom:1px solid #b09880;margin-bottom:6px}
+@media print{body{padding:0}.slip{border:none;border-radius:0;max-width:100%}}
+</style></head><body>
+<div class="slip">
+  <div class="slip-head">
+    <h1>🌿 PHIẾU LƯƠNG</h1>
+    <p>${mnLbl} · Xuất ngày ${new Date().toLocaleDateString('vi-VN')}</p>
+  </div>
+  <div class="slip-name">${w.name}</div>
+  <div class="slip-body">
+    <table>
+      ${lines||'<tr><td colspan="3" style="text-align:center;color:#8c7560">Chưa có dữ liệu tháng này</td></tr>'}
+      ${advLines}
+      <tr class="gross-row"><td colspan="2">Tổng lương gộp</td><td class="num" style="color:#2d6a2d">${fmt(s.gross)}đ</td></tr>
+    </table>
+    <div class="net-row">
+      <span class="net-lbl">= Còn nhận thực tế</span>
+      <span class="net-val">${fmt(s.net)}đ</span>
+    </div>
+  </div>
+  <div class="sig">
+    <div class="sig-box">Kế toán / Quản lý</div>
+    <div class="sig-box">Người nhận (ký tên)</div>
+  </div>
+</div>
+<script>window.onload=()=>setTimeout(()=>window.print(),300)<\/script>
+</body></html>`;
+  const w2=window.open('','_blank');w2.document.write(html);w2.document.close();
+};
+
+// ── ✅ NEW: PRINT SALARY TABLE (full month) ──
+window.printSalaryMonth=function(){
   const ymStr=salYm();
   const rows=workers.map(w=>({w,...calcSalForMonth(w,ymStr)}));
   rows.sort((a,b)=>b.gross-a.gross);
   const totalGross=rows.reduce((s,r)=>s+r.gross,0);
   const totalAdv=rows.reduce((s,r)=>s+r.advAmt,0);
   const totalNet=rows.reduce((s,r)=>s+r.net,0);
+  const mnLbl=MN[salM-1]+' '+salY;
 
   const html=`<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8">
-<title>Bảng lương ${MN[salM-1]} ${salY}</title>
+<title>Bảng lương ${mnLbl}</title>
 <style>
-body{font-family:'Be Vietnam Pro',Arial,sans-serif;margin:20px;color:#1a1108;font-size:14px}
-h1{font-size:20px;font-weight:900;margin-bottom:4px;color:#5c3d11}
-.sub{color:#8c7560;font-size:13px;margin-bottom:20px}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{background:#5c3d11;color:#fff;padding:10px 10px;text-align:left;font-weight:800;font-size:12px}
-td{padding:9px 10px;border-bottom:1px solid #e0d4c4;vertical-align:top}
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800;900&display=swap');
+body{font-family:'Be Vietnam Pro',Arial,sans-serif;margin:20px;color:#1a1108;font-size:13px}
+h1{font-size:22px;font-weight:900;margin-bottom:4px;color:#5c3d11}
+.sub{color:#8c7560;font-size:13px;margin-bottom:20px;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#5c3d11;color:#fff;padding:10px 8px;text-align:left;font-weight:800;font-size:11px}
+td{padding:8px 8px;border-bottom:1px solid #e0d4c4;vertical-align:middle;font-weight:600}
 tr:nth-child(even) td{background:#faf6f0}
 .num{text-align:right;font-weight:700}
 .total-row td{background:#fdf4e7;font-weight:800;border-top:2px solid #5c3d11}
-.net{color:#2d6a2d;font-weight:900}
-.adv{color:#6d28d9}
-.footer{margin-top:30px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;font-size:13px}
-.sig-box{border-top:1px solid #b09880;padding-top:8px;text-align:center;color:#8c7560}
-@media print{body{margin:10px}}
+.net{color:#2d6a2d;font-weight:900}.adv{color:#6d28d9}
+.footer{margin-top:32px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;font-size:12px}
+.sig-box{border-top:1px solid #b09880;padding-top:8px;text-align:center;color:#8c7560;font-weight:700}
+.summary{display:flex;gap:20px;margin-bottom:18px}
+.sum-box{background:#f5efe6;border-radius:10px;padding:12px 18px;text-align:center}
+.sum-box .sl{font-size:11px;color:#8c7560;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.sum-box .sv{font-size:20px;font-weight:900;color:#5c3d11}
+@media print{body{margin:8px}}
 </style></head><body>
-<h1>🌿 Bảng lương — ${MN[salM-1]} ${salY}</h1>
-<div class="sub">Xuất lúc ${new Date().toLocaleString('vi-VN')} · Tổng: ${workers.length} công nhân</div>
+<h1>🌿 Bảng lương — ${mnLbl}</h1>
+<div class="sub">Xuất ngày ${new Date().toLocaleString('vi-VN')} · ${workers.length} công nhân</div>
+<div class="summary">
+  <div class="sum-box"><div class="sl">Tổng lương gộp</div><div class="sv">${fmt(totalGross)}đ</div></div>
+  <div class="sum-box"><div class="sl">Tổng tạm ứng</div><div class="sv" style="color:#6d28d9">${fmt(totalAdv)}đ</div></div>
+  <div class="sum-box"><div class="sl">Tổng thực nhận</div><div class="sv" style="color:#2d6a2d">${fmt(totalNet)}đ</div></div>
+</div>
 <table>
 <tr>
   <th>#</th><th>Họ tên</th><th>Công hái</th><th>Công thường</th>
   <th>CF (kg)</th><th>Tiêu (kg)</th><th>Lương công</th>
-  <th>Lương kg</th><th>Tổng lương</th><th>Tạm ứng</th><th>Còn nhận</th><th>Ký nhận</th>
+  <th>Lương kg</th><th>Tổng gộp</th><th>Tạm ứng</th><th>Còn nhận</th><th>Ký nhận</th>
 </tr>
 ${rows.map((r,i)=>`<tr>
   <td>${i+1}</td>
   <td style="font-weight:800">${r.w.name}</td>
-  <td class="num">${r.d.hai}</td>
-  <td class="num">${r.d.th}</td>
+  <td class="num">${r.d.hai||0}</td>
+  <td class="num">${r.d.th||0}</td>
   <td class="num">${r.cfKg.toFixed(1)}</td>
   <td class="num">${r.ppKg.toFixed(1)}</td>
   <td class="num">${fmt(r.dSal)}đ</td>
@@ -1222,7 +1309,7 @@ ${rows.map((r,i)=>`<tr>
   <td class="num" style="color:#2d6a2d;font-weight:900">${fmt(r.gross)}đ</td>
   <td class="num adv">${r.advAmt>0?fmt(r.advAmt)+'đ':'—'}</td>
   <td class="num net">${fmt(r.net)}đ</td>
-  <td style="min-width:70px"></td>
+  <td style="min-width:60px"></td>
 </tr>`).join('')}
 <tr class="total-row">
   <td colspan="8" style="text-align:right">Tổng cộng:</td>
@@ -1237,12 +1324,9 @@ ${rows.map((r,i)=>`<tr>
   <div class="sig-box">Kế toán / Quản lý<br><br><br>.............................</div>
   <div class="sig-box">Chủ nông trại<br><br><br>.............................</div>
 </div>
+<script>window.onload=()=>setTimeout(()=>window.print(),400)<\/script>
 </body></html>`;
-
-  const w2=window.open('','_blank');
-  w2.document.write(html);
-  w2.document.close();
-  setTimeout(()=>w2.print(),400);
+  const w2=window.open('','_blank');w2.document.write(html);w2.document.close();
 };
 
 // ── PANEL ──
@@ -1284,7 +1368,6 @@ function enterApp(){
   document.getElementById('admin-sections').style.display=isAdmin()?'block':'none';
   document.getElementById('salary-locked').style.display=isAdmin()?'none':'block';
   document.getElementById('salary-content').style.display=isAdmin()?'block':'none';
-  // Quản lý cũng xem được tạm ứng
   goTab('home');
 }
 window.showChangePw=function(){document.getElementById('changepw-section').style.display='block';}
@@ -1330,7 +1413,7 @@ window.goTab=function(t){
   document.getElementById('screen').scrollTop=0;
   if(t==='home') renderHome();
   else if(t==='att'){renderAtt();renderQaWorkers();updateQaMonthWarn();}
-  else if(t==='harvest'){renderHvWk();renderHvList();renderHvSummary();}
+  else if(t==='harvest'){renderHvWk();renderHvList();renderHvSummary();renderHvFilterBar();}
   else if(t==='advance'){renderAdvWk();renderAdvList();renderAdvSummary();}
   else if(t==='salary'){if(isAdmin()){updSalML();renderSal();}}
   else if(t==='settings') renderWList();
@@ -1394,19 +1477,39 @@ window.addHarvest=function(){
   const w=workers.find(x=>x.id===wid);const rate=w?getRate(w,hvType):0;
   harvests.push({id:Date.now()+'',wid,type:hvType,date:dt,kg,...(note?{note}:{})});
   document.getElementById('hvnote').value='';
-  saveLocal();scheduleSync();renderHvList();renderHvSummary();
-  toast(`✓ ${kg}kg = ${fmt(kg*rate)}đ`);vibrate(40);
+  saveLocal();scheduleSync();renderHvList();renderHvSummary();renderHvFilterBar();
+  toast(`✓ ${kg}kg ${hvType==='coffee'?'cà phê':'tiêu'} = ${fmt(kg*rate)}đ`);vibrate(40);
 };
 window.rmHarvest=function(id){
   harvests=harvests.filter(h=>h.id!==id);saveLocal();scheduleSync();renderHvList();renderHvSummary();toast('Đã xóa');
 };
+
+// ✅ NEW: Filter bar for harvest
+function renderHvFilterBar(){
+  const el=document.getElementById('hv-filter-bar');if(!el)return;
+  let html=`<button class="fb-chip${hvFilterWorker==='all'?' on':''}" onclick="setHvFilter('worker','all')">Tất cả</button>`;
+  workers.forEach(w=>{
+    html+=`<button class="fb-chip${hvFilterWorker===w.id?' on':''}" onclick="setHvFilter('worker','${w.id}')">${w.name.split(' ').pop()}</button>`;
+  });
+  html+=`<button class="fb-chip${hvFilterType==='all'?' on':''}" style="margin-left:6px" onclick="setHvFilter('type','all')">☕🌿 Tất cả</button>`;
+  html+=`<button class="fb-chip${hvFilterType==='coffee'?' on':''}" onclick="setHvFilter('type','coffee')">☕ CF</button>`;
+  html+=`<button class="fb-chip${hvFilterType==='pepper'?' on':''}" onclick="setHvFilter('type','pepper')">🌿 Tiêu</button>`;
+  el.innerHTML=html;
+}
+window.setHvFilter=function(key,val){
+  if(key==='worker') hvFilterWorker=val;
+  else hvFilterType=val;
+  renderHvFilterBar();renderHvList();
+};
+
 function renderHvSummary(){
   const el=document.getElementById('hv-summary');if(!el)return;
   const mh=harvests.filter(h=>h.date.startsWith(ym()));
   let cfKg=0,ppKg=0,cfVal=0,ppVal=0;
   mh.forEach(h=>{
     const w=workers.find(x=>x.id===h.wid);const r=w?getRate(w,h.type):(h.type==='coffee'?DEF.cf:DEF.pp);
-    if(h.type==='coffee'){cfKg+=h.kg;cfVal+=h.kg*r;}else{ppKg+=h.kg;ppVal+=h.kg*r;}
+    if(h.type==='coffee'){cfKg+=Number(h.kg)||0;cfVal+=(Number(h.kg)||0)*r;}
+    else{ppKg+=Number(h.kg)||0;ppVal+=(Number(h.kg)||0)*r;}
   });
   el.innerHTML=`<div class="r2">
     <div style="background:#fff3e0;border-radius:15px;padding:14px;text-align:center;border:1.5px solid #ffe0b2">
@@ -1421,11 +1524,17 @@ function renderHvSummary(){
     </div>
   </div>`;
 }
+
 function renderHvList(){
   const el=document.getElementById('hvlist');if(!el)return;
-  const mh=[...harvests].filter(h=>h.date.startsWith(ym())).sort((a,b)=>b.date.localeCompare(a.date));
+  let mh=[...harvests].filter(h=>h.date.startsWith(ym()));
+  // ✅ Apply filters
+  if(hvFilterWorker!=='all') mh=mh.filter(h=>h.wid===hvFilterWorker);
+  if(hvFilterType!=='all')   mh=mh.filter(h=>h.type===hvFilterType);
+  mh.sort((a,b)=>b.date.localeCompare(a.date));
+
   const cnt=document.getElementById('hv-count');if(cnt)cnt.textContent=mh.length?mh.length+' bản ghi':'';
-  if(!mh.length){el.innerHTML='<div class="empty">Chưa có sản lượng tháng này</div>';return;}
+  if(!mh.length){el.innerHTML='<div class="empty">Chưa có sản lượng'+(hvFilterWorker!=='all'||hvFilterType!=='all'?' (theo bộ lọc)':' tháng này')+'</div>';return;}
   el.innerHTML=mh.map(h=>{
     const w=workers.find(x=>x.id===h.wid)||{name:'?'};const cf=h.type==='coffee';
     const ww=workers.find(x=>x.id===h.wid);const rate=ww?getRate(ww,h.type):(cf?DEF.cf:DEF.pp);
@@ -1436,14 +1545,14 @@ function renderHvList(){
         <div class="bt">${h.date} · <span class="tag ${cf?'tcf':'tpp'}">${cf?'Cà phê':'Tiêu'}</span>${h.note?` · <em style="color:var(--g5)">${h.note}</em>`:''}</div>
       </div>
       <div style="text-align:right;flex-shrink:0">
-        <div class="hmoney">${fmt(h.kg*rate)}đ</div>
+        <div class="hmoney">${fmt((Number(h.kg)||0)*rate)}đ</div>
         <button onclick="rmHarvest('${h.id}')" style="font-size:12px;color:var(--g5);background:none;border:none;cursor:pointer;font-family:var(--font);margin-top:4px;padding:4px;font-weight:700">Xóa</button>
       </div>
     </div>`;
   }).join('');
 }
 
-// ── SALARY — uses salYm(), shows gross / advance / net ──
+// ── SALARY ──
 function renderSal(){
   if(!isAdmin())return;
   const el=document.getElementById('slist');if(!el)return;
@@ -1458,20 +1567,18 @@ function renderSal(){
   document.getElementById('stotal').textContent=fmt(totGross-totAdv)+'đ';
   document.getElementById('sadv-total').textContent=fmt(totAdv)+'đ';
   el.innerHTML=rows.map(r=>{
-    const hasDay=r.w.type!=='kg',hasKg=r.w.type!=='day';
+    const hasDay=r.wType!=='kg',hasKg=r.wType!=='day';
     const lines=[];
     if(hasDay){
       if(r.d.hai>0) lines.push(`Hái ${r.d.hai} ng × ${fmt(r.rH)}đ = <strong>${fmt(r.d.hai*r.rH)}đ</strong>`);
       if(r.d.th>0)  lines.push(`Thường ${r.d.th} ng × ${fmt(r.rT)}đ = <strong>${fmt(r.d.th*r.rT)}đ</strong>`);
-      if(r.d.hai===0&&r.d.th===0) lines.push('Chưa có công tháng này');
+      if(r.d.hai===0&&r.d.th===0) lines.push('<span style="color:var(--g5)">Chưa có công tháng này</span>');
     }
     if(hasKg){
       if(r.cfKg>0)  lines.push(`CF ${r.cfKg.toFixed(1)}kg × ${fmt(r.rC)}đ = <strong>${fmt(r.cfKg*r.rC)}đ</strong>`);
       if(r.ppKg>0)  lines.push(`Tiêu ${r.ppKg.toFixed(1)}kg × ${fmt(r.rP)}đ = <strong>${fmt(r.ppKg*r.rP)}đ</strong>`);
-      if(r.cfKg===0&&r.ppKg===0) lines.push('Chưa có sản lượng kg');
+      if(r.cfKg===0&&r.ppKg===0) lines.push('<span style="color:var(--g5)">Chưa có sản lượng kg</span>');
     }
-    // Advance rows
-    const wAdvs=advances.filter(a=>a.wid===r.w.id&&a.date.startsWith(ymStr));
 
     return `<div class="si">
       <div class="si-t">
@@ -1489,8 +1596,8 @@ function renderSal(){
       </div>
       <div class="si-g">
         ${lines.map(l=>`<div class="si-row">${l}</div>`).join('')}
-        ${wAdvs.length?`<div style="font-size:12px;color:var(--g5);font-weight:700;margin:8px 0 4px">💸 Tạm ứng:</div>`:''}
-        ${wAdvs.map(a=>`<div class="si-adv-row">
+        ${r.wAdv.length?`<div style="font-size:12px;color:var(--g5);font-weight:700;margin:8px 0 4px">💸 Tạm ứng:</div>`:''}
+        ${r.wAdv.map(a=>`<div class="si-adv-row">
           <span style="color:var(--pu)">${a.date}${a.note?' · '+a.note:''}</span>
           <span style="color:var(--pu);font-weight:800">−${fmt(a.amount)}đ</span>
         </div>`).join('')}
@@ -1499,6 +1606,8 @@ function renderSal(){
           <span class="si-net-val ${r.net>0?'positive':'zero'}">${fmt(r.net)}đ</span>
         </div>
       </div>
+      <!-- ✅ NEW: In phiếu lương cho từng người -->
+      <button class="phieu-btn" onclick="printPhieuLuong('${r.w.id}','${ymStr}')">🖨 In phiếu lương</button>
     </div>`;
   }).join('');
 }
@@ -1511,8 +1620,8 @@ function renderWeekChart(){
   for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);
     const key=d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
     const dl=DOW_VN[d.getDay()];
-    const cfKg=harvests.filter(h=>h.type==='coffee'&&h.date===key).reduce((s,h)=>s+h.kg,0);
-    const ppKg=harvests.filter(h=>h.type==='pepper'&&h.date===key).reduce((s,h)=>s+h.kg,0);
+    const cfKg=harvests.filter(h=>h.type==='coffee'&&h.date===key).reduce((s,h)=>s+(Number(h.kg)||0),0);
+    const ppKg=harvests.filter(h=>h.type==='pepper'&&h.date===key).reduce((s,h)=>s+(Number(h.kg)||0),0);
     days.push({key,dl,cfKg,ppKg});
   }
   const maxVal=Math.max(...days.map(d=>d.cfKg+d.ppKg),1);
@@ -1535,11 +1644,12 @@ function renderHome(){
   document.getElementById('h-thuong').textContent=tth;
   const now=new Date();
   const lbl=document.getElementById('today-date-lbl');if(lbl)lbl.textContent=now.getDate()+'/'+(now.getMonth()+1);
-  const td=tod();const missing=workers.filter(w=>!((attendance[w.id]||{})[td]));
+  const td=tod();
+  const missing=workers.filter(w=>!((attendance[w.id]||{})[td]));
   const alertEl=document.getElementById('home-alert');
   if(alertEl){
     alertEl.innerHTML=missing.length>0&&workers.length>0
-      ?`<div class="alert-ban warn"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>${missing.length} người chưa điểm danh hôm nay</div>`:'';
+      ?`<div class="alert-ban warn"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>${missing.length} người chưa điểm danh hôm nay — <strong>${missing.map(w=>w.name.split(' ').pop()).join(', ')}</strong></div>`:'';
   }
   updateAttBadge();renderWeekChart();
   const pres=workers.filter(w=>{const s=(attendance[w.id]||{})[td]||'';return s&&s!=='vn';});
@@ -1556,7 +1666,7 @@ function renderHome(){
         return `<div class="hvi" style="padding:10px 0">
           <div class="hico ${cf?'hcf':'hpp'}" style="width:36px;height:36px;font-size:16px">${cf?'☕':'🌿'}</div>
           <div class="hii"><div class="tp" style="font-size:13px">${w.name} — ${h.kg}kg</div><div class="bt">${h.date}</div></div>
-          <div class="hmoney" style="font-size:14px">${fmt(h.kg*rate)}đ</div>
+          <div class="hmoney" style="font-size:14px">${fmt((Number(h.kg)||0)*rate)}đ</div>
         </div>`;}).join('')
     :'<div class="empty">Chưa có sản lượng nào</div>';
 }
