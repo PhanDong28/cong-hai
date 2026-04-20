@@ -10,21 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Warm earth tones — friendly for older eyes */
-  --br:#5c3d11; --bm:#7c5220; --bl2:#a0682a; --bx:#d4944a;
-  --bp:#fdf4e7; --bf:#fff9f0;
-  --gn:#2d6a2d; --gm2:#3d8b3d; --gl2:#52a852; --gx2:#7dd87d;
-  --gp2:#e8f5e8; --gf2:#f4fbf4;
-  --rd:#c0392b; --rp:#fdf0f0;
-  --bl3:#1a5276; --bpl:#e8f4fd;
-  --g1:#1a1108; --g2:#2d2010; --g3:#4a3520; --g4:#6b5340; --g5:#8c7560; --g6:#b09880; --g7:#e0d4c4; --g8:#f5efe6; --g9:#faf6f0;
-  --wh:#fff; --font:'Be Vietnam Pro',sans-serif;
-  --sat:env(safe-area-inset-top,0px); --sab:env(safe-area-inset-bottom,0px);
-  --sal:env(safe-area-inset-left,0px); --sar:env(safe-area-inset-right,0px);
+  --br:#5c3d11;--bm:#7c5220;--bl2:#a0682a;--bx:#d4944a;
+  --bp:#fdf4e7;--bf:#fff9f0;
+  --gn:#2d6a2d;--gm2:#3d8b3d;--gl2:#52a852;--gx2:#7dd87d;
+  --gp2:#e8f5e8;--gf2:#f4fbf4;
+  --rd:#c0392b;--rp:#fdf0f0;
+  --pu:#6d28d9;--pup:#f5f3ff;
+  --bl3:#1a5276;--bpl:#e8f4fd;
+  --g1:#1a1108;--g2:#2d2010;--g3:#4a3520;--g4:#6b5340;--g5:#8c7560;--g6:#b09880;--g7:#e0d4c4;--g8:#f5efe6;--g9:#faf6f0;
+  --wh:#fff;--font:'Be Vietnam Pro',sans-serif;
+  --sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);
+  --sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px);
   --nav-h:68px;
-  --sh1:0 2px 8px rgba(92,61,17,.1);
-  --sh2:0 4px 20px rgba(92,61,17,.12);
-  --sh3:0 8px 32px rgba(92,61,17,.15);
+  --sh1:0 2px 8px rgba(92,61,17,.1);--sh2:0 4px 20px rgba(92,61,17,.12);--sh3:0 8px 32px rgba(92,61,17,.15);
   --rad:20px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -33,7 +31,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 #app{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--wh);max-width:500px;margin:0 auto}
 @media(min-width:500px){#app{box-shadow:0 0 60px rgba(0,0,0,.3)}}
 
-/* ── LOADING ── */
+/* LOADING */
 #loading-screen{position:fixed;inset:0;z-index:3000;background:linear-gradient(160deg,#5c3d11 0%,#7c5220 50%,#3d2010 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;max-width:500px;margin:0 auto}
 #loading-screen.hidden{display:none}
 .load-logo{font-size:64px;animation:bounce 1.6s ease-in-out infinite}
@@ -42,7 +40,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 @keyframes spin{to{transform:rotate(360deg)}}
 .load-txt{color:rgba(255,255,255,.6);font-size:15px;font-weight:500}
 
-/* ── LOGIN ── */
+/* LOGIN */
 #login-screen{position:fixed;inset:0;z-index:2000;background:linear-gradient(160deg,#5c3d11 0%,#7c5220 50%,#3d2010 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px calc(28px + env(safe-area-inset-bottom));max-width:500px;margin:0 auto;overflow-y:auto}
 #login-screen.hidden{display:none}
 .login-logo{font-size:64px;margin-bottom:10px}
@@ -54,14 +52,14 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .lf input{width:100%;font-size:17px;font-family:var(--font);font-weight:600;padding:15px 16px;border-radius:14px;border:2px solid rgba(255,255,255,.15);background:rgba(255,255,255,.1);color:#fff;outline:none;transition:border-color .2s;min-height:54px}
 .lf input::placeholder{color:rgba(255,255,255,.35)}
 .lf input:focus{border-color:rgba(212,148,74,.6)}
-.btn-login{width:100%;padding:17px;border-radius:14px;border:none;background:linear-gradient(135deg,#d4944a,#a0682a);color:#fff;font-size:18px;font-weight:800;font-family:var(--font);cursor:pointer;margin-top:8px;min-height:56px;box-shadow:0 4px 20px rgba(212,148,74,.4);letter-spacing:-.3px}
+.btn-login{width:100%;padding:17px;border-radius:14px;border:none;background:linear-gradient(135deg,#d4944a,#a0682a);color:#fff;font-size:18px;font-weight:800;font-family:var(--font);cursor:pointer;margin-top:8px;min-height:56px;box-shadow:0 4px 20px rgba(212,148,74,.4)}
 .btn-login:active{opacity:.85;transform:scale(.97)}
 .login-err{background:rgba(192,57,43,.25);border:1px solid rgba(192,57,43,.4);border-radius:12px;padding:12px 16px;font-size:14px;color:#ffb3ae;margin-bottom:14px;display:none;text-align:center;font-weight:600}
 .login-err.on{display:block}
 .login-hint{margin-top:22px;text-align:center;font-size:13px;color:rgba(255,255,255,.4);line-height:2.2}
 .login-hint code{color:rgba(255,255,255,.65);font-family:monospace;background:rgba(255,255,255,.12);padding:2px 8px;border-radius:5px}
 
-/* ── TOPBAR ── */
+/* TOPBAR */
 .topbar{background:linear-gradient(135deg,#5c3d11 0%,#7c5220 100%);flex-shrink:0;padding-top:var(--sat)}
 .topbar-inner{display:flex;align-items:center;padding:12px 16px 14px;gap:10px;min-height:58px}
 .topbar-inner h1{color:#fff;font-size:20px;font-weight:800;flex:1;letter-spacing:-.5px}
@@ -69,7 +67,6 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .month-pill:active{background:rgba(255,255,255,.25)}
 .month-pill svg{width:14px;height:14px;fill:#fff}
 .user-pill{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);border-radius:24px;padding:6px 12px 6px 8px;display:flex;align-items:center;gap:8px;cursor:pointer}
-.user-pill:active{background:rgba(255,255,255,.22)}
 .uav{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff}
 .unm{font-size:13px;font-weight:700;color:#fff;max-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .sync-bar{display:flex;align-items:center;justify-content:center;gap:8px;padding:7px 12px;background:rgba(0,0,0,.2);font-size:13px;color:rgba(255,255,255,.65);font-weight:600;cursor:pointer}
@@ -79,30 +76,30 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .offline-banner{background:#fff3cd;color:#856404;padding:8px 16px;font-size:14px;font-weight:700;text-align:center;display:none}
 .offline-banner.on{display:block}
 
-/* ── SCREEN & NAV ── */
+/* SCREEN & NAV */
 .screen{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;background:var(--g8);padding-bottom:calc(var(--nav-h) + var(--sab) + 12px)}
 .screen::-webkit-scrollbar{display:none}
 .navbar{background:var(--wh);border-top:2px solid var(--g7);display:flex;flex-shrink:0;padding-bottom:var(--sab);height:calc(var(--nav-h) + var(--sab));z-index:10;box-shadow:0 -2px 0 rgba(0,0,0,.04)}
 .nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:none;background:none;cursor:pointer;padding:6px 2px;min-height:var(--nav-h);position:relative}
 .nb:active{opacity:.6}
 .nb svg{width:26px;height:26px;fill:var(--g6);transition:fill .2s,transform .15s}
-.nb span{font-size:11px;font-weight:700;color:var(--g6);font-family:var(--font);white-space:nowrap;letter-spacing:.1px}
+.nb span{font-size:11px;font-weight:700;color:var(--g6);font-family:var(--font);white-space:nowrap}
 .nb.on svg{fill:var(--bm);transform:scale(1.1)}.nb.on span{color:var(--bm)}
-.nb-badge{position:absolute;top:8px;right:calc(50% - 18px);min-width:18px;height:18px;border-radius:9px;background:var(--rd);color:#fff;font-size:10px;font-weight:800;display:none;align-items:center;justify-content:center;border:2px solid var(--wh);padding:0 4px}
+.nb-badge{position:absolute;top:8px;right:calc(50% - 19px);min-width:18px;height:18px;border-radius:9px;background:var(--rd);color:#fff;font-size:10px;font-weight:800;display:none;align-items:center;justify-content:center;border:2px solid var(--wh);padding:0 4px}
 .nb-badge.on{display:flex}
 
-/* ── SECTIONS ── */
+/* SECTIONS */
 .sec{display:none}.sec.on{display:block;animation:fadeUp .2s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── CARD ── */
+/* CARD */
 .card{background:var(--wh);border-radius:var(--rad);margin:12px 12px 0;box-shadow:var(--sh1);overflow:hidden}
 .ch{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 13px;border-bottom:1.5px solid var(--g7)}
 .ch h2{font-size:16px;font-weight:800;color:var(--g1);letter-spacing:-.3px}
 .ch-act{font-size:13px;font-weight:700;color:var(--bm);padding:7px 12px;border-radius:10px;background:var(--bp);border:none;cursor:pointer;font-family:var(--font)}
 .cb{padding:14px 18px 16px}
 
-/* ── METRICS ── */
+/* METRICS */
 .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 12px 0}
 .mc{background:var(--wh);border-radius:18px;padding:18px 16px 14px;box-shadow:var(--sh1)}
 .mc .lb{font-size:12px;font-weight:700;color:var(--g5);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
@@ -112,8 +109,9 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .mc.gn{background:linear-gradient(135deg,var(--gp2),#c8eac8)}.mc.gn .lb,.mc.gn .ut{color:#1a4d1a88}.mc.gn .vl{color:var(--gn)}
 .mc.or{background:linear-gradient(135deg,#fff3e0,#ffe0b2)}.mc.or .lb,.mc.or .ut{color:#e65100aa}.mc.or .vl{color:#e65100}
 .mc.bl4{background:linear-gradient(135deg,var(--bpl),#d4eaf8)}.mc.bl4 .lb,.mc.bl4 .ut{color:#1a527688}.mc.bl4 .vl{color:var(--bl3)}
+.mc.pu{background:linear-gradient(135deg,var(--pup),#ede9fe)}.mc.pu .lb,.mc.pu .ut{color:#6d28d988}.mc.pu .vl{color:var(--pu)}
 
-/* ── FORM ── */
+/* FORM */
 .fld{margin-bottom:14px}
 .fld label{font-size:13px;font-weight:700;color:var(--g3);display:block;margin-bottom:7px;text-transform:uppercase;letter-spacing:.5px}
 .fld input,.fld select,.fld textarea{width:100%;font-size:17px;font-family:var(--font);font-weight:600;padding:14px 15px;border-radius:14px;border:2px solid var(--g7);background:var(--g9);color:var(--g1);outline:none;-webkit-appearance:none;appearance:none;transition:border-color .2s;min-height:52px}
@@ -124,6 +122,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .btn:active{opacity:.82;transform:scale(.97)}
 .btn-br{background:linear-gradient(135deg,var(--bm),var(--bl2));color:#fff;box-shadow:0 4px 16px rgba(124,82,32,.3)}
 .btn-gn{background:linear-gradient(135deg,var(--gn),var(--gm2));color:#fff;box-shadow:0 4px 16px rgba(45,106,45,.25)}
+.btn-pu{background:linear-gradient(135deg,var(--pu),#8b5cf6);color:#fff;box-shadow:0 4px 16px rgba(109,40,217,.25)}
 .btn-out{background:var(--g8);color:var(--g4);border:2px solid var(--g7)}
 .btn-red{background:var(--rp);color:var(--rd);border:2px solid #f5c6c4}
 .btn-sm{font-size:14px;padding:12px;min-height:46px}
@@ -131,25 +130,30 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .sg{flex:1;padding:11px 8px;border-radius:11px;border:none;font-size:15px;font-weight:700;font-family:var(--font);cursor:pointer;background:none;color:var(--g5);transition:all .18s;min-height:46px}
 .sg.on{background:var(--wh);color:var(--bm);box-shadow:var(--sh1)}
 
-/* ── ATTENDANCE ── */
+/* ATTENDANCE */
 .mnav{display:flex;align-items:center;justify-content:space-between;padding:14px 14px 10px}
 .mnav .ml{font-size:17px;font-weight:800;color:var(--g1)}
 .mnb{width:44px;height:44px;border-radius:13px;border:2px solid var(--g7);background:var(--wh);font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--g2);min-width:44px;box-shadow:var(--sh1)}
-.mnb:active{background:var(--g8)}
 .lgrow{display:flex;gap:8px;padding:0 14px 12px;flex-wrap:wrap}
 .li{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--g3);font-weight:700}
 .ld{width:13px;height:13px;border-radius:4px}
 
-/* Quick-attend */
+/* QUICK ATTEND */
 .quick-att-bar{margin:0 12px 10px;background:var(--wh);border-radius:16px;padding:14px;box-shadow:var(--sh1)}
-.qa-title{font-size:14px;font-weight:800;color:var(--g1);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.qa-title{font-size:14px;font-weight:800;color:var(--g1);margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .qa-date{font-size:12px;color:var(--g5);font-weight:600;background:var(--g8);padding:3px 9px;border-radius:20px}
-.qa-btns{display:flex;gap:7px;flex-wrap:wrap}
-.qa-btn{padding:8px 12px;border-radius:11px;border:2px solid var(--g7);background:var(--g9);font-size:13px;font-weight:700;color:var(--g3);cursor:pointer;font-family:var(--font);min-height:40px;flex:1;min-width:80px;text-align:center}
+.qa-warn{font-size:12px;color:var(--rd);font-weight:700;background:var(--rp);padding:4px 10px;border-radius:8px;display:none}
+.qa-warn.on{display:block}
+.qa-btns{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
+.qa-btn{padding:8px 12px;border-radius:11px;border:2px solid var(--g7);background:var(--g9);font-size:13px;font-weight:700;color:var(--g3);cursor:pointer;font-family:var(--font);min-height:40px;flex:1;min-width:72px;text-align:center;transition:all .15s}
 .qa-btn.ph{background:var(--gp2);border-color:#7dd87d;color:var(--gn)}
 .qa-btn.pt{background:var(--bpl);border-color:#7ab3d4;color:var(--bl3)}
 .qa-btn.vn{background:var(--rp);border-color:#f5a8a3;color:var(--rd)}
+.qa-btn.bulk{background:linear-gradient(135deg,var(--gn),var(--gm2));color:#fff;border-color:var(--gn);font-size:12px}
 .qa-btn:active{opacity:.75;transform:scale(.95)}
+.qa-workers{display:flex;gap:7px;flex-wrap:wrap}
+.qa-worker-btn{padding:8px 12px;border-radius:12px;border:2.5px solid var(--g7);background:var(--g9);font-size:14px;font-weight:800;color:var(--g1);cursor:pointer;font-family:var(--font);min-height:44px;min-width:70px;display:flex;flex-direction:column;align-items:center;gap:1px;transition:transform .1s}
+.qa-worker-btn:active{transform:scale(.92)}
 
 .att-blk{margin:0 12px 10px;background:var(--wh);border-radius:var(--rad);padding:16px;box-shadow:var(--sh1)}
 .att-blk.warn-abs{border-left:4px solid var(--rd)}
@@ -169,13 +173,13 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .dc.off{background:var(--g7);color:var(--g6);border-color:transparent;opacity:.5}
 .dc.today-mk{box-shadow:0 0 0 2.5px var(--bm)}
 
-/* ── SEARCH BAR ── */
+/* SEARCH */
 .search-bar{margin:0 12px 10px;position:relative}
 .search-bar input{width:100%;padding:13px 16px 13px 44px;border-radius:14px;border:2px solid var(--g7);background:var(--wh);font-size:15px;font-family:var(--font);font-weight:600;color:var(--g1);outline:none;min-height:50px;box-shadow:var(--sh1)}
 .search-bar input:focus{border-color:var(--bm)}
 .search-bar svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:var(--g5)}
 
-/* ── HARVEST ── */
+/* HARVEST */
 .hvi{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1.5px solid var(--g8)}
 .hvi:last-child{border-bottom:none}
 .hico{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
@@ -185,31 +189,50 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .hii .bt{font-size:12px;color:var(--g5);margin-top:3px;font-weight:600}
 .hmoney{font-size:15px;font-weight:800;color:var(--gn)}
 
-/* ── SALARY ── */
+/* ADVANCE (tạm ứng) */
+.adv-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1.5px solid var(--g8)}
+.adv-item:last-child{border-bottom:none}
+.adv-ico{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--pup),#ede9fe);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.adv-info{flex:1;min-width:0}
+.adv-info .an{font-size:14px;font-weight:700;color:var(--g1)}
+.adv-info .as{font-size:12px;color:var(--g5);margin-top:3px;font-weight:600}
+.adv-money{font-size:15px;font-weight:800;color:var(--pu);text-align:right}
+.adv-del{background:none;border:none;color:var(--g6);font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);padding:4px;margin-top:2px;display:block}
+
+/* SALARY */
 .sal-month-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 14px 10px}
 .sal-month-lbl{font-size:18px;font-weight:900;color:var(--g1)}
 .sal-mnb{width:46px;height:46px;border-radius:14px;border:2px solid var(--g7);background:var(--wh);font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--g2);box-shadow:var(--sh1)}
 .sal-mnb:active{background:var(--g8)}
 .si{padding:16px 0;border-bottom:2px solid var(--g8)}.si:last-child{border-bottom:none}
-.si-t{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.si-name{font-size:16px;font-weight:800;color:var(--g1);flex:1}
+.si-t{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.si-name{font-size:16px;font-weight:800;color:var(--g1);flex:1;min-width:0}
 .si-v{font-size:18px;font-weight:900;color:var(--gn);flex-shrink:0;letter-spacing:-.5px}
-.si-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;margin-top:3px}
+.si-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
 .si-g{background:var(--g9);border-radius:14px;padding:12px 14px;border:1.5px solid var(--g7)}
-.si-rows{display:grid;grid-template-columns:1fr 1fr;gap:4px}
-.si-r{font-size:13px;color:var(--g4);font-weight:600;padding:3px 0}
-.si-r strong{color:var(--g1);font-weight:800}
-.si-total-row{display:flex;align-items:center;justify-content:space-between;padding-top:8px;margin-top:6px;border-top:1.5px solid var(--g7)}
-.si-total-lbl{font-size:14px;font-weight:700;color:var(--g4)}
-.si-total-val{font-size:18px;font-weight:900;color:var(--gn)}
+.si-row{font-size:14px;color:var(--g3);font-weight:600;padding:3px 0;border-bottom:1px solid var(--g8)}
+.si-row:last-child{border-bottom:none}
+.si-row strong{color:var(--g1);font-weight:800}
+/* advance rows inside salary */
+.si-adv-row{font-size:14px;font-weight:700;padding:6px 0;border-bottom:1px solid var(--g8);display:flex;align-items:center;justify-content:space-between}
+.si-adv-row:last-child{border-bottom:none}
+.si-net{display:flex;align-items:center;justify-content:space-between;padding:10px 0 0;margin-top:6px;border-top:2px solid var(--g7)}
+.si-net-lbl{font-size:14px;font-weight:700;color:var(--g4)}
+.si-net-val{font-size:20px;font-weight:900}
+.si-net-val.positive{color:var(--gn)}.si-net-val.zero{color:var(--g5)}
 
-/* ── ALERT ── */
+/* TAGS */
+.tag{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:800}
+.tcf{background:#fff3e0;color:#e65100}.tpp{background:var(--gp2);color:var(--gn)}
+.tph{background:var(--gp2);color:var(--gn)}.tpt{background:var(--bpl);color:var(--bl3)}
+.tag-pu{background:var(--pup);color:var(--pu)}
+
+/* ALERT */
 .alert-ban{margin:12px 12px 0;border-radius:15px;padding:13px 16px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700}
 .alert-ban.warn{background:#fff3cd;color:#6b4c00;border:2px solid #fde68a}
-.alert-ban.info{background:var(--gf2);color:#1a4d1a;border:2px solid #9de09d}
 .alert-ban svg{width:18px;height:18px;fill:currentColor;flex-shrink:0}
 
-/* ── CHART ── */
+/* CHART */
 .chart-wrap{padding:4px 0 8px}
 .chart-bars{display:flex;align-items:flex-end;gap:5px;height:60px;padding:0 2px}
 .cbar{flex:1;border-radius:6px 6px 0 0;min-width:0}
@@ -219,13 +242,18 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .chart-legend{display:flex;gap:16px;padding:8px 2px 0}
 .cleg{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--g4);font-weight:700}
 .cleg-dot{width:10px;height:10px;border-radius:3px}
+.today-badge{display:inline-flex;align-items:center;background:rgba(212,148,74,.2);border:1.5px solid rgba(212,148,74,.4);border-radius:9px;padding:3px 9px;font-size:11px;font-weight:800;color:var(--br);vertical-align:middle;margin-left:7px}
 
-/* ── SETTINGS ── */
+/* TOAST */
+.toast{position:fixed;bottom:calc(var(--nav-h) + var(--sab) + 16px);left:50%;transform:translateX(-50%) translateY(12px);background:var(--g1);color:#fff;padding:14px 24px;border-radius:24px;font-size:15px;font-weight:700;opacity:0;transition:opacity .22s,transform .22s;pointer-events:none;white-space:nowrap;z-index:9999;max-width:92vw;text-align:center;box-shadow:var(--sh3)}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* SETTINGS */
 .slbl{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--g5);padding:18px 16px 8px;display:flex;align-items:center;justify-content:space-between}
 .slbl-btn{font-size:13px;font-weight:800;color:var(--bm);background:var(--bp);border:none;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:var(--font);text-transform:none;letter-spacing:0}
 .ri{display:flex;align-items:center;padding:14px 0;border-bottom:1.5px solid var(--g8);gap:10px}
 .ri:last-child{border-bottom:none}
-.ri .rl{font-size:15px;font-weight:700;color:var(--g1);flex:1;line-height:1.4}
+.ri .rl{font-size:15px;font-weight:700;color:var(--g1);flex:1}
 .ri .rv{font-size:15px;font-weight:800;color:var(--g4)}
 .tog-row{display:flex;align-items:center;padding:14px 0;border-bottom:1.5px solid var(--g8);gap:10px}
 .tog-row:last-child{border-bottom:none}
@@ -235,18 +263,8 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .tog::after{content:'';position:absolute;width:26px;height:26px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s;box-shadow:0 1px 6px rgba(0,0,0,.2)}
 .tog.on::after{left:25px}
 
-/* ── TAGS ── */
-.tag{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:800}
-.tcf{background:#fff3e0;color:#e65100}.tpp{background:var(--gp2);color:var(--gn)}
-.tph{background:var(--gp2);color:var(--gn)}.tpt{background:var(--bpl);color:var(--bl3)}
-
-/* ── TOAST ── */
-.toast{position:fixed;bottom:calc(var(--nav-h) + var(--sab) + 16px);left:50%;transform:translateX(-50%) translateY(12px);background:var(--g1);color:#fff;padding:14px 24px;border-radius:24px;font-size:15px;font-weight:700;opacity:0;transition:opacity .22s,transform .22s;pointer-events:none;white-space:nowrap;z-index:9999;max-width:92vw;text-align:center;box-shadow:var(--sh3)}
-.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* ── WORKER CARD ── */
+/* WORKER CARD */
 .wcard{background:var(--wh);border-radius:var(--rad);margin-bottom:12px;box-shadow:var(--sh1);overflow:hidden;border:2px solid var(--g7)}
-.wcard:last-child{margin-bottom:0}
 .wcard.expanded{border-color:var(--bm)}
 .wcard-head{display:flex;align-items:flex-start;gap:12px;padding:16px 16px 14px}
 .wcard-edit-body{padding:0 16px 16px;display:none}
@@ -255,10 +273,8 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .wcard-sub{font-size:13px;color:var(--g5);margin-top:3px;font-weight:600}
 .wcard-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
 .chip{display:inline-flex;align-items:center;gap:3px;border-radius:9px;padding:4px 9px;font-size:12px;font-weight:800}
-.chip-t{background:var(--bpl);color:var(--bl3)}
-.chip-h{background:var(--gp2);color:var(--gn)}
-.chip-cf{background:#fff3e0;color:#e65100}
-.chip-pp{background:#ede9fe;color:#5b21b6}
+.chip-t{background:var(--bpl);color:var(--bl3)}.chip-h{background:var(--gp2);color:var(--gn)}
+.chip-cf{background:#fff3e0;color:#e65100}.chip-pp{background:#ede9fe;color:#5b21b6}
 .wedit-sec{background:var(--g8);border-radius:15px;padding:14px 14px 12px;margin-bottom:12px;border:1.5px solid var(--g7)}
 .wedit-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--g5);margin-bottom:11px}
 .wf{margin-bottom:12px}
@@ -275,7 +291,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .wcard-del-btn{width:38px;height:38px;border-radius:11px;background:var(--rp);border:2px solid #f5c6c4;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .wcard-del-btn svg{width:16px;height:16px;fill:var(--rd)}
 
-/* ── ADD PANEL ── */
+/* ADD PANEL */
 .add-panel{background:var(--wh);border-radius:var(--rad);margin:12px 12px 0;box-shadow:var(--sh1);overflow:hidden;display:none;border:2px solid var(--g7)}
 .add-panel.open{display:block;animation:fadeUp .2s ease}
 .ap-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:2px solid var(--g7)}
@@ -285,7 +301,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .ap-sec{background:var(--g8);border-radius:15px;padding:14px 14px 12px;margin-bottom:14px;border:1.5px solid var(--g7)}
 .ap-sec-t{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--g5);margin-bottom:12px}
 
-/* ── MODAL ── */
+/* MODAL */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center;z-index:1000;backdrop-filter:blur(3px)}
 .modal{background:var(--wh);border-radius:28px 28px 0 0;padding:0 0 calc(22px + var(--sab));width:100%;max-width:500px;max-height:88vh;overflow-y:auto;box-shadow:0 -4px 40px rgba(0,0,0,.15)}
 .modal-handle{width:44px;height:5px;background:var(--g7);border-radius:3px;margin:16px auto 20px}
@@ -298,7 +314,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .step code{background:var(--bp);color:var(--br);padding:2px 8px;border-radius:6px;font-size:13px;font-family:monospace}
 .modal-close{width:calc(100% - 44px);margin:10px 22px 0;padding:16px;border-radius:15px;border:2px solid var(--g7);background:var(--g8);font-size:17px;font-weight:700;font-family:var(--font);cursor:pointer;color:var(--g1)}
 
-/* ── MISC ── */
+/* MISC */
 .empty{text-align:center;padding:32px 18px;color:var(--g5);font-size:15px;font-weight:600}
 .av{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;flex-shrink:0;background:linear-gradient(135deg,var(--bm),var(--bl2))}
 .wr{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1.5px solid var(--g8)}
@@ -315,7 +331,17 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 .role-admin{background:#fff3e0;color:#e65100}.role-manager{background:var(--bpl);color:var(--bl3)}
 .locked-box{background:var(--g9);border-radius:var(--rad);margin:12px;padding:40px 22px;text-align:center;border:2px solid var(--g7)}
 .locked-box p{color:var(--g4);font-size:15px;margin-top:14px;line-height:1.7;font-weight:600}
-.today-badge{display:inline-flex;align-items:center;background:rgba(212,148,74,.2);border:1.5px solid rgba(212,148,74,.4);border-radius:9px;padding:3px 9px;font-size:11px;font-weight:800;color:var(--br);vertical-align:middle;margin-left:7px}
+
+/* PRINT STYLES */
+@media print {
+  body{overflow:auto;height:auto;font-size:13px}
+  #app{position:static;max-width:none;box-shadow:none}
+  .no-print,.topbar,.navbar,.toast{display:none!important}
+  .screen{overflow:visible;padding-bottom:0;height:auto}
+  .sec{display:none!important}
+  #print-area{display:block!important}
+}
+#print-area{display:none}
 </style>
 </head>
 <body>
@@ -336,7 +362,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
   <div class="login-card">
     <div class="login-err" id="login-err">Sai tên đăng nhập hoặc mật khẩu</div>
     <div class="lf"><label>Tên đăng nhập</label>
-      <input type="text" id="login-user" placeholder="admin hoặc quanly" autocomplete="username" autocapitalize="off" autocorrect="off">
+      <input type="text" id="login-user" placeholder="admin hoặc quanly" autocomplete="username" autocapitalize="off">
     </div>
     <div class="lf"><label>Mật khẩu</label>
       <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
@@ -347,7 +373,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 </div>
 
 <!-- TOPBAR -->
-<div class="topbar">
+<div class="topbar no-print">
   <div class="topbar-inner">
     <h1 id="ptitle">Tổng hợp</h1>
     <button class="month-pill" onclick="openMonthPicker()">
@@ -422,14 +448,19 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 
     <!-- QUICK ATTEND -->
     <div class="quick-att-bar">
-      <div class="qa-title">⚡ Điểm danh nhanh <span class="qa-date" id="qa-date-lbl"></span></div>
-      <div style="font-size:13px;color:var(--g5);font-weight:600;margin-bottom:8px">Chọn loại → bấm tên từng người:</div>
-      <div class="qa-btns" style="margin-bottom:10px">
+      <div class="qa-title">
+        ⚡ Điểm danh nhanh
+        <span class="qa-date" id="qa-date-lbl"></span>
+        <span class="qa-warn" id="qa-month-warn">⚠ Đang xem tháng khác!</span>
+      </div>
+      <div style="font-size:13px;color:var(--g5);font-weight:600;margin-bottom:8px">Chọn loại → bấm tên từng người (hoặc dùng nút hàng loạt):</div>
+      <div class="qa-btns">
         <button class="qa-btn ph on" id="qa-ph" onclick="setQaMode('ph')">🌾 Hái</button>
         <button class="qa-btn pt" id="qa-pt" onclick="setQaMode('pt')">💼 Thường</button>
         <button class="qa-btn vn" id="qa-vn" onclick="setQaMode('vn')">✗ Vắng</button>
+        <button class="qa-btn bulk" onclick="bulkAttend()" title="Điểm danh tất cả chưa điểm theo loại đang chọn">✓ Tất cả</button>
       </div>
-      <div id="qa-workers" style="display:flex;gap:7px;flex-wrap:wrap"></div>
+      <div class="qa-workers" id="qa-workers"></div>
     </div>
 
     <div class="search-bar">
@@ -464,6 +495,36 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
     </div>
   </div>
 
+  <!-- ADVANCE (Tạm ứng) -->
+  <div class="sec" id="sec-advance">
+    <div class="card">
+      <div class="ch"><h2>➕ Ghi tạm ứng</h2></div>
+      <div class="cb">
+        <div class="fld"><label>Công nhân</label><select id="adv-wk"></select></div>
+        <div class="r2">
+          <div class="fld"><label>Ngày</label><input type="date" id="adv-dt"></div>
+          <div class="fld"><label>Số tiền (đ)</label><input type="number" id="adv-amt" placeholder="500000" inputmode="numeric" min="0" step="10000"></div>
+        </div>
+        <div class="fld"><label>Ghi chú (tuỳ chọn)</label><textarea id="adv-note" placeholder="Ứng tiền xăng, mua thuốc..."></textarea></div>
+        <button class="btn btn-pu" onclick="addAdvance()">💸 Ghi tạm ứng</button>
+      </div>
+    </div>
+
+    <!-- Summary by worker this month -->
+    <div class="card">
+      <div class="ch"><h2>📊 Tổng tạm ứng tháng này</h2></div>
+      <div class="cb" id="adv-summary"></div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px">
+      <div class="ch">
+        <h2>📋 Danh sách</h2>
+        <span id="adv-count" style="font-size:13px;color:var(--g5);font-weight:700"></span>
+      </div>
+      <div class="cb" id="adv-list"></div>
+    </div>
+  </div>
+
   <!-- SALARY -->
   <div class="sec" id="sec-salary">
     <div id="salary-locked" class="locked-box" style="display:none">
@@ -471,7 +532,6 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
       <p>Chỉ <strong>Admin</strong> mới xem được bảng lương.</p>
     </div>
     <div id="salary-content">
-      <!-- Month nav for salary -->
       <div class="sal-month-nav">
         <button class="sal-mnb" onclick="chgSalM(-1)">‹</button>
         <div style="text-align:center">
@@ -481,8 +541,11 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
         <button class="sal-mnb" onclick="chgSalM(1)">›</button>
       </div>
       <div class="mgrid">
-        <div class="mc dk"><div class="lb">Tổng chi lương</div><div class="vl" id="stotal">0đ</div><div class="ut">tháng này</div></div>
-        <div class="mc gn"><div class="lb">Số người</div><div class="vl" id="scount">0</div><div class="ut">công nhân</div></div>
+        <div class="mc dk"><div class="lb">Tổng chi lương</div><div class="vl" id="stotal">0đ</div><div class="ut">thực nhận</div></div>
+        <div class="mc pu"><div class="lb">Tổng tạm ứng</div><div class="vl" id="sadv-total">0đ</div><div class="ut">đã ứng</div></div>
+      </div>
+      <div style="padding:10px 12px 0;display:flex;gap:8px">
+        <button class="btn btn-out btn-sm" style="flex:1" onclick="printSalary()">🖨️ In bảng lương</button>
       </div>
       <div class="card" style="margin-bottom:14px"><div class="ch"><h2>💰 Chi tiết lương</h2></div><div class="cb" id="slist"></div></div>
     </div>
@@ -527,7 +590,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
       <div class="slbl">💾 Sao lưu</div>
       <div class="card"><div class="cb">
         <div class="backup-box">
-          <p>Xuất toàn bộ dữ liệu ra file JSON để lưu lại.<br><small style="color:var(--rd);font-weight:700">⚠ Dữ liệu luôn lưu trên máy — không mất khi cập nhật.</small></p>
+          <p>Xuất toàn bộ dữ liệu ra file JSON.<br><small style="color:var(--rd);font-weight:700">⚠ Dữ liệu lưu trên máy — không mất khi cập nhật.</small></p>
           <div class="bg2">
             <button class="btn btn-gn btn-sm" onclick="exportJSON()">⬇ Xuất backup</button>
             <button class="btn btn-out btn-sm" onclick="document.getElementById('import-file').click()">⬆ Nhập file</button>
@@ -576,7 +639,7 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
               <button class="odd-btn" data-dow="5" onclick="this.classList.toggle('on')">T6</button>
               <button class="odd-btn on" data-dow="6" onclick="this.classList.toggle('on')">T7</button>
             </div>
-            <div style="font-size:12px;color:var(--g5);margin-top:8px;font-weight:600">Những ngày bôi xanh = ngày nghỉ</div>
+            <div style="font-size:12px;color:var(--g5);margin-top:8px;font-weight:600">Những ngày bôi xanh = ngày nghỉ mặc định</div>
           </div>
           <button class="btn btn-gn" onclick="addWorker()">➕ Thêm công nhân</button>
         </div>
@@ -588,19 +651,23 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
 </div><!-- /screen -->
 
 <!-- NAVBAR -->
-<nav class="navbar">
+<nav class="navbar no-print">
   <button class="nb on" id="n-home" onclick="goTab('home')">
     <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
     <span>Tổng hợp</span>
   </button>
   <button class="nb" id="n-att" onclick="goTab('att')">
-    <div class="nb-badge" id="badge-att">!</div>
+    <div class="nb-badge" id="badge-att">0</div>
     <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 002 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
     <span>Điểm danh</span>
   </button>
   <button class="nb" id="n-harvest" onclick="goTab('harvest')">
     <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 2-8 2 0-1.25.5-2.5 2-3 0 0-1 0-1 1zm-5 10c1.1 0 2 .9 2 2H6c0-1.1.9-2 2-2h4z"/></svg>
     <span>Sản lượng</span>
+  </button>
+  <button class="nb" id="n-advance" onclick="goTab('advance')">
+    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+    <span>Tạm ứng</span>
   </button>
   <button class="nb" id="n-salary" onclick="goTab('salary')">
     <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
@@ -631,34 +698,37 @@ body{height:100%;overflow:hidden;font-family:var(--font);background:var(--g8);co
   </div>
 </div>
 
+<!-- PRINT AREA (hidden, shown only when printing) -->
+<div id="print-area"></div>
+
 <script type="module">
 import { initializeApp, getApps, deleteApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
 import { getFirestore, doc, setDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 const FB_CONFIG={apiKey:"AIzaSyB9gclYExZtnkJshazv4liTg4s4jhB_wQ0",authDomain:"pythontest-393209.firebaseapp.com",projectId:"pythontest-393209",storageBucket:"pythontest-393209.firebasestorage.app",messagingSenderId:"899971728736",appId:"1:899971728736:web:8c6dbc138e3ab1d243ca05"};
-const FB_APP_NAME="conghai-v7";
-const LS_DATA="conghai_data_v7";
-const LS_UI="conghai_ui_v7";
+const FB_APP_NAME="conghai-v8";
+const LS_DATA="conghai_data_v8";
+const LS_UI="conghai_ui_v8";
 
 // ── STATE ──
-let workers=[], attendance={}, harvests=[];
+let workers=[], attendance={}, harvests=[], advances=[];
 let accounts={admin:{password:"admin123",role:"admin",displayName:"Admin"},quanly:{password:"quanly123",role:"manager",displayName:"Quản lý"}};
 let curUser=null, hvType='coffee';
 let curY=new Date().getFullYear(), curM=new Date().getMonth()+1;
-// SALARY has its own month nav (separate from global curY/curM)
 let salY=new Date().getFullYear(), salM=new Date().getMonth()+1;
 let fbApp=null, fbDb=null, fbGroup='nong-trai-01';
 let syncTimer=null, unsubFb=null;
-let qaMode='ph'; // quick-attend mode
+let qaMode='ph';
 
 const DEVICE_ID=Math.random().toString(36).slice(2,10);
 let localVersion=0, lastPushVer=0, isFirstSnap=true;
 
-const TABS=['home','att','harvest','salary','settings'];
-const TITLES={home:'Tổng hợp',att:'Điểm danh',harvest:'Sản lượng',salary:'Bảng lương',settings:'Cài đặt'};
+const TABS=['home','att','harvest','advance','salary','settings'];
+const TITLES={home:'Tổng hợp',att:'Điểm danh',harvest:'Sản lượng',advance:'Tạm ứng',salary:'Bảng lương',settings:'Cài đặt'};
 const CYCLE=['ph','pt','hh','ht','vn',''];
 const MN=['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
 const DOW_VN=['CN','T2','T3','T4','T5','T6','T7'];
+// Default rates used as fallback if worker has no rates (migration safety)
 const DEF={thuong:300000,hai:350000,cf:5000,pp:80000};
 
 // ── UTILS ──
@@ -672,18 +742,22 @@ const dim=(y,m)=>new Date(y,m,0).getDate();
 const dow=(y,m,d)=>new Date(y+'-'+p(m)+'-'+p(d)).getDay();
 const isAdmin=()=>curUser?.role==='admin';
 
+// ✅ FIX: getRate uses worker's own rates with DEF fallback (migration safe)
 function getRate(w,type){
-  const r=w.rates||DEF;
+  const r=w.rates||{};
   if(type==='thuong') return r.thuong||DEF.thuong;
   if(type==='hai')    return r.hai||DEF.hai;
   if(type==='coffee') return r.cf||DEF.cf;
   if(type==='pepper') return r.pp||DEF.pp;
   return 0;
 }
+
+// ✅ FIX: isWOff uses worker's offDays with [0,6] fallback
 function isWOff(w,y,m,d){
   const off=Array.isArray(w.offDays)?w.offDays:[0,6];
   return off.includes(dow(y,m,d));
 }
+
 function s2w(s){
   if(s==='ph')return{hai:1,th:0};if(s==='pt')return{hai:0,th:1};
   if(s==='hh')return{hai:.5,th:0};if(s==='ht')return{hai:0,th:.5};
@@ -697,23 +771,22 @@ function cntDays(wid,ymStr){
   return{hai,th,vn};
 }
 
-// ── SALARY CALC (takes ymStr so can calc for any month) ──
-function calcSalForMonth(w, ymStr){
-  const d=cntDays(w.id, ymStr);
-  const rT=getRate(w,'thuong'), rH=getRate(w,'hai');
-  const rC=getRate(w,'coffee'), rP=getRate(w,'pepper');
-  // công = công hái + công thường (both modes)
-  const dSal = w.type==='kg' ? 0 : d.hai*rH + d.th*rT;
-  // kg
+// ── SALARY CALC (any month) ──
+function calcSalForMonth(w,ymStr){
+  const d=cntDays(w.id,ymStr);
+  const rT=getRate(w,'thuong'),rH=getRate(w,'hai');
+  const rC=getRate(w,'coffee'),rP=getRate(w,'pepper');
+  const dSal=w.type==='kg'?0:d.hai*rH+d.th*rT;
   const wh=harvests.filter(h=>h.wid===w.id&&h.date.startsWith(ymStr));
   const cfKg=wh.filter(h=>h.type==='coffee').reduce((s,h)=>s+h.kg,0);
   const ppKg=wh.filter(h=>h.type==='pepper').reduce((s,h)=>s+h.kg,0);
-  const kSal = w.type==='day' ? 0 : cfKg*rC + ppKg*rP;
-  // ✅ FIX: total = công + kg (both added together)
-  const tot = dSal + kSal;
-  return{d,dSal,cfKg,ppKg,kSal,tot,rT,rH,rC,rP};
+  const kSal=w.type==='day'?0:cfKg*rC+ppKg*rP;
+  const gross=dSal+kSal;
+  // Tạm ứng tháng này
+  const advAmt=advances.filter(a=>a.wid===w.id&&a.date.startsWith(ymStr)).reduce((s,a)=>s+a.amount,0);
+  const net=gross-advAmt;
+  return{d,dSal,cfKg,ppKg,kSal,gross,advAmt,net,rT,rH,rC,rP};
 }
-// Shorthand for current month
 const calcSal=w=>calcSalForMonth(w,ym());
 
 function toast(msg,dur=2200){
@@ -724,37 +797,149 @@ function toast(msg,dur=2200){
 function vibrate(ms=30){try{if(navigator.vibrate)navigator.vibrate(ms);}catch(e){}}
 
 // ── LOCAL STORAGE ──
-function buildObj(){return{version:localVersion,device:DEVICE_ID,workers,attendance,harvests,accounts};}
-function saveLocal(){localVersion=Date.now();try{localStorage.setItem(LS_DATA,JSON.stringify(buildObj()));}catch(e){}}
+function buildObj(){return{version:localVersion,device:DEVICE_ID,workers,attendance,harvests,advances,accounts};}
+function saveLocal(){
+  localVersion=Date.now();
+  try{localStorage.setItem(LS_DATA,JSON.stringify(buildObj()));}catch(e){}
+}
 function loadLocal(){try{const r=localStorage.getItem(LS_DATA);return r?JSON.parse(r):null;}catch(e){return null;}}
+
+// ✅ FIX: Migration — ensure all workers have rates & offDays
+function migrateWorkers(ws){
+  if(!Array.isArray(ws))return[];
+  return ws.map(w=>{
+    // If worker has no rates at all, give them defaults
+    if(!w.rates){
+      w.rates={thuong:DEF.thuong,hai:DEF.hai,cf:DEF.cf,pp:DEF.pp};
+    } else {
+      // Fill any missing rate keys
+      w.rates.thuong=w.rates.thuong||DEF.thuong;
+      w.rates.hai=w.rates.hai||DEF.hai;
+      w.rates.cf=w.rates.cf||DEF.cf;
+      w.rates.pp=w.rates.pp||DEF.pp;
+    }
+    // If worker has no offDays, default to [0,6]
+    if(!Array.isArray(w.offDays)) w.offDays=[0,6];
+    // If worker has no type, default to 'both'
+    if(!w.type) w.type='both';
+    return w;
+  });
+}
+
 function applyData(d,fromRemote=false){
   if(!d)return;
-  if(Array.isArray(d.workers))   workers=d.workers;
+  // ✅ Always migrate workers on load
+  if(Array.isArray(d.workers))   workers=migrateWorkers(d.workers);
   if(d.attendance&&typeof d.attendance==='object') attendance=d.attendance;
   if(Array.isArray(d.harvests))  harvests=d.harvests;
+  // ✅ advances — new field, safe default
+  if(Array.isArray(d.advances))  advances=d.advances; else advances=[];
   if(d.accounts) accounts=d.accounts;
   if(fromRemote&&d.version) localVersion=d.version;
 }
 function saveUI(){try{localStorage.setItem(LS_UI,JSON.stringify({fbGroup,session:curUser?{username:curUser.username}:null}));}catch(e){}}
 function loadUI(){try{return JSON.parse(localStorage.getItem(LS_UI)||'null');}catch(e){return null;}}
 
+// ── ADVANCE (TẠM ỨNG) ──
+window.addAdvance=function(){
+  const wid=document.getElementById('adv-wk').value;
+  const dt=document.getElementById('adv-dt').value;
+  const amt=parseFloat(document.getElementById('adv-amt').value)||0;
+  const note=document.getElementById('adv-note').value.trim();
+  if(!wid||!dt||amt<=0){toast('Điền đầy đủ thông tin');return;}
+  const w=workers.find(x=>x.id===wid);
+  advances.push({id:Date.now()+'',wid,date:dt,amount:amt,...(note?{note}:{})});
+  document.getElementById('adv-amt').value='';
+  document.getElementById('adv-note').value='';
+  saveLocal();scheduleSync();renderAdvList();renderAdvSummary();
+  toast(`✓ Ghi tạm ứng ${fmt(amt)}đ cho ${w?.name||''}`);vibrate(40);
+};
+window.rmAdvance=function(id){
+  advances=advances.filter(a=>a.id!==id);
+  saveLocal();scheduleSync();renderAdvList();renderAdvSummary();toast('Đã xóa tạm ứng');
+};
+function renderAdvWk(){
+  const s=document.getElementById('adv-wk');if(!s)return;
+  s.innerHTML=workers.length?workers.map(w=>`<option value="${w.id}">${w.name}</option>`).join(''):'<option>-- Thêm công nhân trước --</option>';
+}
+function renderAdvSummary(){
+  const el=document.getElementById('adv-summary');if(!el)return;
+  if(!workers.length){el.innerHTML='<div class="empty">Chưa có công nhân nào</div>';return;}
+  const mAdv=advances.filter(a=>a.date.startsWith(ym()));
+  if(!mAdv.length){el.innerHTML='<div class="empty">Chưa có tạm ứng tháng này</div>';return;}
+  const byW={};
+  mAdv.forEach(a=>{byW[a.wid]=(byW[a.wid]||0)+a.amount;});
+  const total=Object.values(byW).reduce((s,v)=>s+v,0);
+  el.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;margin-bottom:10px;border-bottom:1.5px solid var(--g7)">
+    <span style="font-size:14px;font-weight:700;color:var(--g4)">Tổng tạm ứng tháng này</span>
+    <span style="font-size:18px;font-weight:900;color:var(--pu)">${fmt(total)}đ</span>
+  </div>`+
+  Object.entries(byW).map(([wid,amt])=>{
+    const w=workers.find(x=>x.id===wid)||{name:'?'};
+    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--g8)">
+      <span style="font-size:14px;font-weight:700;color:var(--g1)">${w.name}</span>
+      <span style="font-size:14px;font-weight:800;color:var(--pu)">${fmt(amt)}đ</span>
+    </div>`;
+  }).join('');
+}
+function renderAdvList(){
+  const el=document.getElementById('adv-list');if(!el)return;
+  const mAdv=[...advances].filter(a=>a.date.startsWith(ym())).sort((a,b)=>b.date.localeCompare(a.date));
+  const cnt=document.getElementById('adv-count');if(cnt)cnt.textContent=mAdv.length?mAdv.length+' khoản':'';
+  if(!mAdv.length){el.innerHTML='<div class="empty">Chưa có tạm ứng tháng này</div>';return;}
+  el.innerHTML=mAdv.map(a=>{
+    const w=workers.find(x=>x.id===a.wid)||{name:'?'};
+    return `<div class="adv-item">
+      <div class="adv-ico">💸</div>
+      <div class="adv-info">
+        <div class="an">${w.name}</div>
+        <div class="as">${a.date}${a.note?' · '+a.note:''}</div>
+      </div>
+      <div>
+        <div class="adv-money">${fmt(a.amount)}đ</div>
+        <button class="adv-del" onclick="rmAdvance('${a.id}')">Xóa</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
 // ── QUICK ATTEND ──
+// ✅ FIX: Show warning if viewing a different month than today
+function updateQaMonthWarn(){
+  const now=new Date();
+  const isCurrentMonth=(curY===now.getFullYear()&&curM===now.getMonth()+1);
+  const warn=document.getElementById('qa-month-warn');
+  if(warn) warn.classList.toggle('on',!isCurrentMonth);
+}
 window.setQaMode=function(m){
   qaMode=m;
-  ['ph','pt','vn'].forEach(k=>{ const el=document.getElementById('qa-'+k); if(el)el.classList.toggle('on',k===m); });
+  ['ph','pt','vn'].forEach(k=>{const el=document.getElementById('qa-'+k);if(el)el.classList.toggle('on',k===m);});
+};
+// ✅ NEW: Bulk attend — set all workers not yet attended today
+window.bulkAttend=function(){
+  const td=tod();
+  const notYet=workers.filter(w=>!((attendance[w.id]||{})[td]));
+  if(!notYet.length){toast('Tất cả đã điểm danh rồi!');return;}
+  notYet.forEach(w=>{
+    if(!attendance[w.id]) attendance[w.id]={};
+    attendance[w.id][td]=qaMode;
+  });
+  vibrate(40);saveLocal();scheduleSync();updateAttBadge();renderQaWorkers();renderAtt();
+  const lbl=qaMode==='ph'?'🌾 Hái':qaMode==='pt'?'💼 Thường':'✗ Vắng';
+  toast(`✓ Điểm danh ${notYet.length} người — ${lbl}`);
 };
 function renderQaWorkers(){
-  const el=document.getElementById('qa-workers'); if(!el)return;
+  const el=document.getElementById('qa-workers');if(!el)return;
   const td=tod();
   el.innerHTML=workers.map(w=>{
     const cur=(attendance[w.id]||{})[td]||'';
     const isDone=cur!=='';
-    const bg=isDone?(cur==='ph'?'#c8f0c8':cur==='pt'?'#c4dff5':cur==='vn'?'#fddede':'#fde68a'):'var(--g9)';
-    const bc=isDone?(cur==='ph'?'#52a852':cur==='pt'?'#5b9fc8':cur==='vn'?'#e88080':'#d4ac3a'):'var(--g7)';
-    const lbl=cur==='ph'?'🌾':cur==='pt'?'💼':cur==='hh'?'½🌾':cur==='ht'?'½💼':cur==='vn'?'✗':'';
-    return `<button onclick="qaTap('${w.id}')" style="padding:8px 12px;border-radius:12px;border:2.5px solid ${bc};background:${bg};font-size:14px;font-weight:800;color:var(--g1);cursor:pointer;font-family:var(--font);min-height:44px;min-width:70px;display:flex;flex-direction:column;align-items:center;gap:1px">
+    const bg=isDone?(cur==='ph'?'#c8f0c8':cur==='pt'?'#c4dff5':cur==='vn'?'#fddede':cur==='hh'?'#fef3c7':cur==='ht'?'#d4f0d4':'#e0d4c4'):'var(--g9)';
+    const bc=isDone?(cur==='ph'?'#52a852':cur==='pt'?'#5b9fc8':cur==='vn'?'#e88080':cur==='hh'?'#d4ac3a':cur==='ht'?'#7dd87d':'#b09880'):'var(--g7)';
+    const lbl=cur==='ph'?'🌾':cur==='pt'?'💼':cur==='hh'?'½🌾':cur==='ht'?'½💼':cur==='vn'?'✗':'—';
+    return `<button class="qa-worker-btn" onclick="qaTap('${w.id}')" style="border-color:${bc};background:${bg}">
       <span>${w.name.split(' ').pop()}</span>
-      <span style="font-size:11px;opacity:.7">${lbl||'—'}</span>
+      <span style="font-size:11px;opacity:.7">${lbl}</span>
     </button>`;
   }).join('');
 }
@@ -762,9 +947,10 @@ window.qaTap=function(wid){
   const td=tod();
   if(!attendance[wid]) attendance[wid]={};
   attendance[wid][td]=qaMode;
-  vibrate(25); renderQaWorkers(); renderAtt(); scheduleSync(); updateAttBadge();
+  vibrate(25);saveLocal();scheduleSync();renderQaWorkers();renderAtt();updateAttBadge();
   const w=workers.find(x=>x.id===wid);
-  toast('✓ '+w?.name+' — '+(qaMode==='ph'?'Hái':qaMode==='pt'?'Thường':'Vắng'));
+  const lbl=qaMode==='ph'?'Hái':qaMode==='pt'?'Thường':'Vắng';
+  toast('✓ '+w?.name+' — '+lbl);
 };
 
 // ── WORKERS ──
@@ -784,19 +970,23 @@ window.addWorker=function(){
     offDays:Array.from(document.querySelectorAll('#new-offday-row .odd-btn.on')).map(b=>+b.dataset.dow)
   };
   workers.push(newW);
+  // Reset form
   document.getElementById('wname').value='';
   ['w-r-thuong','w-r-hai','w-r-cf','w-r-pp'].forEach(id=>{document.getElementById(id).value='';});
   document.querySelectorAll('#new-offday-row .odd-btn').forEach(b=>b.classList.toggle('on',b.dataset.dow==='0'||b.dataset.dow==='6'));
   document.getElementById('panel-addworker').classList.remove('open');
-  saveLocal();scheduleSync();renderWList();
+  saveLocal();scheduleSync();renderWList();renderHvWk();renderAdvWk();
   toast('✓ Đã thêm '+name);vibrate(40);
 };
 window.rmWorker=function(id){
   if(!isAdmin()){toast('Chỉ Admin mới xóa được');return;}
   const w=workers.find(x=>x.id===id);
-  if(!confirm('Xóa công nhân '+(w?.name||'')+'?\nToàn bộ điểm danh và sản lượng cũng bị xóa.'))return;
-  workers=workers.filter(x=>x.id!==id);delete attendance[id];harvests=harvests.filter(h=>h.wid!==id);
-  renderWList();scheduleSync();toast('Đã xóa');
+  if(!confirm('Xóa công nhân '+(w?.name||'')+'?\nToàn bộ điểm danh, sản lượng và tạm ứng cũng bị xóa.'))return;
+  workers=workers.filter(x=>x.id!==id);
+  delete attendance[id];
+  harvests=harvests.filter(h=>h.wid!==id);
+  advances=advances.filter(a=>a.wid!==id);
+  renderWList();saveLocal();scheduleSync();toast('Đã xóa');
 };
 window.toggleWEdit=function(id){
   const el=document.getElementById('wc-'+id);if(!el)return;
@@ -835,8 +1025,8 @@ function renderWList(){
           <div class="wcard-chips">
             <span class="chip chip-t">Thường ${fmt(r.thuong)}đ</span>
             <span class="chip chip-h">Hái ${fmt(r.hai)}đ</span>
-            <span class="chip chip-cf">CF ${fmt(r.cf)}đ/kg</span>
-            <span class="chip chip-pp">Tiêu ${fmt(r.pp)}đ/kg</span>
+            <span class="chip chip-cf">CF ${fmt(r.cf)}đ</span>
+            <span class="chip chip-pp">Tiêu ${fmt(r.pp)}đ</span>
           </div>
         </div>
         ${isAdmin()?`<div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
@@ -893,16 +1083,20 @@ function setSyncUI(s){
   if(b){b.className='fb-badge '+(s==='ok'?'connected':'disconnected');b.textContent=s==='ok'?'✓ Đã kết nối':s==='sync'?'⏳ Đang kết nối...':'✕ Chưa kết nối';}
 }
 function setOffline(v){document.getElementById('offline-banner').classList.toggle('on',v);}
+
+// ✅ FIX: Badge shows count of missing workers
 function updateAttBadge(){
   const b=document.getElementById('badge-att');if(!b)return;
-  const td=tod();const missing=workers.filter(w=>!((attendance[w.id]||{})[td]));
+  const td=tod();
+  const missing=workers.filter(w=>!((attendance[w.id]||{})[td]));
   b.classList.toggle('on',missing.length>0&&workers.length>0);
-  if(missing.length>0) b.textContent=missing.length;
+  b.textContent=missing.length>0?missing.length:'';
 }
-function buildPayload(){const v=Date.now();lastPushVer=v;localVersion=v;return{...buildObj(),version:v,device:DEVICE_ID,_ts:v};}
+
+function buildPayload(){const v=Date.now();lastPushVer=v;localVersion=v;return{...buildObj(),version:v,device:DEVICE_ID};}
 async function pushToFb(){
   if(!fbDb){saveLocal();return;}
-  if(workers.length===0&&harvests.length===0&&Object.keys(attendance).length===0&&isFirstSnap)return;
+  if(workers.length===0&&harvests.length===0&&Object.keys(attendance).length===0&&advances.length===0&&isFirstSnap)return;
   setSyncUI('sync');
   try{const payload=buildPayload();saveLocal();await setDoc(doc(fbDb,'conghai',fbGroup),payload);setSyncUI('ok');setOffline(false);}
   catch(e){setSyncUI('err');setOffline(true);}
@@ -926,7 +1120,7 @@ function startListening(){
         if(snap.exists()){const d=snap.data();const rv=typeof d.version==='number'?d.version:0;
           if(rv>localVersion){applyData(d,true);saveLocal();}
           else if(localVersion>0&&workers.length>0) scheduleSync();}
-        else if(workers.length>0||harvests.length>0) scheduleSync();
+        else if(workers.length>0||harvests.length>0||advances.length>0) scheduleSync();
         finish();setSyncUI('ok');setOffline(false);}
       else onRemoteSnap(snap);
     },err=>{setSyncUI('err');setOffline(true);finish();});
@@ -951,7 +1145,7 @@ function scheduleSync(){saveLocal();if(!fbDb)return;clearTimeout(syncTimer);sync
 // ── BACKUP ──
 window.exportJSON=function(){
   try{
-    const data={version:10,exportedAt:new Date().toISOString(),workers,attendance,harvests};
+    const data={version:11,exportedAt:new Date().toISOString(),workers,attendance,harvests,advances};
     const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
     const url=URL.createObjectURL(blob),a=document.createElement('a');
     const now=new Date();
@@ -961,19 +1155,94 @@ window.exportJSON=function(){
     toast('✓ Xuất file thành công!');
   }catch(e){toast('Lỗi: '+e.message);}
 };
+// ✅ FIX: importJSON migrates workers automatically
 window.importJSON=function(event){
   const file=event.target.files[0];if(!file)return;
   const reader=new FileReader();
   reader.onload=function(e){
     try{const d=JSON.parse(e.target.result);if(!d.workers)throw new Error('File không hợp lệ');
-      if(!confirm(`Nhập backup?\n${d.workers.length} công nhân, ${d.harvests?.length||0} bản ghi\nDữ liệu hiện tại sẽ bị ghi đè!`))return;
-      workers=d.workers||[];attendance=d.attendance||{};harvests=d.harvests||[];
-      scheduleSync();refreshActive();renderWList();
+      if(!confirm(`Nhập backup?\n${d.workers.length} công nhân, ${d.harvests?.length||0} sản lượng, ${d.advances?.length||0} tạm ứng\nDữ liệu hiện tại sẽ bị ghi đè!`))return;
+      // ✅ Migrate workers from old backups
+      workers=migrateWorkers(d.workers||[]);
+      attendance=d.attendance||{};
+      harvests=d.harvests||[];
+      advances=d.advances||[]; // safe default for old backups without advances
+      saveLocal();scheduleSync();refreshActive();renderWList();renderHvWk();renderAdvWk();
       const log=document.getElementById('backup-log');if(log)log.textContent='✓ Nhập từ '+(d.exportedAt?new Date(d.exportedAt).toLocaleDateString('vi-VN'):'?');
       toast('✓ Nhập thành công!');
     }catch(err){toast('Lỗi: '+err.message);}
   };
   reader.readAsText(file);event.target.value='';
+};
+
+// ── PRINT SALARY ──
+window.printSalary=function(){
+  const ymStr=salYm();
+  const rows=workers.map(w=>({w,...calcSalForMonth(w,ymStr)}));
+  rows.sort((a,b)=>b.gross-a.gross);
+  const totalGross=rows.reduce((s,r)=>s+r.gross,0);
+  const totalAdv=rows.reduce((s,r)=>s+r.advAmt,0);
+  const totalNet=rows.reduce((s,r)=>s+r.net,0);
+
+  const html=`<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8">
+<title>Bảng lương ${MN[salM-1]} ${salY}</title>
+<style>
+body{font-family:'Be Vietnam Pro',Arial,sans-serif;margin:20px;color:#1a1108;font-size:14px}
+h1{font-size:20px;font-weight:900;margin-bottom:4px;color:#5c3d11}
+.sub{color:#8c7560;font-size:13px;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#5c3d11;color:#fff;padding:10px 10px;text-align:left;font-weight:800;font-size:12px}
+td{padding:9px 10px;border-bottom:1px solid #e0d4c4;vertical-align:top}
+tr:nth-child(even) td{background:#faf6f0}
+.num{text-align:right;font-weight:700}
+.total-row td{background:#fdf4e7;font-weight:800;border-top:2px solid #5c3d11}
+.net{color:#2d6a2d;font-weight:900}
+.adv{color:#6d28d9}
+.footer{margin-top:30px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;font-size:13px}
+.sig-box{border-top:1px solid #b09880;padding-top:8px;text-align:center;color:#8c7560}
+@media print{body{margin:10px}}
+</style></head><body>
+<h1>🌿 Bảng lương — ${MN[salM-1]} ${salY}</h1>
+<div class="sub">Xuất lúc ${new Date().toLocaleString('vi-VN')} · Tổng: ${workers.length} công nhân</div>
+<table>
+<tr>
+  <th>#</th><th>Họ tên</th><th>Công hái</th><th>Công thường</th>
+  <th>CF (kg)</th><th>Tiêu (kg)</th><th>Lương công</th>
+  <th>Lương kg</th><th>Tổng lương</th><th>Tạm ứng</th><th>Còn nhận</th><th>Ký nhận</th>
+</tr>
+${rows.map((r,i)=>`<tr>
+  <td>${i+1}</td>
+  <td style="font-weight:800">${r.w.name}</td>
+  <td class="num">${r.d.hai}</td>
+  <td class="num">${r.d.th}</td>
+  <td class="num">${r.cfKg.toFixed(1)}</td>
+  <td class="num">${r.ppKg.toFixed(1)}</td>
+  <td class="num">${fmt(r.dSal)}đ</td>
+  <td class="num">${fmt(r.kSal)}đ</td>
+  <td class="num" style="color:#2d6a2d;font-weight:900">${fmt(r.gross)}đ</td>
+  <td class="num adv">${r.advAmt>0?fmt(r.advAmt)+'đ':'—'}</td>
+  <td class="num net">${fmt(r.net)}đ</td>
+  <td style="min-width:70px"></td>
+</tr>`).join('')}
+<tr class="total-row">
+  <td colspan="8" style="text-align:right">Tổng cộng:</td>
+  <td class="num" style="color:#2d6a2d">${fmt(totalGross)}đ</td>
+  <td class="num adv">${fmt(totalAdv)}đ</td>
+  <td class="num net">${fmt(totalNet)}đ</td>
+  <td></td>
+</tr>
+</table>
+<div class="footer">
+  <div class="sig-box">Người lập bảng<br><br><br>.............................</div>
+  <div class="sig-box">Kế toán / Quản lý<br><br><br>.............................</div>
+  <div class="sig-box">Chủ nông trại<br><br><br>.............................</div>
+</div>
+</body></html>`;
+
+  const w2=window.open('','_blank');
+  w2.document.write(html);
+  w2.document.close();
+  setTimeout(()=>w2.print(),400);
 };
 
 // ── PANEL ──
@@ -1015,6 +1284,7 @@ function enterApp(){
   document.getElementById('admin-sections').style.display=isAdmin()?'block':'none';
   document.getElementById('salary-locked').style.display=isAdmin()?'none':'block';
   document.getElementById('salary-content').style.display=isAdmin()?'block':'none';
+  // Quản lý cũng xem được tạm ứng
   goTab('home');
 }
 window.showChangePw=function(){document.getElementById('changepw-section').style.display='block';}
@@ -1023,26 +1293,21 @@ window.saveChangePw=function(){
   const nw=document.getElementById('pw-new').value,cf=document.getElementById('pw-confirm').value;
   if(!nw||nw.length<4){toast('Mật khẩu ít nhất 4 ký tự');return;}
   if(nw!==cf){toast('Mật khẩu không khớp');return;}
-  accounts[curUser.username].password=nw;scheduleSync();hideChangePw();
+  accounts[curUser.username].password=nw;saveLocal();scheduleSync();hideChangePw();
   document.getElementById('pw-new').value='';document.getElementById('pw-confirm').value='';
   toast('✓ Đã đổi mật khẩu');
 };
 
 // ── MONTH / TAB ──
-function updML(){
-  document.getElementById('mlabel').textContent=MN[curM-1];
-  document.getElementById('atitle').textContent=MN[curM-1]+' '+curY;
-}
-function updSalML(){
-  const el=document.getElementById('sal-month-lbl');
-  if(el) el.textContent=MN[salM-1]+' '+salY;
-}
+function updML(){document.getElementById('mlabel').textContent=MN[curM-1];document.getElementById('atitle').textContent=MN[curM-1]+' '+curY;}
+function updSalML(){const el=document.getElementById('sal-month-lbl');if(el)el.textContent=MN[salM-1]+' '+salY;}
 window.openMonthPicker=function(){
   const v=prompt('Nhập tháng/năm (vd: 6/2025)',curM+'/'+curY);if(!v)return;
-  const pp=v.split('/');if(pp.length===2){const nm=+pp[0],ny=+pp[1];if(nm>=1&&nm<=12&&ny>2000){curM=nm;curY=ny;updML();refreshActive();}}
+  const pp=v.split('/');if(pp.length===2){const nm=+pp[0],ny=+pp[1];if(nm>=1&&nm<=12&&ny>2000){curM=nm;curY=ny;updML();refreshActive();updateQaMonthWarn();}}
 };
 window.chgM=function(d){
-  curM+=d;if(curM>12){curM=1;curY++;}if(curM<1){curM=12;curY--;}updML();refreshActive();
+  curM+=d;if(curM>12){curM=1;curY++;}if(curM<1){curM=12;curY--;}
+  updML();refreshActive();updateQaMonthWarn();
 };
 window.chgSalM=function(d){
   salM+=d;if(salM>12){salM=1;salY++;}if(salM<1){salM=12;salY--;}
@@ -1051,9 +1316,10 @@ window.chgSalM=function(d){
 function refreshActive(){
   const t=TABS.find(x=>document.getElementById('sec-'+x)?.classList.contains('on'))||'home';
   if(t==='home') renderHome();
-  else if(t==='att') renderAtt();
+  else if(t==='att'){renderAtt();renderQaWorkers();}
   else if(t==='salary'){if(isAdmin())renderSal();}
   else if(t==='harvest'){renderHvWk();renderHvList();renderHvSummary();}
+  else if(t==='advance'){renderAdvWk();renderAdvList();renderAdvSummary();}
 }
 window.goTab=function(t){
   TABS.forEach(id=>{
@@ -1063,8 +1329,9 @@ window.goTab=function(t){
   document.getElementById('ptitle').textContent=TITLES[t];
   document.getElementById('screen').scrollTop=0;
   if(t==='home') renderHome();
-  else if(t==='att'){renderAtt();renderQaWorkers();}
+  else if(t==='att'){renderAtt();renderQaWorkers();updateQaMonthWarn();}
   else if(t==='harvest'){renderHvWk();renderHvList();renderHvSummary();}
+  else if(t==='advance'){renderAdvWk();renderAdvList();renderAdvSummary();}
   else if(t==='salary'){if(isAdmin()){updSalML();renderSal();}}
   else if(t==='settings') renderWList();
 };
@@ -1078,14 +1345,8 @@ function renderAtt(){
     el.innerHTML='<div class="att-blk"><div class="empty">'+(query?'Không tìm thấy':'Chưa có công nhân nào')+'</div></div>';return;
   }
   const days=dim(curY,curM),todStr=tod();
-  // Update quick attend date label
-  const qaLbl=document.getElementById('qa-date-lbl');
-  const todayFmt=new Date().getDate()+'/'+(new Date().getMonth()+1)+'/'+new Date().getFullYear();
-  if(qaLbl) qaLbl.textContent=todayFmt;
-
   el.innerHTML=filtered.map(w=>{
-    const{hai,th,vn}=cntDays(w.id,ym());
-    const isWarn=vn>=3;
+    const{hai,th,vn}=cntDays(w.id,ym());const isWarn=vn>=3;
     return `<div class="att-blk${isWarn?' warn-abs':''}">
       <div class="anr">
         <div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1">
@@ -1096,8 +1357,7 @@ function renderAtt(){
           </div>
         </div>
         <div class="abadges">
-          <span class="ab ab-h">${hai}H</span>
-          <span class="ab ab-t">${th}T</span>
+          <span class="ab ab-h">${hai}H</span><span class="ab ab-t">${th}T</span>
           ${vn>0?`<span class="ab ab-vn">${vn}V</span>`:''}
         </div>
       </div>
@@ -1106,9 +1366,8 @@ function renderAtt(){
         const s=(attendance[w.id]||{})[key]||'';
         const offDay=isWOff(w,curY,curM,day)&&!s;
         const isToday=todStr===curY+'-'+p(curM)+'-'+p(day);
-        const dw=dow(curY,curM,day);
         return `<div class="dc${offDay?' off':s?' '+s:''}${isToday?' today-mk':''}" onclick="cyDay('${w.id}','${key}')">
-          <span class="dn">${day}</span><span class="dw">${DOW_VN[dw]}</span>
+          <span class="dn">${day}</span><span class="dw">${DOW_VN[dow(curY,curM,day)]}</span>
         </div>`;
       }).join('')}</div>
     </div>`;
@@ -1119,13 +1378,11 @@ window.cyDay=function(wid,key){
   const cur=attendance[wid][key]||'';
   const nx=CYCLE[(CYCLE.indexOf(cur)+1)%CYCLE.length];
   if(!nx) delete attendance[wid][key];else attendance[wid][key]=nx;
-  vibrate(25);renderAtt();renderQaWorkers();scheduleSync();updateAttBadge();
+  vibrate(25);saveLocal();scheduleSync();renderAtt();renderQaWorkers();updateAttBadge();
 };
 
 // ── HARVEST ──
-window.setHT=function(t){
-  hvType=t;document.getElementById('scf').classList.toggle('on',t==='coffee');document.getElementById('spp').classList.toggle('on',t==='pepper');
-};
+window.setHT=function(t){hvType=t;document.getElementById('scf').classList.toggle('on',t==='coffee');document.getElementById('spp').classList.toggle('on',t==='pepper');};
 function renderHvWk(){
   const s=document.getElementById('hvwk');if(!s)return;
   s.innerHTML=workers.length?workers.map(w=>`<option value="${w.id}">${w.name}</option>`).join(''):'<option>-- Thêm công nhân trước --</option>';
@@ -1134,35 +1391,32 @@ window.addHarvest=function(){
   const wid=document.getElementById('hvwk').value,dt=document.getElementById('hvdt').value;
   const kg=parseFloat(document.getElementById('hvkg').value)||0,note=document.getElementById('hvnote').value.trim();
   if(!wid||!dt||kg<=0){toast('Điền đầy đủ thông tin');return;}
+  const w=workers.find(x=>x.id===wid);const rate=w?getRate(w,hvType):0;
   harvests.push({id:Date.now()+'',wid,type:hvType,date:dt,kg,...(note?{note}:{})});
-  document.getElementById('hvnote').value='';renderHvList();renderHvSummary();scheduleSync();
-  toast('✓ Đã lưu '+kg+'kg '+(hvType==='coffee'?'cà phê':'tiêu'));vibrate(40);
+  document.getElementById('hvnote').value='';
+  saveLocal();scheduleSync();renderHvList();renderHvSummary();
+  toast(`✓ ${kg}kg = ${fmt(kg*rate)}đ`);vibrate(40);
 };
 window.rmHarvest=function(id){
-  harvests=harvests.filter(h=>h.id!==id);renderHvList();renderHvSummary();scheduleSync();toast('Đã xóa');
+  harvests=harvests.filter(h=>h.id!==id);saveLocal();scheduleSync();renderHvList();renderHvSummary();toast('Đã xóa');
 };
 function renderHvSummary(){
   const el=document.getElementById('hv-summary');if(!el)return;
   const mh=harvests.filter(h=>h.date.startsWith(ym()));
   let cfKg=0,ppKg=0,cfVal=0,ppVal=0;
-  workers.forEach(w=>{
-    const wcf=mh.filter(h=>h.wid===w.id&&h.type==='coffee').reduce((s,h)=>s+h.kg,0);
-    const wpp=mh.filter(h=>h.wid===w.id&&h.type==='pepper').reduce((s,h)=>s+h.kg,0);
-    cfKg+=wcf;ppKg+=wpp;cfVal+=wcf*getRate(w,'coffee');ppVal+=wpp*getRate(w,'pepper');
-  });
-  // unassigned
-  mh.filter(h=>!workers.find(w=>w.id===h.wid)).forEach(h=>{
-    if(h.type==='coffee'){cfKg+=h.kg;cfVal+=h.kg*DEF.cf;}else{ppKg+=h.kg;ppVal+=h.kg*DEF.pp;}
+  mh.forEach(h=>{
+    const w=workers.find(x=>x.id===h.wid);const r=w?getRate(w,h.type):(h.type==='coffee'?DEF.cf:DEF.pp);
+    if(h.type==='coffee'){cfKg+=h.kg;cfVal+=h.kg*r;}else{ppKg+=h.kg;ppVal+=h.kg*r;}
   });
   el.innerHTML=`<div class="r2">
     <div style="background:#fff3e0;border-radius:15px;padding:14px;text-align:center;border:1.5px solid #ffe0b2">
       <div style="font-size:11px;font-weight:800;color:#e65100;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">☕ Cà phê</div>
-      <div style="font-size:26px;font-weight:900;color:#e65100;letter-spacing:-1px">${cfKg.toFixed(1)}<span style="font-size:14px;font-weight:700;margin-left:3px">kg</span></div>
+      <div style="font-size:26px;font-weight:900;color:#e65100;letter-spacing:-1px">${cfKg.toFixed(1)}<span style="font-size:14px;margin-left:3px">kg</span></div>
       <div style="font-size:13px;color:#bf360c;margin-top:4px;font-weight:700">${fmt(cfVal)}đ</div>
     </div>
     <div style="background:var(--gp2);border-radius:15px;padding:14px;text-align:center;border:1.5px solid #9de09d">
       <div style="font-size:11px;font-weight:800;color:var(--gn);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">🌿 Tiêu</div>
-      <div style="font-size:26px;font-weight:900;color:var(--gn);letter-spacing:-1px">${ppKg.toFixed(1)}<span style="font-size:14px;font-weight:700;margin-left:3px">kg</span></div>
+      <div style="font-size:26px;font-weight:900;color:var(--gn);letter-spacing:-1px">${ppKg.toFixed(1)}<span style="font-size:14px;margin-left:3px">kg</span></div>
       <div style="font-size:13px;color:#1a4d1a;margin-top:4px;font-weight:700">${fmt(ppVal)}đ</div>
     </div>
   </div>`;
@@ -1174,8 +1428,7 @@ function renderHvList(){
   if(!mh.length){el.innerHTML='<div class="empty">Chưa có sản lượng tháng này</div>';return;}
   el.innerHTML=mh.map(h=>{
     const w=workers.find(x=>x.id===h.wid)||{name:'?'};const cf=h.type==='coffee';
-    const ww=workers.find(x=>x.id===h.wid);
-    const rate=ww?getRate(ww,h.type):(cf?DEF.cf:DEF.pp);
+    const ww=workers.find(x=>x.id===h.wid);const rate=ww?getRate(ww,h.type):(cf?DEF.cf:DEF.pp);
     return `<div class="hvi">
       <div class="hico ${cf?'hcf':'hpp'}">${cf?'☕':'🌿'}</div>
       <div class="hii">
@@ -1190,34 +1443,36 @@ function renderHvList(){
   }).join('');
 }
 
-// ── SALARY — uses salYm() not ym() ──
+// ── SALARY — uses salYm(), shows gross / advance / net ──
 function renderSal(){
   if(!isAdmin())return;
   const el=document.getElementById('slist');if(!el)return;
-  const ymStr=salYm(); // ✅ uses salary month, not global month
+  const ymStr=salYm();
   if(!workers.length){
-    document.getElementById('stotal').textContent='0đ';document.getElementById('scount').textContent='0';
+    document.getElementById('stotal').textContent='0đ';document.getElementById('sadv-total').textContent='0đ';
     el.innerHTML='<div class="empty">Chưa có công nhân</div>';return;
   }
-  let tot=0;
-  const rows=workers.map(w=>{const s=calcSalForMonth(w,ymStr);tot+=s.tot;return{w,...s};});
-  rows.sort((a,b)=>b.tot-a.tot);
-  document.getElementById('stotal').textContent=fmt(tot)+'đ';
-  document.getElementById('scount').textContent=workers.length;
+  let totGross=0,totAdv=0;
+  const rows=workers.map(w=>{const s=calcSalForMonth(w,ymStr);totGross+=s.gross;totAdv+=s.advAmt;return{w,...s};});
+  rows.sort((a,b)=>b.gross-a.gross);
+  document.getElementById('stotal').textContent=fmt(totGross-totAdv)+'đ';
+  document.getElementById('sadv-total').textContent=fmt(totAdv)+'đ';
   el.innerHTML=rows.map(r=>{
-    const hasDay=r.w.type!=='kg', hasKg=r.w.type!=='day';
-    // Build breakdown lines
+    const hasDay=r.w.type!=='kg',hasKg=r.w.type!=='day';
     const lines=[];
     if(hasDay){
       if(r.d.hai>0) lines.push(`Hái ${r.d.hai} ng × ${fmt(r.rH)}đ = <strong>${fmt(r.d.hai*r.rH)}đ</strong>`);
       if(r.d.th>0)  lines.push(`Thường ${r.d.th} ng × ${fmt(r.rT)}đ = <strong>${fmt(r.d.th*r.rT)}đ</strong>`);
-      if(r.d.hai===0&&r.d.th===0) lines.push(`Chưa điểm danh tháng này`);
+      if(r.d.hai===0&&r.d.th===0) lines.push('Chưa có công tháng này');
     }
     if(hasKg){
       if(r.cfKg>0)  lines.push(`CF ${r.cfKg.toFixed(1)}kg × ${fmt(r.rC)}đ = <strong>${fmt(r.cfKg*r.rC)}đ</strong>`);
       if(r.ppKg>0)  lines.push(`Tiêu ${r.ppKg.toFixed(1)}kg × ${fmt(r.rP)}đ = <strong>${fmt(r.ppKg*r.rP)}đ</strong>`);
-      if(r.cfKg===0&&r.ppKg===0) lines.push(`Chưa có sản lượng kg`);
+      if(r.cfKg===0&&r.ppKg===0) lines.push('Chưa có sản lượng kg');
     }
+    // Advance rows
+    const wAdvs=advances.filter(a=>a.wid===r.w.id&&a.date.startsWith(ymStr));
+
     return `<div class="si">
       <div class="si-t">
         <div class="av">${ini(r.w.name)}</div>
@@ -1227,16 +1482,21 @@ function renderSal(){
             ${hasDay&&r.d.hai>0?`<span class="tag tph">${r.d.hai} công hái</span>`:''}
             ${hasDay&&r.d.th>0?`<span class="tag tpt">${r.d.th} công thường</span>`:''}
             ${r.d.vn>0?`<span class="tag" style="background:var(--rp);color:var(--rd)">${r.d.vn} vắng</span>`:''}
+            ${r.advAmt>0?`<span class="tag tag-pu">Ứng ${fmt(r.advAmt)}đ</span>`:''}
           </div>
         </div>
-        <div class="si-v">${fmt(r.tot)}đ</div>
+        <div class="si-v">${fmt(r.gross)}đ</div>
       </div>
       <div class="si-g">
-        <div style="font-size:12px;color:var(--g5);font-weight:700;margin-bottom:6px">Chi tiết tính lương:</div>
-        ${lines.map(l=>`<div style="font-size:14px;color:var(--g3);font-weight:600;padding:3px 0;border-bottom:1px solid var(--g8)">${l}</div>`).join('')}
-        <div class="si-total-row">
-          <span class="si-total-lbl">= Tổng lương</span>
-          <span class="si-total-val">${fmt(r.tot)}đ</span>
+        ${lines.map(l=>`<div class="si-row">${l}</div>`).join('')}
+        ${wAdvs.length?`<div style="font-size:12px;color:var(--g5);font-weight:700;margin:8px 0 4px">💸 Tạm ứng:</div>`:''}
+        ${wAdvs.map(a=>`<div class="si-adv-row">
+          <span style="color:var(--pu)">${a.date}${a.note?' · '+a.note:''}</span>
+          <span style="color:var(--pu);font-weight:800">−${fmt(a.amount)}đ</span>
+        </div>`).join('')}
+        <div class="si-net">
+          <span class="si-net-lbl">= Còn nhận</span>
+          <span class="si-net-val ${r.net>0?'positive':'zero'}">${fmt(r.net)}đ</span>
         </div>
       </div>
     </div>`;
@@ -1268,24 +1528,26 @@ function renderWeekChart(){
 }
 function renderHome(){
   let ts=0,th=0,tth=0;
-  workers.forEach(w=>{const s=calcSal(w);ts+=s.tot;th+=s.d.hai;tth+=s.d.th;});
+  workers.forEach(w=>{const s=calcSal(w);ts+=s.gross;th+=s.d.hai;tth+=s.d.th;});
   document.getElementById('h-total').textContent=Math.round(ts/1000);
   document.getElementById('h-days').textContent=Math.round((th+tth)*10)/10;
   document.getElementById('h-hai').textContent=th;
   document.getElementById('h-thuong').textContent=tth;
   const now=new Date();
   const lbl=document.getElementById('today-date-lbl');if(lbl)lbl.textContent=now.getDate()+'/'+(now.getMonth()+1);
-  const td=tod();
-  const missing=workers.filter(w=>!((attendance[w.id]||{})[td]));
+  const td=tod();const missing=workers.filter(w=>!((attendance[w.id]||{})[td]));
   const alertEl=document.getElementById('home-alert');
-  if(alertEl){if(missing.length>0&&workers.length>0){alertEl.innerHTML=`<div class="alert-ban warn"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>${missing.length} người chưa điểm danh hôm nay</div>`;}else{alertEl.innerHTML='';}}
+  if(alertEl){
+    alertEl.innerHTML=missing.length>0&&workers.length>0
+      ?`<div class="alert-ban warn"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>${missing.length} người chưa điểm danh hôm nay</div>`:'';
+  }
   updateAttBadge();renderWeekChart();
   const pres=workers.filter(w=>{const s=(attendance[w.id]||{})[td]||'';return s&&s!=='vn';});
   document.getElementById('h-today').innerHTML=pres.length
     ?pres.map(w=>{const s=(attendance[w.id]||{})[td];
-        const lbl=s==='ph'?'🌾 Hái cả ngày':s==='pt'?'💼 Thường':s==='hh'?'🌾 ½ ngày hái':'💼 ½ ngày thường';
+        const lbl2=s==='ph'?'🌾 Hái':s==='pt'?'💼 Thường':s==='hh'?'🌾 ½ hái':'💼 ½ thường';
         const cls=(s==='ph'||s==='hh')?'tph':'tpt';
-        return `<div class="wr"><div class="av" style="width:38px;height:38px;font-size:11px;border-radius:11px">${ini(w.name)}</div><div class="wi"><div class="nm">${w.name}</div></div><span class="tag ${cls}">${lbl}</span></div>`;}).join('')
+        return `<div class="wr"><div class="av" style="width:38px;height:38px;font-size:11px;border-radius:11px">${ini(w.name)}</div><div class="wi"><div class="nm">${w.name}</div></div><span class="tag ${cls}">${lbl2}</span></div>`;}).join('')
     :'<div class="empty">Chưa điểm danh hôm nay</div>';
   const rec=[...harvests].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);
   document.getElementById('h-recent').innerHTML=rec.length
@@ -1302,20 +1564,22 @@ function renderHome(){
 // ── INIT ──
 async function init(){
   document.getElementById('load-txt').textContent='Đang tải dữ liệu cục bộ...';
-  const localData=loadLocal();if(localData){applyData(localData,false);localVersion=localData.version||0;}
+  const localData=loadLocal();
+  if(localData){applyData(localData,false);localVersion=localData.version||0;}
   const uiData=loadUI();
   if(uiData?.fbGroup){fbGroup=uiData.fbGroup;document.getElementById('fb-group').value=uiData.fbGroup;document.getElementById('fb-group-display').textContent=uiData.fbGroup;}
   document.getElementById('hvdt').value=tod();
+  document.getElementById('adv-dt').value=tod();
   updML();updSalML();
-  // Set quick attend date label
   const qaLbl=document.getElementById('qa-date-lbl');
   if(qaLbl){const now=new Date();qaLbl.textContent=now.getDate()+'/'+(now.getMonth()+1)+'/'+now.getFullYear();}
   document.getElementById('load-txt').textContent='Đang kết nối Firebase...';
   await initFirebase(fbGroup);
   document.getElementById('loading-screen').classList.add('hidden');
   const sess=uiData?.session;
-  if(sess?.username&&accounts[sess.username]){const acc=accounts[sess.username];curUser={username:sess.username,role:acc.role,displayName:acc.displayName};enterApp();}
-  else showLogin();
+  if(sess?.username&&accounts[sess.username]){
+    const acc=accounts[sess.username];curUser={username:sess.username,role:acc.role,displayName:acc.displayName};enterApp();
+  } else showLogin();
 }
 
 window.addEventListener('online',()=>{setOffline(false);scheduleSync();});
